@@ -65,7 +65,11 @@ const $tableWrapper = shallowRef<HTMLDivElement>();
 </script>
 
 <template>
-  <div ref="$tableWrapper" class="h-full" flex="~ col">
+  <div
+    ref="$tableWrapper"
+    class="h-full rounded-base p-12 pt0 border-base bg-base text-base"
+    flex="~ col"
+  >
     <div class="py8" flex="~ justify-between items-center">
       <div>
         <slot name="title" />

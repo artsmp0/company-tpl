@@ -91,6 +91,7 @@ export const useData = (propsGetter: () => GupoTableProps) => {
     const orderField = props.sorterKeys!.field.orderField;
     const ascend = props.sorterKeys!.order.ascend;
     const descend = props.sorterKeys!.order.descend;
+    console.log('sorter: ', sorter);
     if (Array.isArray(sorter)) {
       sorterParams = sorter
         .sort((a, b) => (a.sorter as any).multiple - (b.sorter as any).multiple)
@@ -108,9 +109,15 @@ export const useData = (propsGetter: () => GupoTableProps) => {
             [orderField]: []
           } as any
         );
+      sorterParams[sortField] = sorterParams[sortField].join(',');
+      sorterParams[orderField] = sorterParams[orderField].join(',');
+    } else {
+      sorterParams = {
+        [sortField]: sorter?.columnKey,
+        [orderField]: sorter?.order === 'ascend' ? ascend : descend
+      };
     }
-    sorterParams[sortField] = sorterParams[sortField].join(',');
-    sorterParams[orderField] = sorterParams[orderField].join(',');
+
     cachedParams.value = {
       ...cachedParams.value,
       ...sorterParams

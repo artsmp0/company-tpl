@@ -3,6 +3,8 @@
   "include": ["vite.config.*", "vitest.config.*", "cypress.config.*", "playwright.config.*"],
   "compilerOptions": {
     "composite": true,
+    // 解决版本升级后 vite config 报错问题
+    "moduleResolution": "Node",
     "module": "ESNext",
     "types": ["node"]
   }

@@ -2,12 +2,12 @@ export const fallbackRoutes = [
   {
     name: 'Redirect',
     path: '/redirect/:path(.*)',
-    component: () => import('@/layout/pages/redirect.vue')
+    component: () => import('@/layout/pages/Redirect.vue')
   },
   {
     name: 'Auth',
     path: '/auth',
-    component: () => import('@/layout/pages/auth.vue'),
+    component: () => import('@/layout/pages/Auth.vue'),
     meta: { whiteList: true }
   },
   {

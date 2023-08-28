@@ -1,6 +1,7 @@
 <!-- eslint-disable @typescript-eslint/no-explicit-any -->
 <script setup lang="tsx">
-import GupoTable from '@/components/table';
+import GupoTable, { type GupoTableInst } from '@/components/table';
+import { useDiscrete } from '@/composables';
 import { FlashOutline, HelpCircleOutline } from '@vicons/ionicons5';
 import { NButton, type DataTableColumns, NTag, NIcon, NTooltip } from 'naive-ui';
 
@@ -104,8 +105,7 @@ const columns: DataTableColumns<User> = [
 
 const filterText = ref('');
 const filterText2 = ref('');
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const $table = shallowRef<any>();
+const $table = shallowRef<GupoTableInst>();
 const handleSearch = () => {
   $table.value?.filter({
     keyword: filterText.value
@@ -120,28 +120,15 @@ const handleSearch2 = () => {
   );
 };
 
-const test = () => {
-  getUserList.value = (params: any) => {
-    console.log('params: ', params);
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve({
-          data: {
-            list: Array.from({ length: params.pageSize }).map((_, index) => ({
-              name: `${params.keyword || '我是随机名字'}${
-                index + (params.page - 1) * params.pageSize
-              }`,
-              age: Math.floor(Math.random() * 130),
-              male: index % 2 === 0
-            })),
-            pagination: {
-              total: 10000
-            }
-          }
-        });
-      }, 300);
-    });
-  };
+const selectedData = computed(() => {
+  return $table.value?.getSelectedData<User>();
+});
+
+const { message } = useDiscrete();
+const showKey = () => {
+  message.info(() => {
+    return <div>{selectedData.value?.checkedKeys.value.map((k) => <div>{k}</div>)}</div>;
+  });
 };
 </script>
 
@@ -170,9 +157,9 @@ const test = () => {
           <NIcon :component="FlashOutline" />
         </template>
       </NInput>
-      <NButton @click="$table.refresh()">保持分页刷新</NButton>
-      <NButton @click="$table.refresh(false)">不保持分页刷新</NButton>
-      <NButton @click="test">change props</NButton>
+      <NButton @click="$table?.refresh()">保持分页刷新</NButton>
+      <NButton @click="$table?.refresh(false)">不保持分页刷新</NButton>
+      <NButton @click="showKey">显示选中 key</NButton>
     </div>
     <GupoTable
       ref="$table"
@@ -183,6 +170,14 @@ const test = () => {
       :single-line="true"
       :single-column="true"
       :columns="columns"
+      :pager-keys="{
+        total: 'data.pagination.total',
+        page: 'page',
+        pageSize: 'pageSize',
+        list: 'data.list'
+      }"
+      selection
+      :row-key="(row: User) => row.name"
       flex-height
       :list-api="getUserList"
       :pagination="{ pageSlot: 10, pageSize: 30 }"

@@ -16,5 +16,7 @@ declare module 'vue-router' {
     hideInMenu?: boolean;
     /** 作为父路由是否本身拥有界面 */
     isPage?: boolean;
+    /** 作为父路由是否本身拥有界面 */
+    isIndex?: boolean;
   }
 }

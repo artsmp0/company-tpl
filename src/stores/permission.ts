@@ -143,7 +143,12 @@ export const usePermissionStore = defineStore('permission', () => {
     // 返回登录成功后前往的页面地址
     return {
       redirectRoute:
-        menuList.value[0]?.children?.[0]?.path || menuList.value[0]?.path || otherPagePath || '/'
+        // 手动设置主页
+        flatMenuList.value.find((item) => item.meta?.isIndex)?.path ||
+        menuList.value[0]?.children?.[0]?.path ||
+        menuList.value[0]?.path ||
+        otherPagePath ||
+        '/'
     };
   };
   const getKeepAliveName = (arr: MenuItemType[]) => {

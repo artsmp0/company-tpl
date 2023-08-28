@@ -6,7 +6,8 @@
         "icon": "sidebar-dashboard",
         "title": "概览",
         "keepAlive": true,
-        "noClosable": true
+        "noClosable": true,
+        "isIndex": true
       },
       "children": []
     },

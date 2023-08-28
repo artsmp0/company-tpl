@@ -26,7 +26,7 @@ const SHOW_TABS = computed(() => settingStore.defaultSetting.SHOW_TABS);
             <div class="flex-1 of-auto">
               <RouterView>
                 <template #default="{ Component }">
-                  <Transition mode="out-in" name="fade-up">
+                  <Transition mode="out-in" :name="settingStore.defaultSetting.PAGE_ANIMATION">
                     <KeepAlive :include="include">
                       <Component :is="Component" />
                     </KeepAlive>

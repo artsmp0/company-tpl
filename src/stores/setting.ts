@@ -6,7 +6,11 @@ export const useSettingStore = defineStore('setting', () => {
   const defaultSetting = ref(setting);
 
   const settingMap = ref<
-    { key: SettingKey; label: string; type: 'switch' | 'select' | 'inputNumber' | 'input' }[]
+    {
+      key: SettingKey;
+      label: string;
+      type: 'switch' | 'select' | 'inputNumber' | 'input' | 'input.textarea';
+    }[]
   >([
     {
       key: 'SHOW_AVATAR',
@@ -51,7 +55,7 @@ export const useSettingStore = defineStore('setting', () => {
     {
       key: 'APP_NAME',
       label: '系统名称',
-      type: 'input'
+      type: 'input.textarea'
     }
   ]);
 

@@ -9,6 +9,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     GupoModal: typeof import('./../src/components/modal/GupoModal.vue')['default']
     HelpMessage: typeof import('./../src/components/HelpMessage.vue')['default']
+    NAlert: typeof import('naive-ui')['NAlert']
     NBreadcrumb: typeof import('naive-ui')['NBreadcrumb']
     NBreadcrumbItem: typeof import('naive-ui')['NBreadcrumbItem']
     NButton: typeof import('naive-ui')['NButton']

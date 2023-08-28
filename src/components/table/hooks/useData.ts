@@ -9,7 +9,7 @@ const resolveArg = (result: any, path: string) => {
   }, result);
 };
 
-export const useData = (propsGetter: () => GupoTableProps) => {
+export const useData = (propsGetter: () => GupoTableProps, updateCheckedRows: () => void) => {
   const props = toValue(propsGetter);
   const pagination = reactive({
     page: 1,
@@ -61,6 +61,7 @@ export const useData = (propsGetter: () => GupoTableProps) => {
         ...cachedParams.value
       });
       data.value = resolveArg(res, props.pagerKeys!.list);
+      updateCheckedRows();
       pagination.itemCount = resolveArg(res, props.pagerKeys!.total);
     } catch (error) {
       console.log('error: ', error);

@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+
 /** 获取api函数的query参数类型 */
 export type GetRequestParams<T> = T extends { params: infer P1 }
   ? P1

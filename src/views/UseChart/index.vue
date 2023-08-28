@@ -163,7 +163,7 @@ setOptions({
 </script>
 
 <template>
-  <div p16>
+  <div page-wrapper>
     <NCard>
       <div ref="contentChartRef" class="h-[300px]"></div>
     </NCard>
@@ -177,12 +177,12 @@ setOptions({
     rgb(253 254 255 / 60%) -6.04%,
     rgb(244 247 252 / 60%) 85.2%
   ) !important;
+  backdrop-filter: blur(10px) !important;
   border: none !important;
 
   /* Note: backdrop-filter has minimal browser support */
 
   border-radius: 6px !important;
-  backdrop-filter: blur(10px) !important;
 
   .content-panel {
     display: flex;

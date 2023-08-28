@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div p16>
+  <div page-wrapper>
     <NButton type="primary">我是按钮</NButton>
     <NCard>
       只要是 看到天边云一朵<br />

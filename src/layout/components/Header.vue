@@ -147,6 +147,7 @@ const SHOW_AVATAR = computed(() => settingStore.defaultSetting.SHOW_AVATAR);
 const SHOW_BREADCRUMB = computed(() => settingStore.defaultSetting.SHOW_BREADCRUMB);
 const SHOW_FULLSCREEN_BTN = computed(() => settingStore.defaultSetting.SHOW_FULLSCREEN_BTN);
 const APP_NAME = computed(() => settingStore.defaultSetting.APP_NAME);
+const isDev = computed(() => import.meta.env.DEV);
 </script>
 
 <template>
@@ -174,13 +175,11 @@ const APP_NAME = computed(() => settingStore.defaultSetting.APP_NAME);
       </NButton>
       <NButton v-if="SHOW_THEME_BTN" circle secondary @click="toggleDark">
         <template #icon>
-          <NIcon>
-            <MoonOutline v-if="isDark" />
-            <SunnyOutline v-else />
-          </NIcon>
+          <div v-if="isDark" class="i-line-md:moon-rising-alt-loop" />
+          <div v-else class="i-line-md:moon-to-sunny-outline-loop-transition" />
         </template>
       </NButton>
-      <NButton circle secondary @click="showSettings = true">
+      <NButton v-if="isDev" circle secondary @click="showSettings = true">
         <template #icon>
           <NIcon>
             <SettingsOutline />

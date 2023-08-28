@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useResizeObserver } from '@vueuse/core';
-import { cloneDeep } from 'lodash-es';
+import { cloneDeep } from 'lodash-unified';
 import { NForm } from 'naive-ui';
 import type { CSSProperties } from 'vue';
 

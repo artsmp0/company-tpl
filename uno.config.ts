@@ -1,8 +1,8 @@
-import { defineConfig, presetUno, presetAttributify } from 'unocss';
+import { defineConfig, presetUno, presetAttributify, presetIcons } from 'unocss';
 
 export default defineConfig({
   // https://unocss.dev/presets/attributify
-  presets: [presetUno(), presetAttributify()],
+  presets: [presetUno(), presetAttributify(), presetIcons({ scale: 1.2 })],
   // https://unocss.dev/config/rules
   rules: [],
   // https://unocss.dev/config/shortcuts

@@ -2,7 +2,6 @@
 
 <template>
   <div page-wrapper>
-    <NButton type="primary">我是按钮</NButton>
     <NCard>
       只要是 看到天边云一朵<br />
       逐天拢有好心情
@@ -17,9 +16,3 @@
     </div>
   </div>
 </template>
-
-<style lang="scss" scoped>
-.wu-di {
-  color: #f00;
-}
-</style>

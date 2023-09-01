@@ -64,16 +64,16 @@ html.dark {
 
 :root {
   --c-bg: #fafafc;
-  --c-scrollbar: #ddd;
-  --c-scrollbar-hover: #aaa;
+  --c-scrollbar: #bfbfbf;
+  --c-scrollbar-hover: #999;
 }
 
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 5px;
 }
 
 ::-webkit-scrollbar:horizontal {
-  height: 6px;
+  height: 5px;
 }
 
 ::-webkit-scrollbar-track,

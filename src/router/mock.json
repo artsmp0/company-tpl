@@ -1,7 +1,7 @@
 {
   "router": [
     {
-      "path": "/Overview",
+      "path": "/Demo/Overview",
       "meta": {
         "icon": "sidebar-dashboard",
         "title": "概览",
@@ -12,7 +12,7 @@
       "children": []
     },
     {
-      "path": "/UseChart",
+      "path": "/Demo/UseChart",
       "meta": {
         "icon": "sidebar-dashboard",
         "title": "useChart demo",
@@ -21,7 +21,7 @@
       "children": []
     },
     {
-      "path": "/Search",
+      "path": "/Demo/Search",
       "meta": {
         "icon": "sidebar-dashboard",
         "title": "搜索表单",
@@ -30,7 +30,7 @@
       "children": []
     },
     {
-      "path": "/Modal",
+      "path": "/Demo/Modal",
       "meta": {
         "icon": "sidebar-dashboard",
         "title": "函数模态框",
@@ -39,7 +39,7 @@
       "children": []
     },
     {
-      "path": "/Table",
+      "path": "/Demo/Table",
       "meta": {
         "icon": "sidebar-dashboard",
         "title": "表格"
@@ -47,7 +47,7 @@
       "children": []
     },
     {
-      "path": "/TrueTable",
+      "path": "/Demo/TrueTable",
       "meta": {
         "icon": "sidebar-dashboard",
         "title": "示例接口请求表格"
@@ -55,21 +55,21 @@
       "children": []
     },
     {
-      "path": "/Nested",
+      "path": "/Demo/Nested",
       "meta": {
         "icon": "sidebar-dashboard",
         "title": "嵌套路由"
       },
       "children": [
         {
-          "path": "/Nested/N1",
+          "path": "/Demo/Nested/N1",
           "meta": {
             "icon": "",
             "title": "嵌套路由1-1"
           },
           "children": [
             {
-              "path": "/Nested/N1/N2",
+              "path": "/Demo/Nested/N1/N2",
               "meta": {
                 "icon": "",
                 "title": "嵌套路由1-2"
@@ -80,14 +80,14 @@
       ]
     },
     {
-      "path": "/NestIsPage",
+      "path": "/Demo/NestIsPage",
       "meta": {
         "icon": "sidebar-chart",
         "title": "嵌套子页面可点击"
       },
       "children": [
         {
-          "path": "/NestIsPage/Page1",
+          "path": "/Demo/NestIsPage/Page1",
           "meta": {
             "icon": "",
             "title": "页面一",
@@ -95,7 +95,7 @@
           },
           "children": [
             {
-              "path": "/NestIsPage/Page1/Detail",
+              "path": "/Demo/NestIsPage/Page1/Detail",
               "meta": {
                 "icon": "",
                 "title": "页面一详情",
@@ -105,7 +105,7 @@
           ]
         },
         {
-          "path": "/NestIsPage/Page2",
+          "path": "/Demo/NestIsPage/Page2",
           "meta": {
             "icon": "",
             "title": "页面二",
@@ -113,7 +113,7 @@
           },
           "children": [
             {
-              "path": "/NestIsPage/Page2/Sub",
+              "path": "/Demo/NestIsPage/Page2/Sub",
               "meta": {
                 "icon": "",
                 "title": "页面二子页面"
@@ -132,7 +132,7 @@
   ],
   "otherPage": [
     {
-      "path": "/OtherPage",
+      "path": "/Demo/OtherPage",
       "meta": {
         "title": "其他页面",
         "hideTab": true

@@ -63,8 +63,8 @@ const getSelectedData = () => {
         field: { orderField: 'isAsc', sortField: 'orderByColumn' },
         order: { ascend: 'asc', descend: 'desc' }
       }"
-      
-       flex-height selection 
+      flex-height
+      selection
       :list-api="getList"
       :pager-keys="{
         list: 'data.data.rows',

@@ -17,7 +17,7 @@ export const fallbackRoutes = [
     meta: { whiteList: true }
   },
   {
-    name: 'Forbidden',
+    name: '401',
     path: '/401',
     component: () => import('@/layout/pages/401.vue'),
     meta: { whiteList: true }

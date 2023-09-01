@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useUserStore } from '@/stores/user';
+
 /**  @description:
  * 1、钉钉、浙政钉环境登录失效（401）是跳转到此页面（正常pc环境是退出到登录页面）；
  * 2、无权限访问；
@@ -18,11 +20,17 @@ const msg = {
     description: '暂未登录或已过期，请重新登录!'
   }
 };
+
+const userStore = useUserStore();
 </script>
 
 <template>
   <div class="forbidden">
-    <NResult status="500" :description="msg[code]?.description" :title="msg[code]?.title" />
+    <NResult status="500" :description="msg[code]?.description" :title="msg[code]?.title">
+      <template #footer>
+        <NButton v-if="code === '401'" type="error" @click="userStore.logout()">去登录</NButton>
+      </template>
+    </NResult>
   </div>
 </template>
 

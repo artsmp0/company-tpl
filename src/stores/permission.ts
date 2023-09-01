@@ -118,7 +118,10 @@ export const usePermissionStore = defineStore('permission', () => {
     }
     // 设置页面展示菜单数组
     setHasRoute(true);
+    addFallbackRoutes();
+  };
 
+  const addFallbackRoutes = () => {
     // 最后加入 fallbackRoutes
     fallbackRoutes.forEach((route) => {
       router.addRoute(route);
@@ -130,9 +133,13 @@ export const usePermissionStore = defineStore('permission', () => {
       setRoutes(mockData as unknown as PermissionData);
     } else {
       // 有接口则替换为接口返回 data 即可
-      const { data } = await APIS.auth['/open/permission/router']({
+      const { data, err } = await APIS.auth['/open/permission/router']({
         params: { org_id: userStore.orgId, system_code: userStore.systemCode }
       });
+      if (err) {
+        addFallbackRoutes();
+        return { redirectRoute: undefined };
+      }
       setPermission(data?.button);
       setRoutes(data);
       if (!data) return {};
@@ -143,12 +150,7 @@ export const usePermissionStore = defineStore('permission', () => {
     // 返回登录成功后前往的页面地址
     return {
       redirectRoute:
-        // 手动设置主页
-        flatMenuList.value.find((item) => item.meta?.isIndex)?.path ||
-        menuList.value[0]?.children?.[0]?.path ||
-        menuList.value[0]?.path ||
-        otherPagePath ||
-        '/'
+        menuList.value[0]?.children?.[0]?.path || menuList.value[0]?.path || otherPagePath || '/'
     };
   };
   const getKeepAliveName = (arr: MenuItemType[]) => {

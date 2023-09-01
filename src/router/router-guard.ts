@@ -21,13 +21,15 @@ router.beforeEach(async (to, from) => {
   if (!permissionStore.hasRoute && !to.meta.whiteList) {
     const { redirectRoute } = await permissionStore.initRoutes();
     indexRoute = redirectRoute as string;
-    if (!redirectRoute)
+    if (!redirectRoute) {
       return {
-        path: '/401',
+        name: '401',
         query: {
           code: 401
         }
       };
+    }
+
     return { ...to, replace: true, path: to.path === '/' ? redirectRoute : to.path };
   }
   // 避免一开始进入的是不存在页面，重定向到 404 页面导致回到主页按钮失效的情况

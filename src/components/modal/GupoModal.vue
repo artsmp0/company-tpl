@@ -1,6 +1,6 @@
 <script setup lang="ts">
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { uniqueId } from 'lodash-es';
+import { uniqueId } from 'lodash-unified';
 import type { ModalProps } from './types';
 import startDrag from '@/utils/drag';
 import { useToggle } from '@vueuse/core';

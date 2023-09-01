@@ -15,11 +15,14 @@ const handleCancel = () => {
   message.info('触发了 cancel 操作！');
 };
 
+const confirmLoading = ref(false);
 const handleConfirm = () => {
   const m = message.loading('触发了 confirm 操作！3s 后自动关闭！', { duration: 0 });
+  confirmLoading.value = true;
   const tid = setTimeout(() => {
     close();
     clearInterval(tid);
+    confirmLoading.value = false;
     m.destroy();
   }, 3000);
 };
@@ -36,6 +39,7 @@ const handleConfirm = () => {
       :show-action="showAction"
       :fullscreen="showFullscreen"
       :draggable="draggable"
+      :confirm-loading="confirmLoading"
       @cancel="handleCancel"
       @confirm="handleConfirm"
     >

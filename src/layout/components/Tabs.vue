@@ -143,7 +143,6 @@ const handleSelect = (key: string | number) => {
           :key="t.path"
           :closable="tabStore.tabs.size !== 1"
           :type="route.path === t.path ? 'error' : 'success'"
-          size="large"
           class="mr8 cursor-pointer"
           @click="handleClick(t)"
           @close="handleClose(t)"

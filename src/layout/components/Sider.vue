@@ -2,7 +2,7 @@
 import { NEllipsis, type MenuOption } from 'naive-ui';
 import { usePermissionStore, type MenuItemType } from '@/stores/permission';
 import type { RouteMeta } from 'vue-router';
-import SvgIcon from '@/components/SvgIcon.vue';
+import { GpSvgIcon } from '@/components';
 import { RouterLink } from 'vue-router';
 import { useWindowSize } from '@vueuse/core';
 import { useSettingStore } from '@/stores/setting';
@@ -38,7 +38,7 @@ const menuOptions = computed<MenuOption[]>(() => {
 const renderIcon: any = (option: GupoMenuOption) => {
   const icon = option.meta?.icon;
   if (!icon) return null;
-  return <SvgIcon name={icon} />;
+  return <GpSvgIcon name={icon} />;
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -7,9 +7,10 @@ import {
   ExpandOutlined,
   ReloadOutlined
 } from '@vicons/antd';
-import type { RightUtils } from '../table';
+import type { RightUtils } from '../types';
 import { useFullscreen } from '@vueuse/core';
 import type { DataTableProps } from 'naive-ui';
+import { GpHelpMsg } from '@/components';
 
 const props = defineProps<{
   options: RightUtils;
@@ -89,7 +90,7 @@ const sizeOptions = [
 
 <template>
   <div flex="~ items-center gap-16">
-    <HelpMessage v-for="item in data" :key="item.key" :message="item.tip">
+    <GpHelpMsg v-for="item in data" :key="item.key" :message="item.tip">
       <NPopselect
         v-if="item.key === 'size'"
         v-model:value="size"
@@ -99,6 +100,7 @@ const sizeOptions = [
         <Component :is="item.icon" class="cursor-pointer outline-none" />
       </NPopselect>
       <Component :is="item.icon" v-else class="cursor-pointer" @click="handleClick(item.key)" />
-    </HelpMessage>
+    </GpHelpMsg>
   </div>
 </template>
+../types

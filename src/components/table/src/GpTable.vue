@@ -1,11 +1,12 @@
 <!-- eslint-disable @typescript-eslint/no-explicit-any -->
 <script setup lang="ts">
-import type { GupoTableProps } from './table';
+import type { GupoTableProps } from './types';
 import { useData } from './hooks/useData';
 import type { DataTableRowKey } from 'naive-ui';
 import { useColumn } from './hooks/useColumn';
 import type { ShallowRef } from 'vue';
 import type { RowData } from 'naive-ui/es/data-table/src/interface';
+import RightUtils from './components/RightUtils.vue';
 /**
  * 请注意：开启了 remote 选项后，本地排序和过滤会失效！仅能监听 update:sorter 排序
  * 本组件主要针对远程数据处理进行提效，若要其他功能请直接使用未封装的 table 组件
@@ -13,7 +14,7 @@ import type { RowData } from 'naive-ui/es/data-table/src/interface';
  */
 
 defineOptions({
-  name: 'GupoTable'
+  name: 'GpTable'
 });
 
 const props = withDefaults(defineProps<GupoTableProps>(), {
@@ -110,7 +111,7 @@ const $tableWrapper = shallowRef<HTMLDivElement>();
   >
     <div class="h44" flex="~ justify-between items-center">
       <div>
-        <slot name="title" />
+        <slot v-if="!props.selection" name="title" />
         <span v-if="checkedKeys.length" text-gray>
           当前已选中
           <strong class="text-red">{{ checkedKeys.length }}</strong>
@@ -146,3 +147,4 @@ const $tableWrapper = shallowRef<HTMLDivElement>();
     </NDataTable>
   </div>
 </template>
+./types

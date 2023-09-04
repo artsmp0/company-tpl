@@ -39,6 +39,7 @@ export default defineConfig(({ mode }) => {
       }),
       Components({
         dts: './types/components.d.ts',
+        dirs: [],
         resolvers: [NaiveUiResolver()]
       }),
       createSvgIconsPlugin({

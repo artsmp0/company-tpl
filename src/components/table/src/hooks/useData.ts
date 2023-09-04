@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { RowData } from 'naive-ui/es/data-table/src/interface';
-import type { GupoTableProps } from '../table';
+import type { GupoTableProps } from '../types';
 import type { DataTableSortState } from 'naive-ui';
 
 const resolveArg = (result: any, path: string) => {

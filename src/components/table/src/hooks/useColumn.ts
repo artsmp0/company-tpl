@@ -1,4 +1,4 @@
-import type { GupoTableProps } from '../table';
+import type { GupoTableProps } from '../types';
 
 export const useColumn = (propsGetter: () => GupoTableProps) => {
   const props = toValue(propsGetter);

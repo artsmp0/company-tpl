@@ -1,9 +1,8 @@
 <!-- eslint-disable @typescript-eslint/no-explicit-any -->
 <script setup lang="tsx">
-import GupoTable, { useTableListApi } from '@/components/table';
+import { GpTable, type GpTableInst, type TableColumns, useTableListApi } from '@/components';
 import type { TableItem } from '@/api/apis/common';
 import { APIS } from '@/api';
-import type { TableColumns } from '@/components/table/table';
 
 const columns: TableColumns<TableItem> = [
   {
@@ -42,7 +41,7 @@ const columns: TableColumns<TableItem> = [
   }
 ];
 const { getList } = useTableListApi(APIS.common['/tag/tb/bind/list'], true);
-const $table = shallowRef();
+const $table = shallowRef<GpTableInst>();
 
 const getSelectedData = () => {
   console.log($table.value?.getSelectedData());
@@ -54,7 +53,7 @@ const getSelectedData = () => {
     <div class="shrink-0" flex="~ items-center gap-16">
       <NButton @click="getSelectedData">获取选中数据</NButton>
     </div>
-    <GupoTable
+    <GpTable
       ref="$table"
       class="flex-1"
       :row-key="(row: any) => row.urn"

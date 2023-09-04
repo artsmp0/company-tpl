@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import { QuestionCircleOutlined } from '@vicons/antd';
 
+defineOptions({
+  name: 'GpHelpMsg'
+});
+
 const props = withDefaults(
   defineProps<{
     iconSize?: string | number;

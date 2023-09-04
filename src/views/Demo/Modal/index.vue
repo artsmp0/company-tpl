@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useModal } from '@/components/modal/useModal';
+import { useModal, GpModal } from '@/components';
 import { useDiscrete } from '@/composables';
 
 const $modal = shallowRef();
@@ -33,7 +33,7 @@ const handleConfirm = () => {
     <NSpace>
       <NButton type="primary" @click="open()">打开模态框</NButton>
     </NSpace>
-    <GupoModal
+    <GpModal
       ref="$modal"
       title="这是标题"
       :show-action="showAction"
@@ -49,6 +49,7 @@ const handleConfirm = () => {
         <NButton type="primary" @click="showFullscreen = !showFullscreen">是否显示全屏按钮</NButton>
         <NButton type="primary" @click="close">调用函数关闭此模态框</NButton>
       </NSpace>
-    </GupoModal>
+    </GpModal>
   </div>
 </template>
+@/components/modal/src/useModal

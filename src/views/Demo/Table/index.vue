@@ -1,6 +1,6 @@
 <!-- eslint-disable @typescript-eslint/no-explicit-any -->
 <script setup lang="tsx">
-import GupoTable, { type GupoTableInst } from '@/components/table';
+import { GpTable, type GpTableInst } from '@/components';
 import { useDiscrete } from '@/composables';
 import { FlashOutline, HelpCircleOutline } from '@vicons/ionicons5';
 import { NButton, type DataTableColumns, NTag, NIcon, NTooltip } from 'naive-ui';
@@ -105,7 +105,7 @@ const columns: DataTableColumns<User> = [
 
 const filterText = ref('');
 const filterText2 = ref('');
-const $table = shallowRef<GupoTableInst>();
+const $table = shallowRef<GpTableInst>();
 const handleSearch = () => {
   $table.value?.filter({
     keyword: filterText.value
@@ -161,7 +161,7 @@ const showKey = () => {
       <NButton @click="$table?.refresh(false)">不保持分页刷新</NButton>
       <NButton @click="showKey">显示选中 key</NButton>
     </div>
-    <GupoTable
+    <GpTable
       ref="$table"
       class="flex-1"
       :bordered="false"

@@ -1,6 +1,10 @@
 <script lang="ts" setup>
 import type { CSSProperties } from 'vue';
 
+defineOptions({
+  name: 'SvgIcon'
+});
+
 interface Props {
   /** icon 文件夹下的图标名称 */
   name: string;

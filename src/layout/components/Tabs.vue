@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { GpSvgIcon } from '@/components';
 import { useTabsStore, type Tab } from '@/stores/tabs';
 // import { NIcon } from 'naive-ui';
 
@@ -149,7 +150,7 @@ const handleSelect = (key: string | number) => {
           @contextmenu.prevent="(e) => handleShowContextMenu(e, t)"
         >
           <template #icon>
-            <SvgIcon v-if="t.icon" size="16" :name="t.icon" />
+            <GpSvgIcon v-if="t.icon" size="16" :name="t.icon" />
           </template>
           {{ t.name }}
         </NTag>

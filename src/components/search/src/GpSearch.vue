@@ -4,6 +4,10 @@ import { cloneDeep } from 'lodash-unified';
 import { NForm } from 'naive-ui';
 import type { CSSProperties } from 'vue';
 
+defineOptions({
+  name: 'GpSearch'
+});
+
 const props = withDefaults(
   defineProps<{
     labelWidth?: string;

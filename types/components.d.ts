@@ -7,8 +7,6 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    GupoModal: typeof import('./../src/components/modal/GupoModal.vue')['default']
-    HelpMessage: typeof import('./../src/components/HelpMessage.vue')['default']
     NAlert: typeof import('naive-ui')['NAlert']
     NBreadcrumb: typeof import('naive-ui')['NBreadcrumb']
     NBreadcrumbItem: typeof import('naive-ui')['NBreadcrumbItem']
@@ -34,7 +32,6 @@ declare module 'vue' {
     NMenu: typeof import('naive-ui')['NMenu']
     NModal: typeof import('naive-ui')['NModal']
     NPopselect: typeof import('naive-ui')['NPopselect']
-    NResult: typeof import('naive-ui')['NResult']
     NScrollbar: typeof import('naive-ui')['NScrollbar']
     NSelect: typeof import('naive-ui')['NSelect']
     NSpace: typeof import('naive-ui')['NSpace']
@@ -42,11 +39,7 @@ declare module 'vue' {
     NTag: typeof import('naive-ui')['NTag']
     NText: typeof import('naive-ui')['NText']
     NTooltip: typeof import('naive-ui')['NTooltip']
-    RightUtils: typeof import('./../src/components/table/components/RightUtils.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    SearchForm: typeof import('./../src/components/search/SearchForm.vue')['default']
-    SvgIcon: typeof import('./../src/components/SvgIcon.vue')['default']
-    Table: typeof import('./../src/components/table/table.vue')['default']
   }
 }

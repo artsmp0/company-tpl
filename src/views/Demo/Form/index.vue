@@ -7,7 +7,8 @@ const model = reactive({
   sex: null,
   area: null,
   song: null,
-  tree: null
+  tree: null,
+  datePicker: '1998-11-28 18:00:00'
 });
 const { elements } = getElementByJson(
   [
@@ -232,6 +233,15 @@ const { elements } = getElementByJson(
         cascade: true,
         checkable: true,
         filterable: true
+      }
+    },
+    {
+      field: 'datePicker',
+      type: 'datePicker',
+      label: '日期',
+      span: 6,
+      props: {
+        type: 'datetime'
       }
     }
   ],

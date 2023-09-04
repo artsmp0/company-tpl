@@ -1,6 +1,6 @@
 import type { FormItemGiProps, FormProps } from 'naive-ui';
 
-export type FieldType = 'input' | 'select' | 'inputNumber' | 'radio' | 'treeSelect';
+export type FieldType = 'input' | 'select' | 'inputNumber' | 'radio' | 'treeSelect' | 'datePicker';
 
 export interface JsonItem extends FormItemGiProps {
   type: FieldType;

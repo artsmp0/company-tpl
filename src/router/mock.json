@@ -21,6 +21,14 @@
       "children": []
     },
     {
+      "path": "/Demo/Form",
+      "meta": {
+        "icon": "sidebar-dashboard",
+        "title": "普通表单"
+      },
+      "children": []
+    },
+    {
       "path": "/Demo/Search",
       "meta": {
         "icon": "sidebar-dashboard",

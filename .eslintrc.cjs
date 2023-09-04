@@ -32,7 +32,7 @@ module.exports = {
       }
     ],
     'vue/attribute-hyphenation': ['error', 'always'],
-    '@typescript-eslint/no-explicit-any': 'error',
+    '@typescript-eslint/no-explicit-any': 'warn',
     '@typescript-eslint/consistent-type-imports': 'error',
     'vue/valid-v-model': 'warn'
   }

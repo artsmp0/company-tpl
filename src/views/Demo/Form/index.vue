@@ -5,7 +5,8 @@ const model = reactive({
   name: '',
   intro: '',
   sex: null,
-  area: null
+  area: null,
+  song: null
 });
 const { elements } = getElementByJson(
   [
@@ -64,6 +65,37 @@ const { elements } = getElementByJson(
       props: {
         type: 'textarea'
       }
+    },
+    {
+      field: 'song',
+      type: 'radio',
+      label: '喜欢的歌',
+      span: 12,
+      button: true,
+      props: {
+        options: [
+          {
+            value: "Rock'n'Roll Star",
+            label: "Rock'n'Roll Star"
+          },
+          {
+            value: 'Shakermaker',
+            label: 'Shakermaker'
+          },
+          {
+            value: 'Live Forever',
+            label: 'Live Forever'
+          },
+          {
+            value: 'Up in the Sky',
+            label: 'Up in the Sky'
+          },
+          {
+            value: '...',
+            label: '...'
+          }
+        ]
+      }
     }
   ],
   model
@@ -86,7 +118,7 @@ function getData() {
       sex: 1,
       area: 2
     });
-  }, 3000);
+  }, 1000);
 }
 getData();
 </script>
@@ -94,10 +126,6 @@ getData();
 <template>
   <div class="page-wrapper">
     <GpForm :meta="meta" :layout="{ xGap: 20 }" :loading="loading"> </GpForm>
-    <pre>
-      <code>
-        {{ model }}
-      </code>
-    </pre>
+    <pre><code>{{ model }}</code></pre>
   </div>
 </template>

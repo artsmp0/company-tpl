@@ -15,7 +15,7 @@ defineProps<{
 </script>
 
 <template>
-  <NSpin :show="loading">
+  <NSpin :show="loading" description="努力加载中">
     <NForm v-bind="omit(meta, ['elements'])">
       <NGrid v-bind="layout">
         <NFormItemGi

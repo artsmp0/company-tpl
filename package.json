@@ -9,7 +9,7 @@
     "serve:stage": "vite --mode staging",
     "serve:prod": "vite --mode production",
     "preview": "vite preview",
-    "build-only": "vite build",
+    "build-only": "vite build --mode development",
     "type-check": "vue-tsc --noEmit -p tsconfig.app.json --composite false",
     "lint": "eslint --fix --ignore-path .gitignore",
     "format": "prettier --write src/",

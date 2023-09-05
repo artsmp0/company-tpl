@@ -53,12 +53,8 @@ export default defineConfig(({ mode }) => {
       }
     },
     build: {
-      rollupOptions: {
-        output: {
-          manualChunks: {
-            naive: ['naive-ui']
-          }
-        }
+      modulePreload: {
+        polyfill: true
       }
     }
   };

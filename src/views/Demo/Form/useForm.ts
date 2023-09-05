@@ -40,7 +40,25 @@ export const useForm = () => {
     tree: null,
     datePicker: '1998-11-28 18:00:00',
     cascader: null,
-    monaco: 'ls -la'
+    monaco: 'ls -la',
+    multiple: {
+      area: null,
+      name: ''
+    },
+    multiple2: [
+      {
+        area: null,
+        name: ''
+      },
+      {
+        area: null,
+        name: ''
+      },
+      {
+        area: null,
+        name: ''
+      }
+    ]
   });
   const { elements, initialValues } = getElementByJson(
     [
@@ -298,6 +316,76 @@ export const useForm = () => {
         label: '代码编辑器',
         span: 12,
         rule: { required: true, message: '代码必填' }
+      },
+      {
+        field: 'multiple',
+        type: 'multiple',
+        label: '混合表单(对象)',
+        span: 12,
+        children: [
+          {
+            field: 'name',
+            type: 'input',
+            span: 12,
+            label: '姓名'
+          },
+          {
+            field: 'area',
+            type: 'select',
+            label: '地区',
+            span: 12,
+            apiFn() {
+              return new Promise((resolve) => {
+                setTimeout(() => {
+                  resolve([
+                    {
+                      label: '浙江',
+                      value: 1
+                    },
+                    {
+                      label: '福建',
+                      value: 2
+                    }
+                  ]);
+                }, 3000);
+              });
+            }
+          }
+        ]
+      },
+      {
+        field: 'multiple2',
+        type: 'multiple',
+        label: '混合表单(数组)',
+        span: 12,
+        children: [
+          {
+            field: 'name',
+            type: 'input',
+            span: 12
+          },
+          {
+            field: 'area',
+            type: 'select',
+            span: 12,
+            apiFn() {
+              return new Promise((resolve) => {
+                setTimeout(() => {
+                  resolve([
+                    {
+                      label: '浙江',
+                      value: 1
+                    },
+                    {
+                      label: '福建',
+                      value: 2
+                    }
+                  ]);
+                }, 3000);
+              });
+            }
+          }
+        ]
       }
     ],
     model

@@ -8,7 +8,8 @@ export type FieldType =
   | 'treeSelect'
   | 'datePicker'
   | 'cascader'
-  | 'monacoEditor';
+  | 'monacoEditor'
+  | 'multiple';
 
 export interface JsonItem extends FormItemGiProps {
   type: FieldType;

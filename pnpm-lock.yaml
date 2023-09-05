@@ -20,6 +20,9 @@ dependencies:
   lodash-unified:
     specifier: ^1.0.3
     version: registry.npmmirror.com/lodash-unified@1.0.3(@types/lodash-es@4.17.9)(lodash-es@4.17.21)(lodash@4.17.21)
+  monaco-editor:
+    specifier: ^0.41.0
+    version: registry.npmmirror.com/monaco-editor@0.41.0
   naive-ui:
     specifier: ^2.34.4
     version: registry.npmmirror.com/naive-ui@2.34.4(vue@3.3.4)
@@ -139,9 +142,6 @@ devDependencies:
   vite:
     specifier: ^4.4.9
     version: registry.npmmirror.com/vite@4.4.9(@types/node@20.5.7)(sass@1.66.1)
-  vite-plugin-chunk-split:
-    specifier: ^0.4.7
-    version: registry.npmmirror.com/vite-plugin-chunk-split@0.4.7(vite@4.4.9)
   vite-plugin-svg-icons:
     specifier: ^2.0.1
     version: registry.npmmirror.com/vite-plugin-svg-icons@2.0.1(vite@4.4.9)
@@ -3525,12 +3525,6 @@ packages:
       which-typed-array: registry.npmmirror.com/which-typed-array@1.1.11
     dev: true
 
-  registry.npmmirror.com/es-module-lexer@1.3.0:
-    resolution: {integrity: sha512-vZK7T0N2CBmBOixhmjdqx2gWVbFZ4DXZ/NyRMZVlJXPa7CyFS+/a4QQsDGDQy9ZfEzxFuNEsMLeQJnKP2p5/JA==, registry: https://packages.aliyun.com/5eb3e37038076f00011bcd4a/npm/npm-registry/, tarball: https://registry.npmmirror.com/es-module-lexer/-/es-module-lexer-1.3.0.tgz}
-    name: es-module-lexer
-    version: 1.3.0
-    dev: true
-
   registry.npmmirror.com/es-set-tostringtag@2.0.1:
     resolution: {integrity: sha512-g3OMbtlwY3QewlqAiMLI47KywjWZoEytKr8pf6iTC8uJq5bIAH52Z9pnQ8pVL6whrCto53JZDuUIsifGeLorTg==, registry: https://packages.aliyun.com/5eb3e37038076f00011bcd4a/npm/npm-registry/, tarball: https://registry.npmmirror.com/es-set-tostringtag/-/es-set-tostringtag-2.0.1.tgz}
     name: es-set-tostringtag
@@ -5428,15 +5422,6 @@ packages:
       yallist: registry.npmmirror.com/yallist@4.0.0
     dev: true
 
-  registry.npmmirror.com/magic-string@0.26.7:
-    resolution: {integrity: sha512-hX9XH3ziStPoPhJxLq1syWuZMxbDvGNbVchfrdCtanC7D13888bMFow61x8axrx+GfHLtVeAx2kxL7tTGRl+Ow==, registry: https://packages.aliyun.com/5eb3e37038076f00011bcd4a/npm/npm-registry/, tarball: https://registry.npmmirror.com/magic-string/-/magic-string-0.26.7.tgz}
-    name: magic-string
-    version: 0.26.7
-    engines: {node: '>=12'}
-    dependencies:
-      sourcemap-codec: registry.npmmirror.com/sourcemap-codec@1.4.8
-    dev: true
-
   registry.npmmirror.com/magic-string@0.30.3:
     resolution: {integrity: sha512-B7xGbll2fG/VjP+SWg4sX3JynwIU0mjoTc6MPpKNuIvftk6u6vqhDnk1R80b8C2GBR6ywqy+1DcKBrevBg+bmw==, registry: https://packages.aliyun.com/5eb3e37038076f00011bcd4a/npm/npm-registry/, tarball: https://registry.npmmirror.com/magic-string/-/magic-string-0.30.3.tgz}
     name: magic-string
@@ -5691,6 +5676,12 @@ packages:
       pkg-types: registry.npmmirror.com/pkg-types@1.0.3
       ufo: registry.npmmirror.com/ufo@1.3.0
     dev: true
+
+  registry.npmmirror.com/monaco-editor@0.41.0:
+    resolution: {integrity: sha512-1o4olnZJsiLmv5pwLEAmzHTE/5geLKQ07BrGxlF4Ri/AXAc2yyDGZwHjiTqD8D/ROKUZmwMA28A+yEowLNOEcA==, registry: https://packages.aliyun.com/5eb3e37038076f00011bcd4a/npm/npm-registry/, tarball: https://registry.npmmirror.com/monaco-editor/-/monaco-editor-0.41.0.tgz}
+    name: monaco-editor
+    version: 0.41.0
+    dev: false
 
   registry.npmmirror.com/mrmime@1.0.1:
     resolution: {integrity: sha512-hzzEagAgDyoU1Q6yg5uI+AorQgdvMCur3FcKf7NhMKWsaYg+RnbTyHRa/9IlLF9rf455MOCtcqqrQQ83pPP7Uw==, registry: https://packages.aliyun.com/5eb3e37038076f00011bcd4a/npm/npm-registry/, tarball: https://registry.npmmirror.com/mrmime/-/mrmime-1.0.1.tgz}
@@ -6980,12 +6971,6 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  registry.npmmirror.com/sourcemap-codec@1.4.8:
-    resolution: {integrity: sha512-9NykojV5Uih4lgo5So5dtw+f0JgJX30KCNI8gwhz2J9A15wD0Ml6tjHKwf6fTSa6fAdVBdZeNOs9eJ71qCk8vA==, registry: https://packages.aliyun.com/5eb3e37038076f00011bcd4a/npm/npm-registry/, tarball: https://registry.npmmirror.com/sourcemap-codec/-/sourcemap-codec-1.4.8.tgz}
-    name: sourcemap-codec
-    version: 1.4.8
-    dev: true
-
   registry.npmmirror.com/spdx-correct@3.2.0:
     resolution: {integrity: sha512-kN9dJbvnySHULIluDHy32WHRUu3Og7B9sbY7tsFLctQkIqnMh3hErYgdMjTYuqmcXX+lK5T1lnUt3G7zNswmZA==, registry: https://packages.aliyun.com/5eb3e37038076f00011bcd4a/npm/npm-registry/, tarball: https://registry.npmmirror.com/spdx-correct/-/spdx-correct-3.2.0.tgz}
     name: spdx-correct
@@ -8139,19 +8124,6 @@ packages:
       evtd: registry.npmmirror.com/evtd@0.2.4
       vue: registry.npmmirror.com/vue@3.3.4
     dev: false
-
-  registry.npmmirror.com/vite-plugin-chunk-split@0.4.7(vite@4.4.9):
-    resolution: {integrity: sha512-BGPMTxlC6Z+VNY1t/51F1ablkt4UQqdEPvAmCKRBsEPIpKAlW3sioQwK4klS14ievsGNaeALAKdko7n3oPJ8BQ==, registry: https://packages.aliyun.com/5eb3e37038076f00011bcd4a/npm/npm-registry/, tarball: https://registry.npmmirror.com/vite-plugin-chunk-split/-/vite-plugin-chunk-split-0.4.7.tgz}
-    id: registry.npmmirror.com/vite-plugin-chunk-split/0.4.7
-    name: vite-plugin-chunk-split
-    version: 0.4.7
-    peerDependencies:
-      vite: ^3.1.0
-    dependencies:
-      es-module-lexer: registry.npmmirror.com/es-module-lexer@1.3.0
-      magic-string: registry.npmmirror.com/magic-string@0.26.7
-      vite: registry.npmmirror.com/vite@4.4.9(@types/node@20.5.7)(sass@1.66.1)
-    dev: true
 
   registry.npmmirror.com/vite-plugin-svg-icons@2.0.1(vite@4.4.9):
     resolution: {integrity: sha512-6ktD+DhV6Rz3VtedYvBKKVA2eXF+sAQVaKkKLDSqGUfnhqXl3bj5PPkVTl3VexfTuZy66PmINi8Q6eFnVfRUmA==, registry: https://packages.aliyun.com/5eb3e37038076f00011bcd4a/npm/npm-registry/, tarball: https://registry.npmmirror.com/vite-plugin-svg-icons/-/vite-plugin-svg-icons-2.0.1.tgz}

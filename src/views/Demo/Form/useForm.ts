@@ -39,7 +39,8 @@ export const useForm = () => {
     song: null,
     tree: null,
     datePicker: '1998-11-28 18:00:00',
-    cascader: null
+    cascader: null,
+    monaco: 'ls -la'
   });
   const { elements, initialValues } = getElementByJson(
     [
@@ -290,6 +291,13 @@ export const useForm = () => {
             }, 3000);
           });
         }
+      },
+      {
+        field: 'monaco',
+        type: 'monacoEditor',
+        label: '代码编辑器',
+        span: 12,
+        rule: { required: true, message: '代码必填' }
       }
     ],
     model

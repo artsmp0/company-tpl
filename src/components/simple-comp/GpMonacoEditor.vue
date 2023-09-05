@@ -8,6 +8,7 @@ import * as monaco from 'monaco-editor';
 import type Monaco from 'monaco-editor';
 import { useDark } from '@vueuse/core';
 import { useFormItem } from 'naive-ui/es/_mixins';
+import { useThemeVars } from 'naive-ui';
 
 // @ts-ignore
 window.MonacoEnvironment = {
@@ -71,6 +72,9 @@ const initMonacoEditor = () => {
       emits('update:value', value);
       emits('updateValue', value);
       emits('change', value);
+      console.log('formItem: ', formItem);
+      formItem.mergedStatusRef;
+      console.log('formItem.mergedStatusRef: ', formItem.mergedStatusRef);
       formItem.nTriggerFormChange();
       formItem.nTriggerFormInput();
     });
@@ -111,8 +115,17 @@ watch(
 
 onMounted(() => initMonacoEditor());
 onUnmounted(() => editor?.dispose());
+
+const themes = useThemeVars();
+console.log('themes: ', themes);
 </script>
 
 <template>
-  <div ref="editorRef" class="h300 w-full of-hidden rounded-base border-base"></div>
+  <div
+    ref="editorRef"
+    class="h300 w-full of-hidden rounded-base border-base"
+    :style="{
+      borderColor: formItem.mergedStatusRef.value === 'error' ? themes.errorColor : undefined
+    }"
+  ></div>
 </template>

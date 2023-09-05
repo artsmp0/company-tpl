@@ -357,6 +357,7 @@ export const useForm = () => {
         field: 'multiple2',
         type: 'multiple',
         label: '混合表单(数组)',
+        rule: { required: true, message: '请填充混合表单的每一项' },
         span: 12,
         children: [
           {

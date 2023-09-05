@@ -26,6 +26,7 @@ defineExpose(rest);
           v-for="item in meta.elements"
           :key="item.props.field"
           :span="item.props.span ?? 24"
+          :path="item.props.field"
           v-bind="omit(item.props, ['type', 'field', 'props'])"
         >
           <Component :is="item.widget" />

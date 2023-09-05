@@ -27,15 +27,22 @@ const getValues = () => {
   console.log($form.value?.getValues());
   message.info(JSON.stringify(meta.model));
 };
+
+const handleSubmit = async () => {
+  await $form.value?.validate();
+  message.info(JSON.stringify(meta.model));
+};
 </script>
 
 <template>
   <div class="page-wrapper">
     <NSpace mb16>
-      <NButton @click="$form?.resetValues()">重置</NButton>
       <NButton @click="getValues">获取表单</NButton>
+      <NButton type="error" @click="$form?.resetValues()">重置</NButton>
+      <NButton type="primary" @click="handleSubmit">提交</NButton>
     </NSpace>
     <GpForm ref="$form" :meta="meta" :layout="{ xGap: 20 }" :loading="loading"> </GpForm>
+    <NSpace> </NSpace>
     <pre><code>{{ meta.model }}</code></pre>
   </div>
 </template>

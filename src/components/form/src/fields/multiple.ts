@@ -21,7 +21,10 @@ export function renderMultiple({ item, model }: RenderFnParams) {
             {
               ...omit(child, ['props', 'field', 'type']),
               showLabel: !!child.label,
-              span: child.span ?? 24
+              span: child.span ?? 24,
+              // 验证规则优先级从内到外
+              rule: child.rule ?? item.rule,
+              path: `${field}.${i}.${child.field}`
             },
             getWidget({ item: child, model: model[item.field][i] })
           );
@@ -35,7 +38,10 @@ export function renderMultiple({ item, model }: RenderFnParams) {
         {
           ...omit(child, ['props', 'field', 'type']),
           showLabel: !!child.label,
-          span: child.span ?? 24
+          span: child.span ?? 24,
+          // 验证规则优先级从内到外
+          rule: child.rule ?? item.rule,
+          path: `${field}.${child.field}`
         },
         getWidget({ item: child, model: model[item.field] })
       );

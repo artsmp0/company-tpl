@@ -19,7 +19,7 @@ defineExpose(rest);
 </script>
 
 <template>
-  <NSpin :show="loading" description="努力加载中">
+  <NSpin :show="loading" description="努力加载中" class="of-hidden">
     <NForm ref="formRef" v-bind="omit(meta, ['elements'])">
       <NGrid v-bind="layout">
         <NFormItemGi

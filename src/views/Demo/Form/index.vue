@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { GpForm, getElementByJson, type GpFormInst } from '@/components/form';
+import { useDiscrete } from '@/composables';
 
 const model = reactive({
   name: '110',
@@ -248,11 +249,11 @@ const { elements, initialValues } = getElementByJson(
   model
 );
 
-const meta = reactive({
+const meta = {
   elements: elements,
   model: model
   // disabled: true
-});
+};
 
 const loading = ref(false);
 function getData() {
@@ -270,15 +271,17 @@ function getData() {
 getData();
 
 const $form = shallowRef<GpFormInst>();
-
+const { message } = useDiscrete();
 const getValues = () => {
+  // 两种都可以获取
   console.log($form.value?.getValues());
+  message.info(JSON.stringify(model));
 };
 </script>
 
 <template>
   <div class="page-wrapper">
-    <NSpace>
+    <NSpace mb16>
       <NButton @click="$form?.resetValues()">重置</NButton>
       <NButton @click="getValues">获取表单</NButton>
     </NSpace>

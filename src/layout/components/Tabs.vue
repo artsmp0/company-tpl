@@ -54,14 +54,6 @@ const handleShowContextMenu = (e: MouseEvent, t: Tab) => {
   });
 };
 
-// const renderIcon = (icon: Component) => {
-//   return () => {
-//     return h(NIcon, null, {
-//       default: () => h(icon)
-//     });
-//   };
-// };
-
 const options = [
   {
     label: '关闭',
@@ -136,7 +128,7 @@ const handleSelect = (key: string | number) => {
 </script>
 
 <template>
-  <div v-if="accessHistory.size" class="border-b-1 border-base">
+  <div v-if="accessHistory.size" class="shrink-0 !border-0 border-base !border-b-1">
     <NScrollbar :x-scrollable="true" trigger="none">
       <TransitionGroup name="list" appear class="relative flex ws-nowrap px8 py8" tag="div">
         <NTag

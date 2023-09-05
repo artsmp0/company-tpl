@@ -1,3 +1,5 @@
+import { tryOnMounted } from '@vueuse/core';
+
 export function useForm(initialValues: Recordable) {
   const formRef = shallowRef();
 
@@ -31,4 +33,17 @@ export function useForm(initialValues: Recordable) {
     getValues,
     setValues
   };
+}
+
+export function useFetchField(apiFn?: Function) {
+  if (!apiFn) return undefined;
+  const loading = ref(false);
+  const options = shallowRef([]);
+  tryOnMounted(async () => {
+    loading.value = true;
+    const res = await apiFn();
+    loading.value = false;
+    options.value = res;
+  });
+  return { loading, options };
 }

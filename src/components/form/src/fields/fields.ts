@@ -8,3 +8,4 @@ export { renderSelect } from './select';
 export { renderRadio } from './radio';
 export { renderTreeSelect } from './treeSelect';
 export { renderDatePicker } from './datePicker';
+export { renderCascader } from './cascader';

@@ -1,6 +1,6 @@
 import { NRadio, NRadioButton, NRadioGroup, NSpace } from 'naive-ui';
 import type { RenderFnParams } from '../types';
-import { omit } from 'lodash-es';
+import { omit } from 'lodash-unified';
 
 export function renderRadio({ item, model }: RenderFnParams) {
   const { props = undefined, field, button } = item;

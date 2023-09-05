@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { GpForm, getElementByJson } from '@/components/form';
+import { GpForm, getElementByJson, type GpFormInst } from '@/components/form';
 
 const model = reactive({
-  name: '',
+  name: '110',
   intro: '',
   sex: null,
   area: null,
@@ -10,7 +10,7 @@ const model = reactive({
   tree: null,
   datePicker: '1998-11-28 18:00:00'
 });
-const { elements } = getElementByJson(
+const { elements, initialValues } = getElementByJson(
   [
     {
       field: 'name',
@@ -268,11 +268,21 @@ function getData() {
   }, 1000);
 }
 getData();
+
+const $form = shallowRef<GpFormInst>();
+
+const getValues = () => {
+  console.log($form.value?.getValues());
+};
 </script>
 
 <template>
   <div class="page-wrapper">
-    <GpForm :meta="meta" :layout="{ xGap: 20 }" :loading="loading"> </GpForm>
+    <NSpace>
+      <NButton @click="$form?.resetValues()">重置</NButton>
+      <NButton @click="getValues">获取表单</NButton>
+    </NSpace>
+    <GpForm ref="$form" :meta="meta" :layout="{ xGap: 20 }" :loading="loading"> </GpForm>
     <pre><code>{{ model }}</code></pre>
   </div>
 </template>

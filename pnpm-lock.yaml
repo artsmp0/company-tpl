@@ -17,12 +17,6 @@ dependencies:
   echarts:
     specifier: ^5.4.3
     version: registry.npmmirror.com/echarts@5.4.3
-  lodash:
-    specifier: ^4.17.21
-    version: registry.npmmirror.com/lodash@4.17.21
-  lodash-es:
-    specifier: ^4.17.21
-    version: registry.npmmirror.com/lodash-es@4.17.21
   lodash-unified:
     specifier: ^1.0.3
     version: registry.npmmirror.com/lodash-unified@1.0.3(@types/lodash-es@4.17.9)(lodash-es@4.17.21)(lodash@4.17.21)
@@ -58,9 +52,6 @@ devDependencies:
   '@tsconfig/node18':
     specifier: ^18.2.1
     version: registry.npmmirror.com/@tsconfig/node18@18.2.1
-  '@types/lodash-es':
-    specifier: ^4.17.9
-    version: registry.npmmirror.com/@types/lodash-es@4.17.9
   '@types/node':
     specifier: ^20.5.7
     version: registry.npmmirror.com/@types/node@20.5.7
@@ -1332,11 +1323,13 @@ packages:
     version: 4.17.9
     dependencies:
       '@types/lodash': registry.npmmirror.com/@types/lodash@4.14.197
+    dev: false
 
   registry.npmmirror.com/@types/lodash@4.14.197:
     resolution: {integrity: sha512-BMVOiWs0uNxHVlHBgzTIqJYmj+PgCo4euloGF+5m4okL3rEYzM2EEv78mw8zWSMM57dM7kVIgJ2QDvwHSoCI5g==, registry: https://packages.aliyun.com/5eb3e37038076f00011bcd4a/npm/npm-registry/, tarball: https://registry.npmmirror.com/@types/lodash/-/lodash-4.14.197.tgz}
     name: '@types/lodash'
     version: 4.14.197
+    dev: false
 
   registry.npmmirror.com/@types/minimist@1.2.2:
     resolution: {integrity: sha512-jhuKLIRrhvCPLqwPcx6INqmKeiA5EWrsCOPhrlFSrbrmU4ZMPjj5Ul/oLCMDO98XRUIwVm78xICz4EPCektzeQ==, registry: https://packages.aliyun.com/5eb3e37038076f00011bcd4a/npm/npm-registry/, tarball: https://registry.npmmirror.com/@types/minimist/-/minimist-1.2.2.tgz}

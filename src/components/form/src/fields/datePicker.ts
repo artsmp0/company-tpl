@@ -1,6 +1,6 @@
 import { NDatePicker } from 'naive-ui';
 import type { RenderFnParams } from '../types';
-import { omit } from 'lodash-es';
+import { omit } from 'lodash-unified';
 
 export function renderDatePicker({ item, model }: RenderFnParams) {
   const { props = undefined, field } = item;

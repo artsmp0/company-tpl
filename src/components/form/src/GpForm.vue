@@ -1,22 +1,26 @@
 <script setup lang="ts">
 import type { GridProps } from 'naive-ui';
 import type { GpFormMeta } from './types';
-import { omit } from 'lodash-unified';
+import { cloneDeep, omit } from 'lodash-unified';
+import { useForm } from './utils';
 
 defineOptions({
   name: 'GpForm'
 });
 
-defineProps<{
+const props = defineProps<{
   meta: GpFormMeta;
   layout?: GridProps;
   loading?: boolean;
 }>();
+
+const { formRef, ...rest } = useForm(cloneDeep(props.meta.model as any));
+defineExpose(rest);
 </script>
 
 <template>
   <NSpin :show="loading" description="努力加载中">
-    <NForm v-bind="omit(meta, ['elements'])">
+    <NForm ref="formRef" v-bind="omit(meta, ['elements'])">
       <NGrid v-bind="layout">
         <NFormItemGi
           v-for="item in meta.elements"

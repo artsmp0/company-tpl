@@ -142,6 +142,9 @@ devDependencies:
   vite:
     specifier: ^4.4.9
     version: registry.npmmirror.com/vite@4.4.9(@types/node@20.5.7)(sass@1.66.1)
+  vite-plugin-env-types:
+    specifier: ^0.1.3
+    version: registry.npmmirror.com/vite-plugin-env-types@0.1.3(vite@4.4.9)
   vite-plugin-svg-icons:
     specifier: ^2.0.1
     version: registry.npmmirror.com/vite-plugin-svg-icons@2.0.1(vite@4.4.9)
@@ -8124,6 +8127,18 @@ packages:
       evtd: registry.npmmirror.com/evtd@0.2.4
       vue: registry.npmmirror.com/vue@3.3.4
     dev: false
+
+  registry.npmmirror.com/vite-plugin-env-types@0.1.3(vite@4.4.9):
+    resolution: {integrity: sha512-QeAUJl12WjL5mLPp3xoUw2UEDt0Xbu3NsthiezS7RvQrQOtf+Dlwri5qFcO5zfxZSJRnR3z8WIxRFEsH/d2FRA==, registry: https://packages.aliyun.com/5eb3e37038076f00011bcd4a/npm/npm-registry/, tarball: https://registry.npmmirror.com/vite-plugin-env-types/-/vite-plugin-env-types-0.1.3.tgz}
+    id: registry.npmmirror.com/vite-plugin-env-types/0.1.3
+    name: vite-plugin-env-types
+    version: 0.1.3
+    peerDependencies:
+      vite: '>=2.0.0'
+    dependencies:
+      fast-glob: registry.npmmirror.com/fast-glob@3.3.1
+      vite: registry.npmmirror.com/vite@4.4.9(@types/node@20.5.7)(sass@1.66.1)
+    dev: true
 
   registry.npmmirror.com/vite-plugin-svg-icons@2.0.1(vite@4.4.9):
     resolution: {integrity: sha512-6ktD+DhV6Rz3VtedYvBKKVA2eXF+sAQVaKkKLDSqGUfnhqXl3bj5PPkVTl3VexfTuZy66PmINi8Q6eFnVfRUmA==, registry: https://packages.aliyun.com/5eb3e37038076f00011bcd4a/npm/npm-registry/, tarball: https://registry.npmmirror.com/vite-plugin-svg-icons/-/vite-plugin-svg-icons-2.0.1.tgz}

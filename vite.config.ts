@@ -8,6 +8,7 @@ import Components from 'unplugin-vue-components/vite';
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers';
 import UnoCSS from 'unocss/vite';
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
+import EnvTypes from 'vite-plugin-env-types';
 
 const envDir = fileURLToPath(new URL('env', import.meta.url));
 const iconDirs = [fileURLToPath(new URL('src/assets/icons', import.meta.url))];
@@ -45,6 +46,9 @@ export default defineConfig(({ mode }) => {
       createSvgIconsPlugin({
         iconDirs,
         symbolId: 'icon-[dir]-[name]'
+      }),
+      EnvTypes({
+        dts: './types/env.d.ts' // Write file location, default to "env.d.ts"
       })
     ],
     resolve: {

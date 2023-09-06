@@ -8,13 +8,22 @@ defineOptions({
   name: 'GpForm'
 });
 
-const props = defineProps<{
-  meta: GpFormMeta;
-  layout?: GridProps;
-  loading?: boolean;
-}>();
+const props = withDefaults(
+  defineProps<{
+    meta: GpFormMeta;
+    layout?: GridProps;
+    loading?: boolean;
+    scrollToFirstError?: boolean;
+  }>(),
+  {
+    scrollToFirstError: true
+  }
+);
 
-const { formRef, ...rest } = useForm(cloneDeep(props.meta.model as any));
+const { formRef, ...rest } = useForm(
+  cloneDeep(props.meta.model as any),
+  () => props.scrollToFirstError
+);
 defineExpose(rest);
 </script>
 
@@ -27,7 +36,8 @@ defineExpose(rest);
           :key="item.props.field"
           :span="item.props.span ?? 24"
           :path="item.props.field"
-          v-bind="omit(item.props, ['type', 'field', 'props'])"
+          :target="item.props.field"
+          v-bind="omit(item.props, ['type', 'field', 'props', 'apiFn'])"
         >
           <Component :is="item.widget" />
         </NFormItemGi>

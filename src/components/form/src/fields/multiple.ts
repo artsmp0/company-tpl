@@ -19,12 +19,13 @@ export function renderMultiple({ item, model }: RenderFnParams) {
           return h(
             NFormItemGi,
             {
-              ...omit(child, ['props', 'field', 'type']),
+              ...omit(child, ['props', 'field', 'type', 'apiFn']),
               showLabel: !!child.label,
               span: child.span ?? 24,
               // 验证规则优先级从内到外
               rule: child.rule ?? item.rule,
-              path: `${field}.${i}.${child.field}`
+              path: `${field}.${i}.${child.field}`,
+              target: `${field}.${i}.${child.field}`
             },
             getWidget({ item: child, model: model[item.field][i] })
           );

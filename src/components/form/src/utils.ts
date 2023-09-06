@@ -1,10 +1,25 @@
 import { tryOnMounted } from '@vueuse/core';
+import type { MaybeRefOrGetter } from 'vue';
 
-export function useForm(initialValues: Recordable) {
+export function useForm(initialValues: Recordable, scrollToFirstError: MaybeRefOrGetter) {
   const formRef = shallowRef();
+  const needScrollToFirstError = ref(false);
+
+  watchEffect(() => {
+    needScrollToFirstError.value = toValue(scrollToFirstError);
+  });
 
   const validate = async (...args: any[]) => {
-    await formRef.value?.validate(...args);
+    try {
+      await formRef.value?.validate(...args);
+      return Promise.resolve();
+    } catch (error: any) {
+      if (Array.isArray(error) && needScrollToFirstError.value) {
+        const t = document.querySelector(`[target="${error[0][0].field}"]`);
+        t?.scrollIntoView({ block: 'center' });
+      }
+      return Promise.reject('表单验证失败！');
+    }
   };
 
   const restoreValidation = () => {

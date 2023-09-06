@@ -7,7 +7,6 @@ import { useForm } from './utils';
 defineOptions({
   name: 'GpForm'
 });
-console.log(123);
 const props = withDefaults(
   defineProps<{
     meta: GpFormMeta;

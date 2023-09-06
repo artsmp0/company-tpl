@@ -7,7 +7,7 @@ import { useForm } from './utils';
 defineOptions({
   name: 'GpForm'
 });
-
+console.log(123);
 const props = withDefaults(
   defineProps<{
     meta: GpFormMeta;
@@ -19,7 +19,6 @@ const props = withDefaults(
     scrollToFirstError: true
   }
 );
-
 const { formRef, ...rest } = useForm(
   cloneDeep(props.meta.model as any),
   () => props.scrollToFirstError

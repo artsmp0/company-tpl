@@ -28,8 +28,8 @@ export type PermissionData = {
 export const usePermissionStore = defineStore('permission', () => {
   const userStore = useUserStore();
 
-  const menuList = ref<MenuItemType[]>([]);
-  const flatMenuList = ref<MenuItemType[]>([]);
+  const menuList = shallowRef<MenuItemType[]>([]);
+  const flatMenuList = shallowRef<MenuItemType[]>([]);
   const hasRoute = ref(false);
   const permission = ref<Button[]>([]);
 

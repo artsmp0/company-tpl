@@ -53,7 +53,7 @@ function handleAuth(response: AxiosResponse) {
     };
   }
   return {
-    data: data.data,
+    data: data,
     response
   };
 }
@@ -61,7 +61,6 @@ function handleAuth(response: AxiosResponse) {
 export const resHandler = {
   response: {
     // 这里定义响应拦截器
-    // onFulfilled(response: AxiosResponse) {}
     onFulfilled: (response: AxiosResponse<BaseRes>) => {
       const { message } = useDiscrete();
 

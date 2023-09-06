@@ -1,11 +1,5 @@
 <script setup lang="ts">
-import {
-  MoonOutline,
-  SunnyOutline,
-  LogOutOutline,
-  CreateOutline,
-  SettingsOutline
-} from '@vicons/ionicons5';
+import { LogOutOutline, CreateOutline, SettingsOutline } from '@vicons/ionicons5';
 import { CompressOutlined, ExpandOutlined, ReloadOutlined } from '@vicons/antd';
 import { isDark } from '@/composables';
 import { useFullscreen } from '@vueuse/core';
@@ -17,6 +11,8 @@ import { isDdOrZzd } from '@/utils';
 import type { DropdownMixedOption } from 'naive-ui/es/dropdown/src/interface';
 import Settings from './Settings.vue';
 import { useSettingStore } from '@/stores/setting';
+import Sun from './Sun.vue';
+import Moon from './Moon.vue';
 
 const { toggle, isFullscreen } = useFullscreen(document.body);
 
@@ -62,15 +58,9 @@ function renderCustomHeader() {
         { default: () => 'A' }
       ),
       h('div', null, [
-        h('div', null, [
-          h(NText, { depth: 2 }, { default: () => userStore.userInfo?.name || '打工仔' })
-        ]),
+        h('div', null, [h(NText, { depth: 2 }, { default: () => userStore.userInfo?.name || '打工仔' })]),
         h('div', { style: 'font-size: 12px;' }, [
-          h(
-            NText,
-            { depth: 3 },
-            { default: () => userStore.userInfo?.phone || '毫无疑问，你是办公室里最亮的星' }
-          )
+          h(NText, { depth: 3 }, { default: () => userStore.userInfo?.phone || '毫无疑问，你是办公室里最亮的星' })
         ])
       ])
     ]
@@ -154,9 +144,7 @@ const isDev = computed(() => import.meta.env.DEV);
   <NLayoutHeader class="h60 px20" flex="~ items-center justify-between" bordered>
     <div class="h40" flex="~ justify-center items-center">
       <img src="@/assets/imgs/logo.png" alt="LOGO" class="mr16 h-full" />
-      <NTag mr16 :bordered="false" :color="{ textColor: 'var(--primary-color)' }" size="small">{{
-        APP_NAME
-      }}</NTag>
+      <NTag mr16 :bordered="false" :color="{ textColor: 'var(--primary-color)' }" size="small">{{ APP_NAME }}</NTag>
       <Breadcrumbs v-if="SHOW_BREADCRUMB" />
     </div>
     <div class="shrink-0" flex="~ items-center gap-16">
@@ -175,8 +163,8 @@ const isDev = computed(() => import.meta.env.DEV);
       </NButton>
       <NButton v-if="SHOW_THEME_BTN" circle secondary @click="toggleDark">
         <template #icon>
-          <div v-if="isDark" class="i-line-md:moon-rising-alt-loop" />
-          <div v-else class="i-line-md:moon-to-sunny-outline-loop-transition" />
+          <Moon v-if="isDark" />
+          <Sun v-else />
         </template>
       </NButton>
       <NButton v-if="isDev" circle secondary @click="showSettings = true">

@@ -13,7 +13,7 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 'latest'
   },
-  ignorePatterns: ['index.html', 'public/**/*'],
+  ignorePatterns: ['index.html', 'public/**/*', 'dist/**/*'],
   rules: {
     'vue/multi-word-component-names': 'off',
     'vue/component-name-in-template-casing': [

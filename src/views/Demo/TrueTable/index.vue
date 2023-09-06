@@ -1,8 +1,8 @@
 <!-- eslint-disable @typescript-eslint/no-explicit-any -->
 <script setup lang="tsx">
 import { GpTable, type GpTableInst, type TableColumns, useTableListApi } from '@/components';
-import type { TableItem } from '@/api/apis/common';
 import { APIS } from '@/api';
+import type { TableItem } from '@/api/apis/types';
 
 const columns: TableColumns<TableItem> = [
   {
@@ -62,8 +62,8 @@ const getSelectedData = () => {
         field: { orderField: 'isAsc', sortField: 'orderByColumn' },
         order: { ascend: 'asc', descend: 'desc' }
       }"
-      flex-height
       selection
+      flex-height
       :list-api="getList"
       :pager-keys="{
         list: 'data.data.rows',

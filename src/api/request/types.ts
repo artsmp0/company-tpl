@@ -56,18 +56,17 @@ export type BaseRes<T = unknown> = {
   data: T;
 };
 
-/** 分页接口的基本形状：一般在 DataRes['data'] 里 */
-export type PaginationRes<T> = BaseRes & {
-  data: T[];
-  meta: {
-    current_page: number;
-    per_page: number;
-    total: number;
-  };
-};
+export type PageParams<T = unknown> = Prettify<
+  {
+    pageNum?: number;
+    pageSize?: number;
+  } & T
+>;
 
-/** 分页接口基本参数 */
-export interface PaginationParams {
-  page?: number;
-  size?: number;
-}
+export type PageRes<T> = BaseRes<{
+  total: number;
+  pages: number;
+  pageNum: number;
+  pageSize: number;
+  rows: T[];
+}>;

@@ -2,6 +2,7 @@
 import { GpForm, type GpFormInst } from '@/components/form';
 import { useDiscrete } from '@/composables';
 import { useForm } from './useForm';
+import { GpPageWrapper } from '@/components';
 
 const meta = useForm();
 
@@ -35,7 +36,7 @@ const handleSubmit = async () => {
 </script>
 
 <template>
-  <div class="page-wrapper">
+  <GpPageWrapper>
     <NSpace mb16>
       <NButton @click="getValues">获取表单</NButton>
       <NButton type="error" @click="$form?.resetValues()">重置</NButton>
@@ -44,5 +45,5 @@ const handleSubmit = async () => {
     <GpForm ref="$form" :meta="meta" :layout="{ xGap: 20 }" :loading="loading"> </GpForm>
     <NSpace> </NSpace>
     <pre><code>{{ meta.model }}</code></pre>
-  </div>
+  </GpPageWrapper>
 </template>

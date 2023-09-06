@@ -31,34 +31,17 @@ const SHOW_TABS = computed(() => settingStore.defaultSetting.SHOW_TABS);
           }"
         >
           <Tabs v-if="SHOW_TABS" />
-          <div class="min-w-0 w-full flex-1 of-auto">
-            <NScrollbar x-scrollable :style="{ width: 'calc(100%)' }">
-              <RouterView>
-                <template #default="{ Component }">
-                  <Transition mode="out-in" :name="settingStore.defaultSetting.PAGE_ANIMATION">
-                    <KeepAlive :include="include">
-                      <Component :is="Component" />
-                    </KeepAlive>
-                  </Transition>
-                </template>
-              </RouterView>
-            </NScrollbar>
+          <div class="w-full flex-1 of-auto">
+            <RouterView>
+              <template #default="{ Component }">
+                <Transition mode="out-in" :name="settingStore.defaultSetting.PAGE_ANIMATION">
+                  <KeepAlive :include="include">
+                    <Component :is="Component" />
+                  </KeepAlive>
+                </Transition>
+              </template>
+            </RouterView>
           </div>
-          <!-- <div class="h-full flex flex-col">
-            <div>
-              <NScrollbar style="max-height: 100%" x-scrollable>
-              <RouterView>
-                <template #default="{ Component }">
-                  <Transition mode="out-in" :name="settingStore.defaultSetting.PAGE_ANIMATION">
-                    <KeepAlive :include="include">
-                      <Component :is="Component" />
-                    </KeepAlive>
-                  </Transition>
-                </template>
-              </RouterView>
-            </NScrollbar>
-            </div>
-          </div> -->
         </NLayoutContent>
       </NLayout>
     </NLayout>

@@ -140,17 +140,14 @@ export const usePermissionStore = defineStore('permission', () => {
         addFallbackRoutes();
         return { redirectRoute: undefined };
       }
-      setPermission(data?.button);
-      setRoutes(data);
+      setPermission(data.data.button);
+      setRoutes(data.data);
       if (!data) return {};
     }
-    const otherPagePath = camel2kebab(
-      (mockData.otherPage?.[0] as unknown as { path: string })?.path
-    );
+    const otherPagePath = camel2kebab((mockData.otherPage?.[0] as unknown as { path: string })?.path);
     // 返回登录成功后前往的页面地址
     return {
-      redirectRoute:
-        menuList.value[0]?.children?.[0]?.path || menuList.value[0]?.path || otherPagePath || '/'
+      redirectRoute: menuList.value[0]?.children?.[0]?.path || menuList.value[0]?.path || otherPagePath || '/'
     };
   };
   const getKeepAliveName = (arr: MenuItemType[]) => {

@@ -1,59 +1,15 @@
-import { makeRequest } from '../request';
+import { get, post } from '../request';
+import type { BaseRes, PageParams, PageRes } from '../request/types';
+import type { TableItem, TagTbBindListParams } from './types';
 
-export type PaginationParams<T = unknown> = Prettify<
-  {
-    pageNum?: number;
-    pageSize?: number;
-  } & T
->;
-
-export interface TableItem {
-  urn: string;
-  name: string;
-  description: string;
-  editablDescription: string;
-  dbType: string;
-  notes: string;
-  sqId: string;
-  taskName: string;
-  instanceName: string;
-  dbUrn: string;
-  dbName: string;
-  colCount: number;
-  rowCount: number;
-  updateType: number;
-  storageSize: number;
-  storageSizeStr: string;
-  activeTime: string;
-  jgTagNameList: string[];
-  /** 是否发布 */
-  isPublish: 0 | 1;
-  firstActive: string;
+export const enum URL {
+  getTest = '/api/get',
+  postTest = '/api/post',
+  tableList = '/tag/tb/bind/list'
 }
-
-export interface TagTbBindListParams {
-  dbUrn?: string;
-  domainTagCodes?: string;
-  domainTagTypes?: string;
-  isAsc?: string;
-  keyword?: string;
-  orderByColumn?: string;
-  sqId?: string;
-  tagCodes?: string;
-  tagTypes?: string;
-}
-
-export type PaginationData<T> = {
-  total: number;
-  pages: number;
-  pageNum: number;
-  pageSize: number;
-  rows: T[];
-};
 
 export default {
-  '/tag/tb/bind/list': makeRequest<
-    PaginationData<TableItem>,
-    PaginationParams<TagTbBindListParams>
-  >({ url: '/tag/tb/bind/list' })
+  [URL.tableList]: get<PageRes<TableItem>, PageParams<TagTbBindListParams>>(URL.tableList),
+  [URL.getTest]: get<{ search?: string; xx?: string }, PageRes<TableItem>>(URL.getTest),
+  [URL.postTest]: post<{ username: string; password: string }, BaseRes<boolean>>(URL.postTest)
 };

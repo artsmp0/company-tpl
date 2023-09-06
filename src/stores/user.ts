@@ -1,11 +1,7 @@
 import { defineStore } from 'pinia';
-import { useLocalStorage } from '@vueuse/core';
+import { useStorage } from '@vueuse/core';
 import { APIS } from '@/api';
-
-export type Org = {
-  id: number;
-  name: string;
-};
+import type { Org } from '@/api/apis/auth';
 
 export type UserInfo = {
   account: string;
@@ -18,9 +14,10 @@ export type UserInfo = {
 export type AuthQuery = { token: string; system_code: string; org_id: number };
 
 export const useUserStore = defineStore('user', () => {
-  const token = useLocalStorage('token', '');
-  const orgId = useLocalStorage<string | number>('orgId', 1);
-  const systemCode = useLocalStorage('systemCode', '');
+  const token = useStorage('token', '') as Ref<string>;
+  const orgId = useStorage<string | number>('orgId', 1) as Ref<string | number>;
+  const systemCode = useStorage('systemCode', '') as Ref<string>;
+
   const userInfo = ref<UserInfo | undefined>(undefined);
   const orgListMenu = ref<Org[]>([
     {
@@ -57,7 +54,7 @@ export const useUserStore = defineStore('user', () => {
   const getUserSystemOrg = async () => {
     if (import.meta.env.VITE_USE_MOCK_DATA === 'false') {
       const { data } = await APIS.auth['/org/user/system/org']();
-      setOrgListMenu(data);
+      setOrgListMenu(data.data);
     }
   };
 

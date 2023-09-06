@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { GpSvgIcon } from '@/components';
+import { GpPageWrapper, GpSvgIcon } from '@/components';
 </script>
 
 <template>
-  <div page-wrapper>
+  <GpPageWrapper>
     <NCard>
       只要是 看到天边云一朵<br />
       逐天拢有好心情
@@ -24,9 +24,9 @@ import { GpSvgIcon } from '@/components';
     </div>
 
     <div class="whitespace-nowrap">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit cupiditate fugit, rerum quod
-      consectetur sapiente nulla voluptatem fuga perspiciatis impedit! Accusamus quaerat
-      voluptatibus ipsum assumenda, perspiciatis similique provident tempore consequatur?
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit cupiditate fugit, rerum quod consectetur sapiente
+      nulla voluptatem fuga perspiciatis impedit! Accusamus quaerat voluptatibus ipsum assumenda, perspiciatis similique
+      provident tempore consequatur?
     </div>
-  </div>
+  </GpPageWrapper>
 </template>

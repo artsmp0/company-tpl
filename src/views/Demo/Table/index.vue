@@ -1,6 +1,6 @@
 <!-- eslint-disable @typescript-eslint/no-explicit-any -->
 <script setup lang="tsx">
-import { GpTable, type GpTableInst } from '@/components';
+import { GpPageWrapper, GpTable, type GpTableInst } from '@/components';
 import { useDiscrete } from '@/composables';
 import { FlashOutline, HelpCircleOutline } from '@vicons/ionicons5';
 import { NButton, type DataTableColumns, NTag, NIcon, NTooltip } from 'naive-ui';
@@ -18,9 +18,7 @@ const getUserList = shallowRef((params: any) => {
       resolve({
         data: {
           list: Array.from({ length: params.pageSize }).map((_, index) => ({
-            name: `${params.keyword || '我是随机名字'}${
-              index + (params.page - 1) * params.pageSize
-            }`,
+            name: `${params.keyword || '我是随机名字'}${index + (params.page - 1) * params.pageSize}`,
             age: Math.floor(Math.random() * 130),
             male: index % 2 === 0
           })),
@@ -133,7 +131,7 @@ const showKey = () => {
 </script>
 
 <template>
-  <div flex="~ col" class="h-full p16">
+  <GpPageWrapper inner-scroll>
     <div class="mb16 shrink-0" flex="~ gap10">
       <NInput
         v-model:value="filterText"
@@ -182,5 +180,5 @@ const showKey = () => {
       :list-api="getUserList"
       :pagination="{ pageSlot: 10, pageSize: 30 }"
     />
-  </div>
+  </GpPageWrapper>
 </template>

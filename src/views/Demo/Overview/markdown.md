@@ -78,3 +78,23 @@ export default {
   APIS.common[URLS.postTest]({ data: { password: 'xxx', username: 'artsmp' } });
 </script>
 ```
+
+### 图标使用
+
+该模板支持三种图标使用方式：
+
+- `unocss`：该项目默认已经集成了 `@iconify/json`，所以 [icones](https://icones.js.org/) 上的所有图标皆可使用。
+- `naive-ui`：请直接阅读 naive-ui 的 [文档](https://www.naiveui.com/zh-CN/os-theme/components/icon)。
+- `svg-icon`
+
+此处演示三种使用方式：
+
+```html
+<NSpace>
+  <div class="i-material-symbols:360"></div>
+  <NIcon> <UploadOutlined /> </NIcon>
+  <!-- 请注意：需要带上路径前缀 假设 chart 图标在 icons/sidebar/xxx/chart.svg，则他的名字为 sidebar-xxx-chart -->
+  <GpSvgIcon name="sidebar-chart" />
+  这是蚊子
+</NSpace>
+```

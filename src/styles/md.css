@@ -25,6 +25,7 @@ html:not(.dark) {
   --prism-string: #bc8671;
   --prism-punctuation: #80817d;
   --prism-literal: #36acaa;
+  --prism-keyword-bg: #d73a4922;
   --prism-keyword: #d73a49;
   --prism-function: #0c4c7d;
   --prism-deleted: #9a050f;
@@ -45,6 +46,7 @@ html.dark {
   --prism-punctuation: #d4d4d4;
   --prism-literal: #36acaa;
   --prism-keyword: #0ca678;
+  --prism-keyword-bg: #0ca67822;
   --prism-function: #dcdcaa;
   --prism-deleted: #9a050f;
   --prism-class: #4ec9b0;
@@ -89,6 +91,18 @@ html.dark .prose pre {
 }
 
 /* 代码块选中颜色 */
+.prose :not(pre) code {
+  background-color: var(--prism-keyword-bg) !important;
+  color: var(--prism-keyword) !important;
+  padding: 3px;
+  border-radius: 2px;
+}
+
+.prose code::after,
+.prose code::before {
+  display: none;
+}
+
 pre[class*='language-']::selection,
 pre[class*='language-'] ::selection {
   background-color: rgba(0, 179, 255, 0.596);

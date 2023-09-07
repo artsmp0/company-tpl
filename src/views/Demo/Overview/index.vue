@@ -14,8 +14,8 @@ import Md from './markdown.md';
 
 <template>
   <GpPageWrapper>
-    <div p16>
-      <Md />
+    <div m-auto p16>
+      <Md class="m-auto" />
     </div>
   </GpPageWrapper>
 </template>

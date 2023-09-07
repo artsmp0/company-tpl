@@ -78,7 +78,9 @@ const SIDE_WIDTH = computed(() => settingStore.defaultSetting.SIDE_WIDTH);
     :width="SIDE_WIDTH"
     :collapsed="collapsed"
     :native-scrollbar="false"
-    show-trigger
+    show-trigger="bar"
+    :trigger-style="{ right: '-24px' }"
+    :collapsed-trigger-style="{ right: '-24px' }"
     @collapse="collapsed = true"
     @expand="collapsed = false"
   >

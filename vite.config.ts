@@ -12,12 +12,17 @@ import EnvTypes from 'vite-plugin-env-types';
 import VueDevTools from 'vite-plugin-vue-devtools';
 import { compression } from 'vite-plugin-compression2';
 
+import Markdown from 'unplugin-vue-markdown/vite';
+import Prism from 'markdown-it-prism';
+
 const envDir = fileURLToPath(new URL('env', import.meta.url));
 const iconDirs = [fileURLToPath(new URL('src/assets/icons', import.meta.url))];
+const safelist =
+  'prose px-2 sm:px-0 md:prose-lg lg:prose-lg dark:prose-invert text-left w-screen prose-slate prose-img:rounded-xl prose-headings:underline prose-a:text-blue-600';
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
-  const { VITE_PUBLIC_PATH } = loadEnv(mode, envDir);
+  const { VITE_PUBLIC_PATH, VITE_APP_MARKDOWN } = loadEnv(mode, envDir);
 
   return {
     base: VITE_PUBLIC_PATH,
@@ -26,10 +31,13 @@ export default defineConfig(({ mode }) => {
       vue({
         script: {
           defineModel: true
-        }
+        },
+        include: [/\.vue$/, /\.md$/]
       }),
       vueJsx(),
-      UnoCSS(),
+      UnoCSS({
+        safelist: VITE_APP_MARKDOWN ? safelist.split(' ') : undefined
+      }),
       AutoImport({
         dts: './types/auto-imports.d.ts',
         imports: [
@@ -57,6 +65,12 @@ export default defineConfig(({ mode }) => {
         threshold: 1024,
         include: /\.(js|mjs|json|css|html|wasm)$/i,
         algorithm: 'brotliCompress'
+      }),
+      Markdown({
+        wrapperClasses: safelist,
+        markdownItSetup(md) {
+          md.use(Prism);
+        }
       })
     ],
     resolve: {

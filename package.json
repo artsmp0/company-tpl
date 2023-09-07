@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "dev": "vite",
+    "dev": "vite --host --port 63001",
     "serve": "vite",
     "serve:stage": "vite --mode staging",
     "serve:prod": "vite --mode production",
@@ -39,9 +39,12 @@
     "axios": "^1.5.0",
     "echarts": "^5.4.3",
     "lodash-unified": "^1.0.3",
+    "markdown-it-prism": "^2.3.0",
     "monaco-editor": "^0.41.0",
     "naive-ui": "^2.34.4",
     "pinia": "^2.1.6",
+    "prism-theme-vars": "^0.2.4",
+    "unplugin-vue-markdown": "^0.24.3",
     "vue": "^3.3.4",
     "vue-router": "^4.2.4"
   },

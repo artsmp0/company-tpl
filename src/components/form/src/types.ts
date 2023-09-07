@@ -1,4 +1,5 @@
 import type { FormItemGiProps, FormProps } from 'naive-ui';
+import type { VNode } from 'vue';
 
 export type FieldType =
   | 'input'
@@ -9,6 +10,7 @@ export type FieldType =
   | 'datePicker'
   | 'cascader'
   | 'monacoEditor'
+  | 'upload'
   | 'multiple';
 
 export interface JsonItem extends FormItemGiProps {
@@ -20,6 +22,7 @@ export interface JsonItem extends FormItemGiProps {
   apiFn?: Function;
   /** radio group 显示为 button */
   button?: boolean;
+  slots?: Recordable<() => VNode>;
 }
 
 export type FormItem = {

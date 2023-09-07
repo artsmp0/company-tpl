@@ -58,9 +58,30 @@ export const useForm = () => {
         area: null,
         name: ''
       }
-    ]
+    ],
+    upload: [
+      {
+        id: 'a',
+        name: '我错了，但我可以改.png',
+        status: 'error'
+      },
+      {
+        id: 'd',
+        name: '现在还不行呢.doc',
+        status: 'uploading',
+        percentage: 50
+      },
+      {
+        id: 'c',
+        name: '现在就可下载哟.png',
+        status: 'finished',
+        url: 'https://07akioni.oss-cn-beijing.aliyuncs.com/07akioni.jpeg'
+      }
+    ],
+    upload2: [],
+    upload3: []
   });
-  const { elements, initialValues } = getElementByJson(
+  const { elements } = getElementByJson(
     [
       {
         field: 'name',
@@ -357,7 +378,7 @@ export const useForm = () => {
         field: 'multiple2',
         type: 'multiple',
         label: '混合表单(数组)',
-        rule: { required: true, message: '请填充混合表单的每一项' },
+        // rule: { required: true, message: '请填充混合表单的每一项' },
         span: 12,
         children: [
           {
@@ -387,6 +408,43 @@ export const useForm = () => {
             }
           }
         ]
+      },
+      {
+        field: 'upload',
+        type: 'upload',
+        label: '文件上传',
+        span: 12,
+        props: {
+          action: 'http://localhost:3000/hhh'
+        }
+      },
+      {
+        field: 'upload3',
+        type: 'upload',
+        label: '文件上传',
+        span: 12,
+        props: {
+          action: 'http://localhost:3000/hhh',
+          listType: 'image-card'
+        }
+      },
+      {
+        field: 'upload2',
+        type: 'upload',
+        label: '文件上传',
+        span: 12,
+        props: {
+          action: 'http://localhost:3000/hhh',
+          dragTip: '请上传图片类文件！',
+          // 格式化为后端数据
+          format(file: any) {
+            return {
+              id: file.id,
+              url: file.response.url,
+              filename: file.response.filename
+            };
+          }
+        }
       }
     ],
     model

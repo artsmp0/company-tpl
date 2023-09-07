@@ -11,3 +11,4 @@ export { renderDatePicker } from './datePicker';
 export { renderCascader } from './cascader';
 export { renderMonacoEditor } from './monacoEditor';
 export { renderMultiple } from './multiple';
+export { renderUpload } from './upload';

@@ -15,14 +15,9 @@ const themeOverrides = computed(() => {
 </script>
 
 <template>
-  <NConfigProvider
-    :locale="zhCN"
-    :theme="currentTheme"
-    :date-locale="dateZhCN"
-    :theme-overrides="themeOverrides"
-  >
+  <NConfigProvider :locale="zhCN" :theme="currentTheme" :date-locale="dateZhCN" :theme-overrides="themeOverrides">
     <NEl class="h-full w-full">
-      <NThemeEditor v-if="isDev">
+      <NThemeEditor v-if="isDev" :style="{ right: '100px' }">
         <RouterView />
       </NThemeEditor>
       <RouterView v-else />

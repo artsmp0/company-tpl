@@ -92,9 +92,68 @@ export default {
 ```html
 <NSpace>
   <div class="i-material-symbols:360"></div>
+  <!-- 针对 naive 方式，该项目仅安装了这个图标包，若有需要请自行安装其他图包：@vicons/antd -->
   <NIcon> <UploadOutlined /> </NIcon>
   <!-- 请注意：需要带上路径前缀 假设 chart 图标在 icons/sidebar/xxx/chart.svg，则他的名字为 sidebar-xxx-chart -->
   <GpSvgIcon name="sidebar-chart" />
   这是蚊子
 </NSpace>
+```
+
+### 环境变量使用
+
+环境变量文件统一放在 `/env/` 下， `.env` 文件存放该项目所有提供的变量，你也可以新增，使用上主要是运行开发或者构建命令时带上 `--mode [staging]` 这种方式，若对应文件未指定，则会使用 `.env` 这个文件中的变量值。
+
+```bash
+  env
+├──  .env               # 基础，优先级最低
+├──  .env.development   # 开发环境使用
+├──  .env.production    # 生产环境使用
+└──  .env.staging       # 测试环境使用
+```
+
+项目会自动扫描该文件并生成对应的类型到 `/types/env.d.ts` 中，所以该文件是自动生成的，请不要在此定义一些全局类型。
+以下是目前已存在的环境变量的解释：
+
+```bash
+# 基本不变
+VITE_PUBLIC_PATH=./
+
+# VITE_USER_API_URL 为用户中心后台接口地址（用于获取动态路由、用户信息等）
+# VITE_LOGIN_URL 为登录失效页面跳转地址
+
+# 生产地址使用相对路径，除古珀
+
+# 长兴、柯桥、凉山州、玉环
+# VITE_USER_API_URL=/bmo-auth-api/api
+# VITE_LOGIN_URL=/bmo-auth-pc/#/login
+
+# 丽水
+# VITE_USER_API_URL=/bmo-auth-api-lishui/api
+# VITE_LOGIN_URL=/bmo-auth-pc-lishui/#/login
+
+# 萧山
+# VITE_USER_API_URL=/bmo-auth-api-xiaoshan/api
+# VITE_LOGIN_URL=/bmo-auth-pc-xiaoshan/#/login
+
+# 诸暨
+# VITE_USER_API_URL=/bmo-auth-api-zhuji/api
+# VITE_LOGIN_URL=/bmo-auth-pc-zhuji/#/login
+
+# 古珀
+# VITE_USER_API_URL=https://apps.group-ds.com/bmo-auth-api/api
+# VITE_LOGIN_URL=https://release.group-ds.com/bmo-auth-pc-xiaoshan/#/login
+
+# 测试环境
+VITE_USER_API_URL=https://uat-api.group-ds.com/bmo-auth-api/api
+VITE_LOGIN_URL=https://demo.group-ds.com/bmo-auth-pc/#/login
+
+# 用户中心走本地数据
+VITE_USE_MOCK_DATA=false
+# OSS 流水线标签
+OSS_TAG=release-k8s-0000-v
+# 是否要支持 markdown 文件渲染
+VITE_APP_MARKDOWN=true
+# 后端接口地址
+VITE_APP_API_URL=http://10.123.234.102:10087
 ```

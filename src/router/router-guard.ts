@@ -3,6 +3,7 @@ import { useUserStore, type AuthQuery } from '@/stores/user';
 import { usePermissionStore } from '@/stores/permission';
 import { useTitle } from '@vueuse/core';
 import { useDiscrete } from '@/composables';
+import { useSettingStore } from '@/stores/setting';
 
 const { loadingBar } = useDiscrete();
 
@@ -11,10 +12,10 @@ router.beforeEach(async (to, from) => {
   loadingBar.start();
   const userStore = useUserStore();
   const permissionStore = usePermissionStore();
-
+  const settingStore = useSettingStore();
   permissionStore.cacheRoutes(to, from);
 
-  useTitle(import.meta.env.VITE_APP_TITLE);
+  useTitle(settingStore.defaultSetting.APP_NAME);
 
   userStore.setAuth(to.query as unknown as AuthQuery);
 

@@ -24,6 +24,7 @@ const styles = computed(() => ({
       <div :style="styles">
         <slot />
       </div>
+      <NBackTop :right="40" />
     </NScrollbar>
   </div>
 </template>

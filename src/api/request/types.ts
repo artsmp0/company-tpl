@@ -33,7 +33,7 @@ export type RequestConfig<D = unknown> = {
 
 /** 定义接口业务状态的码 */
 export const enum ResponseCode {
-  success = '200',
+  success = 200,
   authSuccess = 200,
   authFailed = 401
 }
@@ -52,7 +52,7 @@ export type GetFinalArgs<T extends string | undefined> = {
 /** 接口的基本形状 */
 export type BaseRes<T = unknown> = {
   code: string | number;
-  message: string;
+  msg: string;
   data: T;
 };
 

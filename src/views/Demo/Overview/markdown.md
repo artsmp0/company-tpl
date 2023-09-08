@@ -59,6 +59,13 @@ export default {
 
 > 请注意，当使用该模板进行接口请求时，请先根据后端接口适配 `api/request/types.ts` 文件里的三个类型： `BaseRes`、`PageParams`、`PageRes`。
 
+还有记得查看 `src/api/request/resHandler.tsx` 文件，根据 `BaseRes` 修改的结果修改如下行代码：
+
+```ts
+// 业务错误直接这里报错的话，要求后端 msg 必填
+(response.config as unknown as any).showMessage && message.error(**data.msg**);
+```
+
 ##### 如何使用一个接口定义？
 
 在任意文件中先引入 APIS，然后跟随 ts 提示一步步 enter 下去即可。如下是示例请求：

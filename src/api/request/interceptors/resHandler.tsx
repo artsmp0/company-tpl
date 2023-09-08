@@ -77,7 +77,7 @@ export const resHandler = {
       }
       if (data.code !== ResponseCode.success) {
         // 业务错误直接这里报错的话，要求后端 msg 必填
-        (response.config as unknown as any).showMessage && message.error(data.message);
+        (response.config as unknown as any).showMessage && message.error(data.msg);
         return {
           data: data,
           response,

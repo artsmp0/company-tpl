@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import { isDev } from '@/utils';
+
 defineOptions({
-  name: 'GpPageWrapper'
+  name: 'GpPageWrapper',
 });
 const props = withDefaults(
   defineProps<{
@@ -11,7 +13,7 @@ const props = withDefaults(
 );
 
 const styles = computed(() => ({
-  padding: parseInt(props.padding as string) + 'px'
+  padding: parseInt(props.padding as string) + 'px',
 }));
 </script>
 
@@ -24,7 +26,7 @@ const styles = computed(() => ({
       <div :style="styles">
         <slot />
       </div>
-      <NBackTop :right="40" />
+      <NBackTop :right="isDev() ? 100 : 40" />
     </NScrollbar>
   </div>
 </template>

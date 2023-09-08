@@ -1,131 +1,131 @@
 {
   "router": [
     {
-      "path": "/Demo/Overview",
+      "path": "/Demo",
       "meta": {
-        "icon": "sidebar-dashboard",
-        "title": "概览",
-        "keepAlive": true,
-        "noClosable": true,
-        "isIndex": true
-      },
-      "children": []
-    },
-    {
-      "path": "/Demo/UseChart",
-      "meta": {
-        "icon": "sidebar-dashboard",
-        "title": "useChart demo",
-        "keepAlive": true
-      },
-      "children": []
-    },
-    {
-      "path": "/Demo/Form",
-      "meta": {
-        "icon": "sidebar-dashboard",
-        "title": "普通表单"
-      },
-      "children": []
-    },
-    {
-      "path": "/Demo/Search",
-      "meta": {
-        "icon": "sidebar-dashboard",
-        "title": "搜索表单",
-        "keepAlive": true
-      },
-      "children": []
-    },
-    {
-      "path": "/Demo/Modal",
-      "meta": {
-        "icon": "sidebar-dashboard",
-        "title": "函数模态框",
-        "keepAlive": true
-      },
-      "children": []
-    },
-    {
-      "path": "/Demo/Table",
-      "meta": {
-        "icon": "sidebar-dashboard",
-        "title": "表格"
-      },
-      "children": []
-    },
-    {
-      "path": "/Demo/TrueTable",
-      "meta": {
-        "icon": "sidebar-dashboard",
-        "title": "示例接口请求表格"
-      },
-      "children": []
-    },
-    {
-      "path": "/Demo/Nested",
-      "meta": {
-        "icon": "sidebar-dashboard",
-        "title": "嵌套路由"
+        "title": "Demo",
+        "icon": "sidebar-dashboard"
       },
       "children": [
         {
-          "path": "/Demo/Nested/N1",
+          "path": "/Demo/Overview",
           "meta": {
-            "icon": "",
-            "title": "嵌套路由1-1"
+            "title": "食用指南",
+            "keepAlive": true,
+            "noClosable": true,
+            "isIndex": true
           },
-          "children": [
-            {
-              "path": "/Demo/Nested/N1/N2",
-              "meta": {
-                "icon": "",
-                "title": "嵌套路由1-2"
-              }
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "path": "/Demo/NestIsPage",
-      "meta": {
-        "icon": "sidebar-chart",
-        "title": "嵌套子页面可点击"
-      },
-      "children": [
+          "children": []
+        },
         {
-          "path": "/Demo/NestIsPage/Page1",
+          "path": "/Demo/UseChart",
           "meta": {
-            "icon": "",
-            "title": "页面一",
-            "isPage": true
+            "title": "useChart demo",
+            "keepAlive": true
+          },
+          "children": []
+        },
+        {
+          "path": "/Demo/Form",
+          "meta": {
+            "title": "普通表单"
+          },
+          "children": []
+        },
+        {
+          "path": "/Demo/Search",
+          "meta": {
+            "title": "搜索表单",
+            "keepAlive": true
+          },
+          "children": []
+        },
+        {
+          "path": "/Demo/Modal",
+          "meta": {
+            "title": "函数模态框",
+            "keepAlive": true
+          },
+          "children": []
+        },
+        {
+          "path": "/Demo/Table",
+          "meta": {
+            "title": "表格"
+          },
+          "children": []
+        },
+        {
+          "path": "/Demo/TrueTable",
+          "meta": {
+            "title": "示例接口请求表格"
+          },
+          "children": []
+        },
+        {
+          "path": "/Demo/Nested",
+          "meta": {
+            "title": "嵌套路由"
           },
           "children": [
             {
-              "path": "/Demo/NestIsPage/Page1/Detail",
+              "path": "/Demo/Nested/N1",
               "meta": {
                 "icon": "",
-                "title": "页面一详情",
-                "hideInMenu": true
-              }
+                "title": "嵌套路由1-1"
+              },
+              "children": [
+                {
+                  "path": "/Demo/Nested/N1/N2",
+                  "meta": {
+                    "icon": "",
+                    "title": "嵌套路由1-2"
+                  }
+                }
+              ]
             }
           ]
         },
         {
-          "path": "/Demo/NestIsPage/Page2",
+          "path": "/Demo/NestIsPage",
           "meta": {
-            "icon": "",
-            "title": "页面二",
-            "isPage": true
+            "title": "嵌套子页面可点击"
           },
           "children": [
             {
-              "path": "/Demo/NestIsPage/Page2/Sub",
+              "path": "/Demo/NestIsPage/Page1",
               "meta": {
                 "icon": "",
-                "title": "页面二子页面"
-              }
+                "title": "页面一",
+                "isPage": true
+              },
+              "children": [
+                {
+                  "path": "/Demo/NestIsPage/Page1/Detail",
+                  "meta": {
+                    "icon": "",
+                    "title": "页面一详情",
+                    "hideInMenu": true
+                  }
+                }
+              ]
+            },
+            {
+              "path": "/Demo/NestIsPage/Page2",
+              "meta": {
+                "icon": "",
+                "title": "页面二",
+                "isPage": true
+              },
+              "children": [
+                {
+                  "path": "/Demo/NestIsPage/Page2/Sub",
+                  "meta": {
+                    "icon": "",
+                    "title": "页面二子页面"
+                  }
+                }
+              ]
             }
           ]
         }

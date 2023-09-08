@@ -21,15 +21,18 @@ export const getBrowser = () => {
         wechat: /MicroMessenger/i.test(u), //是否微信中
         webApp: u.indexOf('Safari') === -1, //是否web应该程序，没有头部与底部
         dtDreamApp: u.toLowerCase().indexOf('dtdreamweb') > -1, // 浙里办 APP
-        alipayMini:
-          u.toLowerCase().indexOf('miniprogram') > -1 && u.toLowerCase().indexOf('alipay') > -1 // 浙里办支付宝小程序
+        alipayMini: u.toLowerCase().indexOf('miniprogram') > -1 && u.toLowerCase().indexOf('alipay') > -1, // 浙里办支付宝小程序
       };
     })(),
-    language: window.navigator.language.toLowerCase()
+    language: window.navigator.language.toLowerCase(),
   };
 };
 
 // 判断是否是钉钉或者浙政钉
 export const isDdOrZzd = () => {
   return getBrowser().versions.dingtalk || getBrowser().versions.taurusapp;
+};
+
+export const isDev = () => {
+  return import.meta.env.DEV;
 };

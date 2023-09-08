@@ -3,7 +3,6 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "preinstall": "npx only-allow pnpm",
     "dev": "vite --host --port 63001",
     "serve": "vite",
     "serve:stage": "vite --mode staging",
@@ -19,7 +18,8 @@
     "build:stage": "vite build --mode staging",
     "build:prod": "vite build --mode production",
     "deploy": "gupo-deploy --mode staging -p --env_dir ./env",
-    "deploy:prod": "gupo-deploy --mode production -p --env_dir ./env"
+    "deploy:prod": "gupo-deploy --mode production -p --env_dir ./env",
+    "preinstall": "npx only-allow pnpm"
   },
   "lint-staged": {
     "src/**/*.{vue,ts,tsx,scss,css}": [

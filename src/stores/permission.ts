@@ -45,7 +45,7 @@ export const usePermissionStore = defineStore('permission', () => {
       name: 'layout',
       component: Layout,
       redirect: '',
-      children: [] as MenuItemType[]
+      children: [] as MenuItemType[],
     };
     const generateMeta = (meta: RouteMeta = {}) => {
       return { ...meta };
@@ -57,7 +57,7 @@ export const usePermissionStore = defineStore('permission', () => {
         parentPath,
         name: item.path?.slice(1).replace(/\//g, '.'),
         meta: item.meta,
-        component: modules[`../views${item.path}/index.vue`]
+        component: modules[`../views${item.path}/index.vue`],
       };
     };
     const generateRoutes = (list: MenuItemType[], parentPath?: string) => {
@@ -75,7 +75,7 @@ export const usePermissionStore = defineStore('permission', () => {
         }
         const route = {
           ...generateRoute(item, parentPath),
-          children
+          children,
         } as MenuItemType;
 
         if (item.redirect) route.redirect = item.redirect;
@@ -85,7 +85,7 @@ export const usePermissionStore = defineStore('permission', () => {
           // 这里要清除子路由，不然会被视为嵌套路由
           routes?.children?.push({
             ...route,
-            children: []
+            children: [],
           });
         menuRouter.push(route);
         flatMenuRoutes.push(route);
@@ -110,7 +110,7 @@ export const usePermissionStore = defineStore('permission', () => {
       router.addRoute([routes][0]);
       router.addRoute({
         path: '/:catchAll(.*)',
-        redirect: { path: '/404' }
+        redirect: { path: '/404' },
       });
 
       setMenuList(menuRouter);
@@ -134,7 +134,7 @@ export const usePermissionStore = defineStore('permission', () => {
     } else {
       // 有接口则替换为接口返回 data 即可
       const { data, err } = await APIS.auth['/open/permission/router']({
-        params: { org_id: userStore.orgId, system_code: userStore.systemCode }
+        params: { org_id: userStore.orgId, system_code: userStore.systemCode },
       });
       if (err) {
         addFallbackRoutes();
@@ -146,8 +146,11 @@ export const usePermissionStore = defineStore('permission', () => {
     }
     const otherPagePath = camel2kebab((mockData.otherPage?.[0] as unknown as { path: string })?.path);
     // 返回登录成功后前往的页面地址
+    const indexPagePath =
+      flatMenuList.value.find((route) => route.meta?.isIndex && route.component)?.path ??
+      (menuList.value[0]?.children?.[0]?.path || menuList.value[0]?.path || otherPagePath || '/');
     return {
-      redirectRoute: menuList.value[0]?.children?.[0]?.path || menuList.value[0]?.path || otherPagePath || '/'
+      redirectRoute: indexPagePath,
     };
   };
   const getKeepAliveName = (arr: MenuItemType[]) => {
@@ -172,7 +175,7 @@ export const usePermissionStore = defineStore('permission', () => {
     if (!from.meta.keepAlive) return;
     const {
       meta: { keepAlive },
-      name
+      name,
     } = from;
     const { name: toName } = to;
     if (!name || typeof name !== 'string') return;
@@ -225,6 +228,6 @@ export const usePermissionStore = defineStore('permission', () => {
     setRoutes,
     initRoutes,
     getKeepAliveList,
-    vPermission
+    vPermission,
   };
 });

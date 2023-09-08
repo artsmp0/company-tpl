@@ -41,7 +41,7 @@ export const enum URL {
   getTest = '/api/get',
   postTest = '/api/post',
   tableList = '/tag/tb/bind/list',
-  userInfo = '/api/user/{id}'
+  userInfo = '/api/user/{id}',
 }
 
 export default {
@@ -52,7 +52,7 @@ export default {
   /** 演示 post 请求 */
   [URL.postTest]: post<BaseRes<boolean>, { username: string; password: string }>(URL.postTest),
   /** 此处演示路径参数的请求方式，此种写法等同于改行下的注释 */
-  [URL.userInfo]: pathArgGet<BaseRes<TableItem>, URL.userInfo>(URL.userInfo)
+  [URL.userInfo]: pathArgGet<BaseRes<TableItem>, URL.userInfo>(URL.userInfo),
   // [URL.userInfo]: request<BaseRes<TableItem>, undefined, undefined, URL.userInfo>({ url: URL.userInfo })
 };
 ```
@@ -164,3 +164,41 @@ VITE_APP_MARKDOWN=true
 # 后端接口地址
 VITE_APP_API_URL=http://10.123.234.102:10087
 ```
+
+### 路由 meta 使用
+
+本项目定义了如下的路由 `meta` 字段，若要添加新的字段，请到 `/types/router.d.ts` 文件中新增：
+
+```ts
+import 'vue-router';
+
+declare module 'vue-router' {
+  interface RouteMeta {
+    /** 菜单图标：例如 sidebar-dashboard -> assets/icons/sidebar/dashboard.svg */
+    icon?: string;
+    /** 页面标题(菜单项和标签页标题) */
+    title?: string;
+    /** 是否进行页面保活，如果是数组，只有在进入指定页面才会进行保活操作 */
+    keepAlive?: boolean | string[];
+    /** 是否在 标签栏 隐藏 */
+    hideInTab?: boolean;
+    /** 是否在 菜单栏 显示徽标数 */
+    badge?: number;
+    /** 是否在菜单栏中隐藏：比如详情页 */
+    hideInMenu?: boolean;
+    /** 作为父路由是否本身拥有界面 */
+    isPage?: boolean;
+    /** 默认采取 mock -> router -> 第一项作为首页，这个就是为了支持你自定义首页而不是默认第一项 */
+    isIndex?: boolean;
+  }
+}
+
+// isIndex 相关逻辑（permission.ts)：返回登录成功后前往的页面地址
+const indexPagePath =
+  flatMenuList.value.find((route) => route.meta?.isIndex && route.component)?.path ??
+  (menuList.value[0]?.children?.[0]?.path || menuList.value[0]?.path || otherPagePath || '/');
+```
+
+> 注意路由保活请使用 `defineOptions` 进行路由名称（组件名）定义，路由名称解析 `mock.json` 时
+>
+> 被定义为如下的转换： `Demo/NestIsPage/Page1/Detail/index.vue -> Demo.NestIsPage.Page1.Detail`

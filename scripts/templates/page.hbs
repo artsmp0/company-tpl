@@ -1,0 +1,13 @@
+<script setup lang='ts'>
+import { GpPageWrapper } from '@/components'; 
+  
+defineOptions({ name: '{{dotCase filepath}}' })
+</script>
+
+<template>
+  <GpPageWrapper>
+    {{upperWordFirstCase filepath}}
+  </GpPageWrapper>
+</template>
+
+<style lang='scss' scoped></style>

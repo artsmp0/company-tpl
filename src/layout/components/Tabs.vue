@@ -26,19 +26,19 @@ watch(
 const handleClick = (t: Tab) => {
   resolveHistory(t.path);
   router.push({
-    path: t.path
+    path: t.path,
   });
   resolveHistory(t.path);
 };
 
 const handleClose = (t: Tab) => {
-  tabStore.removeTab(t);
+  if (!tabStore.removeTab(t)) return;
   accessHistory.value.delete(t.path);
   if (t.path === route.path) {
     if (!accessHistory.value.size) return;
     const newPath = [...accessHistory.value][accessHistory.value.size - 1];
     router.push({
-      path: newPath
+      path: newPath,
     });
   }
 };
@@ -57,24 +57,24 @@ const handleShowContextMenu = (e: MouseEvent, t: Tab) => {
 const options = [
   {
     label: '关闭',
-    key: 'close'
+    key: 'close',
   },
   {
     label: '关闭其他',
-    key: 'closeOther'
+    key: 'closeOther',
   },
   {
     label: '关闭所有',
-    key: 'closeAll'
+    key: 'closeAll',
   },
   {
     label: '关闭右侧',
-    key: 'closeRight'
+    key: 'closeRight',
   },
   {
     label: '关闭左侧',
-    key: 'closeLeft'
-  }
+    key: 'closeLeft',
+  },
 ];
 
 const showDropdown = ref(false);

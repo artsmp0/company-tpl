@@ -22,7 +22,7 @@ export const useTabsStore = defineStore('tabs', () => {
     const tt = {
       name: route.meta.title!,
       path: route.path,
-      icon: route.meta.icon
+      icon: route.meta.icon,
     };
     tabs.value.set(route.path, tt);
 
@@ -32,7 +32,9 @@ export const useTabsStore = defineStore('tabs', () => {
   };
 
   const removeTab = (tab: Tab) => {
+    if (tabs.value.size === 1) return false;
     tabs.value.delete(tab.path);
+    return true;
   };
 
   const removeOther = (tab: Tab) => {
@@ -82,6 +84,6 @@ export const useTabsStore = defineStore('tabs', () => {
     removeOther,
     removeAll,
     removeRight,
-    removeLeft
+    removeLeft,
   };
 });

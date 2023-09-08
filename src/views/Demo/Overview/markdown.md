@@ -92,7 +92,7 @@ export default {
 ```html
 <NSpace>
   <div class="i-material-symbols:360"></div>
-  <!-- 针对 naive 方式，该项目仅安装了这个图标包，若有需要请自行安装其他图包：@vicons/antd -->
+  <!-- 针对 naive 方式，该项目仅安装了这个图标包（@vicons/antd），若有需要请自行安装其他图包。 -->
   <NIcon> <UploadOutlined /> </NIcon>
   <!-- 请注意：需要带上路径前缀 假设 chart 图标在 icons/sidebar/xxx/chart.svg，则他的名字为 sidebar-xxx-chart -->
   <GpSvgIcon name="sidebar-chart" />

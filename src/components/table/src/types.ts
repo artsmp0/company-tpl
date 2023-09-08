@@ -34,6 +34,6 @@ export type GupoTableProps = {
   rowKey?: DataTableProps['rowKey'];
 };
 
-export type TableColumns<T extends any> = (Omit<DataTableBaseColumn<T>, 'key'> & {
+export type TableColumns<T extends any = any> = (Omit<DataTableBaseColumn<T>, 'key'> & {
   key: keyof T | 'operation';
 })[];

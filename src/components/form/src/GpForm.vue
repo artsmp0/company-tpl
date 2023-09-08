@@ -5,7 +5,7 @@ import { cloneDeep, omit } from 'lodash-unified';
 import { useForm } from './utils';
 
 defineOptions({
-  name: 'GpForm'
+  name: 'GpForm',
 });
 const props = withDefaults(
   defineProps<{
@@ -15,13 +15,10 @@ const props = withDefaults(
     scrollToFirstError?: boolean;
   }>(),
   {
-    scrollToFirstError: true
+    scrollToFirstError: true,
   }
 );
-const { formRef, ...rest } = useForm(
-  cloneDeep(props.meta.model as any),
-  () => props.scrollToFirstError
-);
+const { formRef, ...rest } = useForm(cloneDeep(props.meta.model as any), () => props.scrollToFirstError);
 defineExpose(rest);
 </script>
 

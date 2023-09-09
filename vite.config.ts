@@ -30,13 +30,13 @@ export default defineConfig(({ mode }) => {
     plugins: [
       vue({
         script: {
-          defineModel: true
+          defineModel: true,
         },
-        include: [/\.vue$/, /\.md$/]
+        include: [/\.vue$/, /\.md$/],
       }),
       vueJsx(),
       UnoCSS({
-        safelist: VITE_APP_MARKDOWN ? safelist.split(' ') : undefined
+        safelist: VITE_APP_MARKDOWN ? safelist.split(' ') : undefined,
       }),
       AutoImport({
         dts: './types/auto-imports.d.ts',
@@ -44,43 +44,43 @@ export default defineConfig(({ mode }) => {
           'vue',
           'vue-router',
           {
-            'naive-ui': ['useDialog', 'useMessage', 'useNotification', 'useLoadingBar']
-          }
-        ]
+            'naive-ui': ['useDialog', 'useMessage', 'useNotification', 'useLoadingBar'],
+          },
+        ],
       }),
       Components({
         dts: './types/components.d.ts',
         dirs: [],
-        resolvers: [NaiveUiResolver()]
+        resolvers: [NaiveUiResolver()],
       }),
       createSvgIconsPlugin({
         iconDirs,
-        symbolId: 'icon-[dir]-[name]'
+        symbolId: 'icon-[dir]-[name]',
       }),
       EnvTypes({
-        dts: './types/env.d.ts'
+        dts: './types/env.d.ts',
       }),
       VueDevTools(),
       compression({
         threshold: 1024,
         include: /\.(js|mjs|json|css|html|wasm)$/i,
-        algorithm: 'brotliCompress'
+        algorithm: 'brotliCompress',
       }),
       Markdown({
         wrapperClasses: safelist,
         markdownItSetup(md) {
           md.use(Prism);
-        }
-      })
+        },
+      }),
     ],
     resolve: {
       alias: {
-        '@': fileURLToPath(new URL('./src', import.meta.url))
-      }
+        '@': fileURLToPath(new URL('./src', import.meta.url)),
+      },
     },
     build: {
       modulePreload: {
-        polyfill: true
+        polyfill: true,
       },
       rollupOptions: {
         output: {
@@ -90,10 +90,13 @@ export default defineConfig(({ mode }) => {
             'naive-ui': ['naive-ui'],
             echarts: ['echarts'],
             'vue-vendor': ['vue', 'vue-router', 'pinia'],
-            util: ['lodash-unified', '@vueuse/core']
-          }
-        }
-      }
-    }
+            util: ['lodash-unified', '@vueuse/core'],
+          },
+        },
+      },
+    },
+    esbuild: {
+      drop: ['console', 'debugger'],
+    },
   };
 });

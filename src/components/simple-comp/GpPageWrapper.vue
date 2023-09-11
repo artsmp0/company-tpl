@@ -8,6 +8,7 @@ const props = withDefaults(
   defineProps<{
     innerScroll?: boolean;
     padding?: number | string;
+    xScrollable?: boolean;
   }>(),
   { padding: '16px' }
 );
@@ -22,7 +23,7 @@ const styles = computed(() => ({
     <slot />
   </div>
   <div v-else class="h-full w-full of-auto">
-    <NScrollbar x-scrollable>
+    <NScrollbar :x-scrollable="xScrollable">
       <div :style="styles">
         <slot />
       </div>

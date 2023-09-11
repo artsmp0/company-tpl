@@ -11,6 +11,8 @@ const currentTheme = computed(() => {
 const themeOverrides = computed(() => {
   return isDark.value ? DARK_THEME_OVERRIDES : LIGHT_THEME_OVERRIDES;
 });
+
+console.log('themeOverrides: ', themeOverrides);
 </script>
 
 <template>

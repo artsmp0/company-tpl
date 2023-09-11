@@ -66,12 +66,13 @@ export default defineConfig(({ mode }) => {
         include: /\.(js|mjs|json|css|html|wasm)$/i,
         algorithm: 'brotliCompress',
       }),
-      Markdown({
-        wrapperClasses: safelist,
-        markdownItSetup(md) {
-          md.use(Prism);
-        },
-      }),
+      VITE_APP_MARKDOWN &&
+        Markdown({
+          wrapperClasses: safelist,
+          markdownItSetup(md) {
+            md.use(Prism);
+          },
+        }),
     ],
     resolve: {
       alias: {

@@ -30,14 +30,14 @@ const logout = () => {
     negativeText: '取消',
     onPositiveClick: () => {
       userStore.logout();
-    }
+    },
   });
 };
 
 const renderIcon = (icon: Component) => {
   return () => {
     return h(NIcon, null, {
-      default: () => h(icon)
+      default: () => h(icon),
     });
   };
 };
@@ -46,23 +46,23 @@ function renderCustomHeader() {
   return h(
     'div',
     {
-      style: 'display: flex; align-items: center; padding: 8px 12px;'
+      style: 'display: flex; align-items: center; padding: 8px 12px;',
     },
     [
       h(
         NAvatar,
         {
           round: true,
-          style: 'margin-right: 12px;'
+          style: 'margin-right: 12px;',
         },
         { default: () => 'A' }
       ),
       h('div', null, [
         h('div', null, [h(NText, { depth: 2 }, { default: () => userStore.userInfo?.name || '打工仔' })]),
         h('div', { style: 'font-size: 12px;' }, [
-          h(NText, { depth: 3 }, { default: () => userStore.userInfo?.phone || '毫无疑问，你是办公室里最亮的星' })
-        ])
-      ])
+          h(NText, { depth: 3 }, { default: () => userStore.userInfo?.phone || '毫无疑问，你是办公室里最亮的星' }),
+        ]),
+      ]),
     ]
   );
 }
@@ -71,20 +71,20 @@ const userOptions: DropdownMixedOption[] = [
   {
     key: 'header',
     type: 'render',
-    render: renderCustomHeader
+    render: renderCustomHeader,
   },
   {
     label: '编辑信息',
     key: 'edit',
-    icon: renderIcon(CreateOutline)
-  }
+    icon: renderIcon(CreateOutline),
+  },
 ];
 
 if (!isDdOrZzd()) {
   userOptions.push({
     label: '退出登录',
     key: 'logout',
-    icon: renderIcon(LogOutOutline)
+    icon: renderIcon(LogOutOutline),
   });
 }
 
@@ -117,12 +117,12 @@ function toggleDark(event: MouseEvent) {
     const clipPath = [`circle(0px at ${x}px ${y}px)`, `circle(${endRadius}px at ${x}px ${y}px)`];
     document.documentElement.animate(
       {
-        clipPath: isDark.value ? [...clipPath].reverse() : clipPath
+        clipPath: isDark.value ? [...clipPath].reverse() : clipPath,
       },
       {
         duration: 400,
         easing: 'ease-out',
-        pseudoElement: isDark.value ? '::view-transition-old(root)' : '::view-transition-new(root)'
+        pseudoElement: isDark.value ? '::view-transition-old(root)' : '::view-transition-new(root)',
       }
     );
   });
@@ -143,7 +143,7 @@ const isDev = computed(() => import.meta.env.DEV);
 <template>
   <NLayoutHeader class="h60 px20" flex="~ items-center justify-between" bordered>
     <div class="h40" flex="~ justify-center items-center">
-      <img src="@/assets/imgs/logo.png" alt="LOGO" class="mr16 h-full" />
+      <img src="@/assets/imgs/logo.png" alt="LOGO" class="mr16 display-none h-full sm:block" />
       <NTag mr16 :bordered="false" :color="{ textColor: 'var(--primary-color)' }" size="small">{{ APP_NAME }}</NTag>
       <Breadcrumbs v-if="SHOW_BREADCRUMB" />
     </div>

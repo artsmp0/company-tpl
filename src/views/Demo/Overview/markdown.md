@@ -202,3 +202,48 @@ const indexPagePath =
 > 注意路由保活请使用 `defineOptions` 进行路由名称（组件名）定义，路由名称解析 `mock.json` 时
 >
 > 被定义为如下的转换： `Demo/NestIsPage/Page1/Detail/index.vue -> Demo.NestIsPage.Page1.Detail`
+
+### 自动创建页面
+
+本项目的 `scripts` 目录下是一些用于自动创建文件的脚本命令，使用本模板时无需额外进行关注。
+
+目前提供了 `new:page` 这个命令，命令用于自动创建路由页面并生成路由信息插入到 `src/router/mock.json` 文件当中。使用需要注意一下情况：
+
+- 仅需要输入全小写路径即可，命令会自动转成首字母大写；
+- 若已经存在目标路径的页面，则创建失败；
+- 若已经存在目标路径的子路径，则创建失败:
+  - 正确示例：`aaa -> aaa/bbb -> aaa/bbb/ccc`；
+  - 错误示例：`aaa/bbb -> aaa`。
+
+使用示例：
+
+```bash
+# 创建路由 /xxx
+dev-vue3-vite-template on  vue3-naive [$!?] via  v18.16.1 took 13s
+❯ nr
+✔ script to run › new:page
+
+> gupo-naive-admin@0.0.1 new:page /Users/artsmp/Documents/workspace/code/dev-vue3-vite-template
+> plop --plopfile scripts/create-page.mjs
+
+? 文件路径（小写就好） xxx
+? 菜单标题 xxx
+? 菜单图标(sidebar-开头) sidebar-dashboard
+? 是否需要路由保活 yes
+✔  ++ /Users/artsmp/Documents/workspace/code/dev-vue3-vite-template/src/views/Xxx/index.vue
+
+
+# 创建路由 /xxx/aaa
+dev-vue3-vite-template on  vue3-naive [$!?] via  v18.16.1 took 18s
+❯ nr
+✔ script to run › new:page
+
+> gupo-naive-admin@0.0.1 new:page /Users/artsmp/Documents/workspace/code/dev-vue3-vite-template
+> plop --plopfile scripts/create-page.mjs
+
+? 文件路径(小写就好)： xxx/aaa
+? 菜单标题： aaa
+? 菜单图标(sidebar-开头)：
+? 是否需要路由保活： yes
+✔  ++ /Users/artsmp/Documents/workspace/code/dev-vue3-vite-template/src/views/Xxx/Aaa/index.vue
+```

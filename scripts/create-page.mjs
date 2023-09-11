@@ -31,7 +31,7 @@ export default function (plop) {
       {
         type: 'input',
         name: 'filepath',
-        message: '文件路径',
+        message: '文件路径(小写就好)：',
         validate(input) {
           if (/^[a-zA-Z/]+(?<!\/)$/.test(input)) {
             return true;
@@ -43,11 +43,23 @@ export default function (plop) {
       {
         type: 'input',
         name: 'title',
-        message: '菜单标题',
+        message: '菜单标题：',
+      },
+      {
+        type: 'input',
+        name: 'icon',
+        message: '菜单图标(sidebar-开头)：',
+      },
+      {
+        type: 'list',
+        name: 'keepAlive',
+        default: 'yes',
+        choices: ['yes', 'no'],
+        message: '是否需要路由保活：',
       },
     ],
     actions(...args) {
-      const isSuccess = overwriteMock(args[0].filepath, args[0].title);
+      const isSuccess = overwriteMock(args[0]);
       if (!isSuccess) return [];
       return [
         {
@@ -60,18 +72,20 @@ export default function (plop) {
   });
 }
 
-function overwriteMock(name, title, keepAlive) {
+function overwriteMock({ filepath, title, keepAlive, icon }) {
   const mockFile = fileURLToPath(new URL('../src/router/mock.json', import.meta.url));
   const mockFileContent = readFileSync(mockFile, 'utf-8');
+  keepAlive = keepAlive === 'yes' ? true : false;
 
   // 使用 JSON.parse 解析原始内容和要添加的内容
   const originalObj = JSON.parse(mockFileContent);
   const flatRouter = flatRoutes(originalObj.router);
   const addition = {
-    path: `/${upperWordFirstCase(name)}`,
+    path: `/${upperWordFirstCase(filepath)}`,
     meta: {
       title,
       keepAlive,
+      icon,
     },
     children: [],
   };
@@ -83,6 +97,7 @@ function overwriteMock(name, title, keepAlive) {
   }
   const newMockFileContent = updateContent(originalObj, flatRouter, addition);
   writeFileSync(mockFile, newMockFileContent);
+  return true;
 }
 
 function updateContent(originalObj, flatRouter, addition) {

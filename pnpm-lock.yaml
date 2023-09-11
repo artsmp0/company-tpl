@@ -26,6 +26,9 @@ dependencies:
   markdown-it-prism:
     specifier: ^2.3.0
     version: registry.npmmirror.com/markdown-it-prism@2.3.0
+  markdown-it-table-of-contents:
+    specifier: ^0.6.0
+    version: registry.npmmirror.com/markdown-it-table-of-contents@0.6.0
   monaco-editor:
     specifier: ^0.41.0
     version: registry.npmmirror.com/monaco-editor@0.41.0
@@ -6357,6 +6360,13 @@ packages:
     engines: {node: '>=6.0.0'}
     dependencies:
       prismjs: registry.npmmirror.com/prismjs@1.29.0
+    dev: false
+
+  registry.npmmirror.com/markdown-it-table-of-contents@0.6.0:
+    resolution: {integrity: sha512-jHvEjZVEibyW97zEYg19mZCIXO16lHbvRaPDkEuOfMPBmzlI7cYczMZLMfUvwkhdOVQpIxu3gx6mgaw46KsNsQ==, registry: https://packages.aliyun.com/5eb3e37038076f00011bcd4a/npm/npm-registry/, tarball: https://registry.npmmirror.com/markdown-it-table-of-contents/-/markdown-it-table-of-contents-0.6.0.tgz}
+    name: markdown-it-table-of-contents
+    version: 0.6.0
+    engines: {node: '>6.4.0'}
     dev: false
 
   registry.npmmirror.com/markdown-it@13.0.1:

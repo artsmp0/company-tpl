@@ -7,7 +7,8 @@ export function getElementByJson(json: JsonItem[], model: Recordable) {
   const elements: FormItem[] = [];
 
   for (const item of json) {
-    elements.push({ widget: getWidget({ item, model }), props: omit(item, ['children']) });
+    // @ts-ignore
+    elements.push(reactive({ widget: getWidget({ item, model }), props: omit(item, ['children']) }));
   }
   return { elements, initialValues };
 }

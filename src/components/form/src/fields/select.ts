@@ -1,11 +1,12 @@
 import { NSelect } from 'naive-ui';
 import type { RenderFnParams } from '../types';
 import { omit } from 'lodash-unified';
-import { useFetchField } from '../utils';
+import { useDeps, useFetchField } from '../utils';
 
 export function renderSelect({ item, model }: RenderFnParams) {
-  const { props = undefined, field, apiFn } = item;
+  const { props = undefined, field, apiFn, deps, hide } = item;
   const fetchRes = useFetchField(apiFn);
+  const state = useDeps({ item, model });
   return () =>
     h(NSelect, {
       value: model[field],
@@ -14,6 +15,7 @@ export function renderSelect({ item, model }: RenderFnParams) {
       loading: fetchRes?.loading.value,
       options: fetchRes?.options.value,
       filterable: true,
-      ...omit(props, ['value', 'onUpdateValue'])
+      ...state,
+      ...omit(props, ['value', 'onUpdateValue']),
     });
 }

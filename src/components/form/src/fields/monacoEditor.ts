@@ -1,8 +1,12 @@
 import type { RenderFnParams } from '../types';
 import GpMonacoEditor from '@/components/simple-comp/GpMonacoEditor.vue';
+import { useDeps } from '../utils';
+import { omit } from 'lodash-unified';
 
 export function renderMonacoEditor({ item, model }: RenderFnParams) {
-  const { props = undefined, field } = item;
+  const { props = undefined, field, deps } = item;
+
+  const state = useDeps({ item, model });
 
   // 这里一定要返回一个函数，否则响应式会丢失
   return () =>
@@ -10,6 +14,7 @@ export function renderMonacoEditor({ item, model }: RenderFnParams) {
       clearable: true,
       value: model[field],
       onUpdateValue: (value: string) => void (model[field] = value),
-      options: props
+      ...state,
+      ...omit(props, 'value', 'onUpdateValue'),
     });
 }

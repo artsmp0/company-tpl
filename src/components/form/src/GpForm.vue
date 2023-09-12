@@ -18,6 +18,15 @@ const props = withDefaults(
     scrollToFirstError: true,
   }
 );
+
+// watch(
+//   () => props.meta,
+//   (v) => {
+//     console.log('xxxxx', v);
+//   },
+//   { deep: true }
+// );
+
 const { formRef, ...rest } = useForm(cloneDeep(props.meta.model as any), () => props.scrollToFirstError);
 defineExpose(rest);
 </script>
@@ -26,16 +35,17 @@ defineExpose(rest);
   <NSpin :show="loading" description="努力加载中" class="of-hidden">
     <NForm ref="formRef" v-bind="omit(meta, ['elements'])">
       <NGrid v-bind="layout">
-        <NFormItemGi
-          v-for="item in meta.elements"
-          :key="item.props.field"
-          :span="item.props.span ?? 24"
-          :path="item.props.field"
-          :target="item.props.field"
-          v-bind="omit(item.props, ['type', 'field', 'props', 'apiFn'])"
-        >
-          <Component :is="item.widget" />
-        </NFormItemGi>
+        <template v-for="item in meta.elements" :key="item.props.field">
+          <NFormItemGi
+            v-if="!item.props.hide"
+            :span="item.props.span ?? 24"
+            :path="item.props.field"
+            :target="item.props.field"
+            v-bind="omit(item.props, ['type', 'field', 'props', 'apiFn'])"
+          >
+            <Component :is="item.widget" />
+          </NFormItemGi>
+        </template>
       </NGrid>
     </NForm>
   </NSpin>

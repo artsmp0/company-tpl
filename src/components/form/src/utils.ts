@@ -1,5 +1,6 @@
 import { tryOnMounted } from '@vueuse/core';
 import type { MaybeRefOrGetter } from 'vue';
+import type { RenderFnParams } from './types';
 
 export function useForm(initialValues: Recordable, scrollToFirstError: MaybeRefOrGetter) {
   const formRef = shallowRef();
@@ -46,7 +47,7 @@ export function useForm(initialValues: Recordable, scrollToFirstError: MaybeRefO
     validate,
     resetValues,
     getValues,
-    setValues
+    setValues,
   };
 }
 
@@ -54,11 +55,34 @@ export function useFetchField(apiFn?: Function) {
   if (!apiFn) return undefined;
   const loading = ref(false);
   const options = shallowRef([]);
-  tryOnMounted(async () => {
+  const fetchData = async () => {
     loading.value = true;
     const res = await apiFn();
     loading.value = false;
     options.value = res;
-  });
-  return { loading, options };
+  };
+  tryOnMounted(fetchData);
+  return { loading, options, fetchData };
+}
+
+export function useDeps({ item, model }: RenderFnParams) {
+  const state = reactive({});
+  if (!item.deps) {
+    return state;
+  }
+  const watcher = async () => {
+    Object.assign(state, await item.listener?.());
+  };
+  onMounted(watcher);
+
+  const refDeps = item.deps.filter((d) => isRef(d));
+
+  // 这种写法不行（不知道为啥
+  // const modelDeps = item.deps.filter((d) => typeof d === 'string').map((k) => model[k as string]);
+  // watch(() => modelDeps, watcher);
+
+  watch(() => item.deps?.map((k) => (typeof k === 'string' ? model[k] : null)), watcher);
+  watch(refDeps, watcher);
+
+  return state;
 }

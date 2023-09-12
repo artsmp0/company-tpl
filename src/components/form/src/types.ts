@@ -1,5 +1,5 @@
 import type { FormItemGiProps, FormProps } from 'naive-ui';
-import type { VNode } from 'vue';
+import type { VNode, Ref } from 'vue';
 
 export type FieldType =
   | 'input'
@@ -11,18 +11,23 @@ export type FieldType =
   | 'cascader'
   | 'monacoEditor'
   | 'upload'
+  | 'custom'
   | 'multiple';
 
 export interface JsonItem extends FormItemGiProps {
   type: FieldType;
   field: string;
   props?: any;
+  deps?: (string | Ref<any>)[];
+  listener?: Function;
+  hide?: boolean;
   children?: JsonItem[];
   /** 需要自动发起 api 请求的 */
   apiFn?: Function;
   /** radio group 显示为 button */
   button?: boolean;
   slots?: Recordable<() => VNode>;
+  component?: () => VNode;
 }
 
 export type FormItem = {

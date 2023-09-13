@@ -10,10 +10,15 @@ import Md from './markdown.md';
 // APIS.common[URLS.getTest]({ params: { search: 'xxx' } });
 // // 演示 post
 // APIS.common[URLS.postTest]({ data: { password: 'xxx', username: 'artsmp' } });
+
+const loading = ref(true);
+setTimeout(() => {
+  loading.value = false;
+}, 2000);
 </script>
 
 <template>
-  <GpPageWrapper>
+  <GpPageWrapper v-loading="loading">
     <div m-auto p16>
       <Md class="m-auto" />
     </div>

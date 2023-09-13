@@ -21,7 +21,9 @@ const safelist =
   'prose px-2 sm:px-0 md:prose-lg lg:prose-lg dark:prose-invert text-left w-screen prose-slate prose-img:rounded-xl prose-headings:underline prose-a:text-blue-600';
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }) => {
+export default defineConfig(({ mode, command }) => {
+  console.log('mode: ', mode);
+  console.log('command: ', command);
   const { VITE_PUBLIC_PATH, VITE_APP_MARKDOWN } = loadEnv(mode, envDir);
 
   return {
@@ -97,7 +99,7 @@ export default defineConfig(({ mode }) => {
       },
     },
     esbuild: {
-      drop: ['console', 'debugger'],
+      drop: command === 'serve' && mode === 'production' ? ['console', 'debugger'] : [],
     },
   };
 });

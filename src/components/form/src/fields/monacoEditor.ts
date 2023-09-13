@@ -4,7 +4,7 @@ import { useDeps } from '../utils';
 import { omit } from 'lodash-unified';
 
 export function renderMonacoEditor({ item, model }: RenderFnParams) {
-  const { props = undefined, field, deps } = item;
+  const { props = undefined, field } = item;
 
   const state = useDeps({ item, model });
 

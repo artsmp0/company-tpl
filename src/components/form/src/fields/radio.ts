@@ -1,19 +1,21 @@
 import { NRadio, NRadioButton, NRadioGroup, NSpace } from 'naive-ui';
 import type { RenderFnParams } from '../types';
 import { omit } from 'lodash-unified';
+import { useDeps } from '../utils';
 
 export function renderRadio({ item, model }: RenderFnParams) {
   const { props = undefined, field, button } = item;
   if (!props.options) {
-    console.warn('radio options must required!');
+    console.warn('radio options must be required!');
   }
+  const state = useDeps({ item, model });
   const children = button
     ? item.props.options.map((o: any) =>
         h(
           NRadioButton,
           {
             value: o.value,
-            key: o.value
+            key: o.value,
           },
           () => o.label
         )
@@ -24,7 +26,7 @@ export function renderRadio({ item, model }: RenderFnParams) {
             NRadio,
             {
               value: o.value,
-              key: o.value
+              key: o.value,
             },
             () => o.label
           )
@@ -36,7 +38,8 @@ export function renderRadio({ item, model }: RenderFnParams) {
       {
         value: model[field],
         onUpdateValue: (v: any) => (model[field] = v),
-        ...omit(item.props, ['options', 'value', 'onUpdateValue'])
+        ...state,
+        ...omit(item.props, ['options', 'value', 'onUpdateValue']),
       },
       () => children
     );

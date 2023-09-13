@@ -1,9 +1,7 @@
 import type { RenderFnParams } from '../types';
-import { omit } from 'lodash-unified';
 
 export function renderCustom({ item, model }: RenderFnParams) {
   const { props = undefined, field, component } = item;
-
-  // 这里一定要返回一个函数，否则响应式会丢失
+  // 一般用来在表单后面新增按钮之类的操作
   return component;
 }

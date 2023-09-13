@@ -1,12 +1,13 @@
 import { NCascader, NSpin } from 'naive-ui';
 import type { RenderFnParams } from '../types';
 import { omit } from 'lodash-unified';
-import { useFetchField } from '../utils';
+import { useDeps, useFetchField } from '../utils';
 
 export function renderCascader({ item, model }: RenderFnParams) {
   const { props = undefined, field, apiFn } = item;
 
   const fetchRes = useFetchField(apiFn);
+  const state = useDeps({ item, model }, fetchRes);
 
   return () =>
     h(
@@ -17,15 +18,16 @@ export function renderCascader({ item, model }: RenderFnParams) {
         options: fetchRes?.options.value,
         value: model[field],
         onUpdateValue: (value: string) => void (model[field] = value),
-        ...omit(props, ['value', 'onUpdateValue'])
+        ...state,
+        ...omit(props, ['value', 'onUpdateValue']),
       },
       {
         arrow: () =>
           fetchRes?.loading.value
             ? h(NSpin, {
-                size: 12
+                size: 12,
               })
-            : undefined
+            : undefined,
       }
     );
 }

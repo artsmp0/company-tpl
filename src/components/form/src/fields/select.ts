@@ -6,7 +6,7 @@ import { useDeps, useFetchField } from '../utils';
 export function renderSelect({ item, model }: RenderFnParams) {
   const { props = undefined, field, apiFn, deps, hide } = item;
   const fetchRes = useFetchField(apiFn);
-  const state = useDeps({ item, model });
+  const state = useDeps({ item, model }, fetchRes);
   return () =>
     h(NSelect, {
       value: model[field],

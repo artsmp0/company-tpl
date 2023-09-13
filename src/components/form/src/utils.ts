@@ -65,13 +65,13 @@ export function useFetchField(apiFn?: Function) {
   return { loading, options, fetchData };
 }
 
-export function useDeps({ item, model }: RenderFnParams) {
+export function useDeps({ item, model }: RenderFnParams, args?: ReturnType<typeof useFetchField>) {
   const state = reactive({});
   if (!item.deps) {
     return state;
   }
   const watcher = async () => {
-    Object.assign(state, await item.listener?.());
+    Object.assign(state, await item.listener?.(args?.fetchData));
   };
   onMounted(watcher);
 

@@ -3,19 +3,18 @@ import { GpForm, type GpFormInst } from '@/components/form';
 import { useDiscrete } from '@/composables';
 import { useForm } from './useForm';
 import { GpPageWrapper } from '@/components';
+import { useToggle } from '@vueuse/core';
 
-const meta = useForm();
+const [disabled, toggleDisabled] = useToggle();
+const meta = useForm(disabled);
 
-const loading = ref(false);
 function getData() {
-  loading.value = true;
   setTimeout(() => {
-    loading.value = false;
     Object.assign(meta.model, {
       name: '阿北',
       intro: '打工仔',
       sex: 1,
-      area: 2
+      area: 2,
     });
   }, 1000);
 }
@@ -41,8 +40,9 @@ const handleSubmit = async () => {
       <NButton @click="getValues">获取表单</NButton>
       <NButton type="error" @click="$form?.resetValues()">重置</NButton>
       <NButton type="primary" @click="handleSubmit">提交</NButton>
+      <NButton @click="toggleDisabled()">演示外部依赖联动处理</NButton>
     </NSpace>
-    <GpForm ref="$form" :meta="meta" :layout="{ xGap: 20 }" :loading="loading"> </GpForm>
+    <GpForm ref="$form" :meta="meta" :layout="{ xGap: 20 }"> </GpForm>
     <NSpace> </NSpace>
     <pre><code>{{ meta.model }}</code></pre>
   </GpPageWrapper>

@@ -1,27 +1,26 @@
 import type { EChartsType, ResizeOpts, EChartsOption } from 'echarts';
-import type { Ref } from 'vue';
+import type { Ref, ShallowRef } from 'vue';
 import echarts from '@/utils/echarts';
-import {
-  tryOnBeforeUnmount,
-  useDebounceFn,
-  useFullscreen,
-  useTimeoutFn,
-  useWindowSize
-} from '@vueuse/core';
+import { tryOnBeforeUnmount, useDebounceFn, useFullscreen, useTimeoutFn, useWindowSize } from '@vueuse/core';
+import { isDark } from '.';
 
 const defaultResizeOpts: ResizeOpts = {
   animation: {
     duration: 300,
-    easing: 'linear'
-  }
+    easing: 'linear',
+  },
 };
 
 type UseEchartsOption = {
   resizeOpts?: ResizeOpts;
-  fullScreenEl?: Ref<HTMLElement | undefined>;
+  theme?: 'light' | 'dark' | 'default';
+  fullScreenEl?: ShallowRef<HTMLElement | undefined>;
 };
 
-export function useChart(wrapper: Ref<HTMLElement | undefined>, options?: UseEchartsOption) {
+export function useChart(
+  wrapper: ShallowRef<HTMLElement | undefined>,
+  options: UseEchartsOption = { theme: 'default' }
+) {
   const chartInstance = shallowRef<undefined | EChartsType>();
   let resizeObserver: ResizeObserver | undefined;
   const cacheOption = shallowRef<EChartsOption>();
@@ -50,26 +49,53 @@ export function useChart(wrapper: Ref<HTMLElement | undefined>, options?: UseEch
     });
   }
 
+  // 为了解决 vif 切换 dom 变换导致不重新渲染的问题
+  watch(wrapper, (v) => {
+    if (!v) return;
+    reRender();
+  });
+
+  function reRender() {
+    chartInstance.value?.dispose();
+    chartInstance.value = undefined;
+    setOptions(cacheOption.value!);
+  }
+
+  const theme = computed(() => (!options.theme ? (isDark.value ? 'dark' : 'light') : options.theme));
+
+  const getOption = (): EChartsOption => {
+    console.log('theme.value: ', theme.value);
+    if (theme.value === 'dark') {
+      return {
+        ...cacheOption.value!,
+        backgroundColor: 'transparent',
+      };
+    }
+    return cacheOption.value!;
+  };
+
+  watch(theme, () => {
+    console.log('theme change...');
+
+    reRender();
+  });
+
   function resize() {
     nextTick(() => {
       chartInstance.value?.resize(options?.resizeOpts || defaultResizeOpts);
     });
   }
 
-  function initChart(theme = 'light') {
+  function initChart() {
     const el = unref(wrapper);
     if (!el) return;
-    chartInstance.value = echarts.init(el, theme) as unknown as EChartsType;
+    chartInstance.value = echarts.init(el, theme.value) as unknown as EChartsType;
     resizeObserver = new ResizeObserver(useDebounceFn(resize, 100, { maxWait: 500 }));
     resizeObserver.observe(el);
     resizeObserver.observe(document.body);
   }
-  /**
-   *
-   * @param option echart option
-   * @param clear  clear chart before set option, default false
-   */
-  function setOptions(option: EChartsOption, clear = false) {
+
+  function setOptions(option: EChartsOption, clear = true) {
     const el = unref(wrapper);
     cacheOption.value = option;
     if (!el) {
@@ -84,7 +110,7 @@ export function useChart(wrapper: Ref<HTMLElement | undefined>, options?: UseEch
         if (!chartInstance.value) return;
       }
       clear && chartInstance.value.clear();
-      chartInstance.value.setOption(option);
+      chartInstance.value.setOption(getOption());
     }, 30);
   }
 
@@ -93,7 +119,7 @@ export function useChart(wrapper: Ref<HTMLElement | undefined>, options?: UseEch
     if (!chartIns) return;
     chartIns.dispose();
     chartInstance.value = undefined;
-    resizeObserver?.unobserve(wrapper.value!);
+    wrapper.value && resizeObserver?.unobserve(wrapper.value);
     resizeObserver?.disconnect();
   });
 
@@ -103,7 +129,7 @@ export function useChart(wrapper: Ref<HTMLElement | undefined>, options?: UseEch
     resize,
     fullscreen: {
       isFullscreen,
-      toggle
-    }
+      toggle,
+    },
   };
 }

@@ -3,19 +3,19 @@
 import { graphic } from 'echarts';
 import { useChart } from '@/composables';
 import type { XAXisOption } from 'echarts/types/dist/shared';
+import { GpPageWrapper } from '@/components';
+import Md from './doc.md';
+import { CompressOutlined, ExpandOutlined } from '@vicons/antd';
 
-const cardRef = ref<HTMLElement | undefined>();
-const contentChartRef = ref<HTMLElement | undefined>();
-const { setOptions } = useChart(contentChartRef);
+defineOptions({
+  name: 'Demo.UseChart',
+});
 
-const xAxis = ref<string[]>([
-  '2022-12-16',
-  '2022-12-17',
-  '2022-12-18',
-  '2022-12-19',
-  '2022-12-20',
-  '2022-12-21'
-]);
+const card = shallowRef();
+const wrapper = shallowRef<HTMLElement>();
+const { setOptions, fullscreen } = useChart(wrapper, { fullScreenEl: card, theme: 'light' });
+
+const xAxis = ref<string[]>(['2022-12-16', '2022-12-17', '2022-12-18', '2022-12-19', '2022-12-20', '2022-12-21']);
 const chartsData = ref<number[]>([580, 810, 530, 333, 1090, 885]);
 const graphicElements = ref([graphicFactory({ left: '2.6%' }), graphicFactory({ right: 0 })]);
 function graphicFactory(side: any) {
@@ -27,156 +27,178 @@ function graphicFactory(side: any) {
       text: '',
       textAlign: 'center',
       fill: '#4E5969',
-      fontSize: 12
-    }
+      fontSize: 12,
+    },
   };
 }
-setOptions({
-  backgroundColor: 'transparent',
-  grid: {
-    left: '0%',
-    right: '0%',
-    top: '10',
-    bottom: '0',
-    containLabel: true
-  },
-  xAxis: {
-    type: 'category',
-    offset: 2,
-    data: xAxis.value,
-    boundaryGap: false,
-    axisLabel: {
-      color: '#4E5969',
-      formatter(value: number, idx: number) {
-        if (idx === 0) return '';
-        if (idx === xAxis.value.length - 1) return '';
-        return `${value}`;
-      }
+function refresh() {
+  setOptions({
+    grid: {
+      left: '0%',
+      right: '0%',
+      top: '10',
+      bottom: '0',
+      containLabel: true,
     },
-    axisLine: {
-      show: false
-    },
-    axisTick: {
-      show: false
-    },
-    splitLine: {
-      show: true,
-      interval: (idx: number) => {
-        if (idx === 0) return false;
-        if (idx === xAxis.value.length - 1) return false;
-        return true;
+    xAxis: {
+      type: 'category',
+      offset: 2,
+      data: xAxis.value,
+      boundaryGap: false,
+      axisLabel: {
+        color: '#4E5969',
+        formatter(value: number, idx: number) {
+          if (idx === 0) return '';
+          if (idx === xAxis.value.length - 1) return '';
+          return `${value}`;
+        },
       },
-      lineStyle: {
-        color: '#E5E8EF'
-      }
+      axisLine: {
+        show: false,
+      },
+      axisTick: {
+        show: false,
+      },
+      splitLine: {
+        show: true,
+        interval: (idx: number) => {
+          if (idx === 0) return false;
+          if (idx === xAxis.value.length - 1) return false;
+          return true;
+        },
+        lineStyle: {
+          color: '#E5E8EF',
+        },
+      },
+      axisPointer: {
+        show: true,
+        lineStyle: {
+          color: '#23ADFF',
+          width: 2,
+        },
+      },
+    } as XAXisOption,
+    yAxis: {
+      type: 'value',
+      axisLine: {
+        show: false,
+      },
+      axisLabel: {
+        formatter(value: any, idx: number) {
+          if (idx === 0) return value;
+          return `${value}k`;
+        },
+      },
+      splitLine: {
+        show: true,
+        lineStyle: {
+          type: 'dashed',
+          color: '#E5E8EF',
+        },
+      },
     },
-    axisPointer: {
-      show: true,
-      lineStyle: {
-        color: '#23ADFF',
-        width: 2
-      }
-    }
-  } as XAXisOption,
-  yAxis: {
-    type: 'value',
-    axisLine: {
-      show: false
-    },
-    axisLabel: {
-      formatter(value: any, idx: number) {
-        if (idx === 0) return value;
-        return `${value}k`;
-      }
-    },
-    splitLine: {
-      show: true,
-      lineStyle: {
-        type: 'dashed',
-        color: '#E5E8EF'
-      }
-    }
-  },
-  tooltip: {
-    trigger: 'axis',
-    formatter(params) {
-      const [firstElement] = params as any[];
-      return `<div>
+    tooltip: {
+      trigger: 'axis',
+      formatter(params) {
+        const [firstElement] = params as any[];
+        return `<div>
             <p class="tooltip-title">${firstElement.axisValueLabel}</p>
             <div class="content-panel"><span>总内容量</span><span class="tooltip-value">${(
               Number(firstElement.value) * 1000
             ).toLocaleString()}</span></div>
           </div>`;
+      },
+      className: 'echarts-tooltip-diy',
     },
-    className: 'echarts-tooltip-diy'
-  },
-  graphic: {
-    elements: graphicElements.value
-  },
-  series: [
-    {
-      data: chartsData.value,
-      type: 'line',
-      smooth: true,
-      // symbol: 'circle',
-      symbolSize: 12,
-      emphasis: {
-        focus: 'series',
-        itemStyle: {
-          borderWidth: 2
-        }
+    graphic: {
+      elements: graphicElements.value,
+    },
+    series: [
+      {
+        data: chartsData.value,
+        type: 'line',
+        smooth: true,
+        // symbol: 'circle',
+        symbolSize: 12,
+        emphasis: {
+          focus: 'series',
+          itemStyle: {
+            borderWidth: 2,
+          },
+        },
+        lineStyle: {
+          width: 3,
+          color: new graphic.LinearGradient(0, 0, 1, 0, [
+            {
+              offset: 0,
+              color: 'rgba(30, 231, 255, 1)',
+            },
+            {
+              offset: 0.5,
+              color: 'rgba(36, 154, 255, 1)',
+            },
+            {
+              offset: 1,
+              color: 'rgba(111, 66, 251, 1)',
+            },
+          ]),
+        },
+        showSymbol: false,
+        areaStyle: {
+          opacity: 0.8,
+          color: new graphic.LinearGradient(0, 0, 0, 1, [
+            {
+              offset: 0,
+              color: 'rgba(17, 126, 255, 0.16)',
+            },
+            {
+              offset: 1,
+              color: 'rgba(17, 128, 255, 0)',
+            },
+          ]),
+        },
       },
-      lineStyle: {
-        width: 3,
-        color: new graphic.LinearGradient(0, 0, 1, 0, [
-          {
-            offset: 0,
-            color: 'rgba(30, 231, 255, 1)'
-          },
-          {
-            offset: 0.5,
-            color: 'rgba(36, 154, 255, 1)'
-          },
-          {
-            offset: 1,
-            color: 'rgba(111, 66, 251, 1)'
-          }
-        ])
-      },
-      showSymbol: false,
-      areaStyle: {
-        opacity: 0.8,
-        color: new graphic.LinearGradient(0, 0, 0, 1, [
-          {
-            offset: 0,
-            color: 'rgba(17, 126, 255, 0.16)'
-          },
-          {
-            offset: 1,
-            color: 'rgba(17, 128, 255, 0)'
-          }
-        ])
-      }
-    }
-  ]
-});
+    ],
+  });
+}
+const active = ref('1');
+refresh();
+const handleTabChange = async () => {
+  await nextTick();
+  // if (active.value === '1') refresh();
+};
 </script>
 
 <template>
-  <div page-wrapper>
-    <NCard>
-      <div ref="contentChartRef" class="h-[300px]"></div>
-    </NCard>
-  </div>
+  <GpPageWrapper inner-scroll class="py0!">
+    <NTabs v-model:value="active" type="line" @update-value="handleTabChange">
+      <NTab name="1"> demo </NTab>
+      <NTab name="2"> 文档 </NTab>
+    </NTabs>
+    <div class="flex-1 of-hidden">
+      <GpPageWrapper>
+        <NCard v-if="active === '1'" ref="card" title="图表示例">
+          <template #header-extra>
+            <NButton text @click="fullscreen.toggle">
+              <template #icon>
+                <NIcon>
+                  <CompressOutlined v-if="fullscreen.isFullscreen?.value" />
+                  <ExpandOutlined v-else />
+                </NIcon>
+              </template>
+            </NButton>
+          </template>
+          <div ref="wrapper" class="h-[300px]"></div>
+        </NCard>
+        <Md v-else />
+      </GpPageWrapper>
+    </div>
+  </GpPageWrapper>
 </template>
 
 <style lang="scss">
 .echarts-tooltip-diy {
-  background: linear-gradient(
-    304.17deg,
-    rgb(253 254 255 / 60%) -6.04%,
-    rgb(244 247 252 / 60%) 85.2%
-  ) !important;
+  background: linear-gradient(304.17deg, rgb(253 254 255 / 60%) -6.04%, rgb(244 247 252 / 60%) 85.2%) !important;
   backdrop-filter: blur(10px) !important;
   border: none !important;
 

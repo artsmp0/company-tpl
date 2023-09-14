@@ -14,7 +14,7 @@ import Md from './markdown.md';
 const loading = ref(true);
 setTimeout(() => {
   loading.value = false;
-}, 2000);
+}, 300);
 </script>
 
 <template>

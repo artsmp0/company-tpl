@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { GpSvgIcon } from '@/components';
 import { useTabsStore, type Tab } from '@/stores/tabs';
+import { useThemeVars, type TagProps } from 'naive-ui';
 // import { NIcon } from 'naive-ui';
 
 const router = useRouter();
@@ -135,8 +136,8 @@ const handleSelect = (key: string | number) => {
           v-for="[, t] of tabStore.tabs"
           :key="t.path"
           :closable="tabStore.tabs.size !== 1"
-          :type="route.path === t.path ? 'error' : 'success'"
           class="mr8 cursor-pointer"
+          :type="route.path === t.path ? 'primary' : 'default'"
           @click="handleClick(t)"
           @close="handleClose(t)"
           @contextmenu.prevent="(e) => handleShowContextMenu(e, t)"

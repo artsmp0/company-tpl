@@ -8,7 +8,7 @@ import Md from './doc.md';
 import { CompressOutlined, ExpandOutlined } from '@vicons/antd';
 
 defineOptions({
-  name: 'Demo.UseChart',
+  name: 'Demo.Hooks.UseChart',
 });
 
 const card = shallowRef();

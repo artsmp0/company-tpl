@@ -20,7 +20,8 @@
         {
           "path": "/Demo/Hooks",
           "meta": {
-            "title": "Hooks"
+            "title": "Hooks",
+            "isPage": true
           },
           "children": [
             {
@@ -28,6 +29,15 @@
               "meta": {
                 "title": "useChart",
                 "keepAlive": true
+              },
+              "children": []
+            },
+            {
+              "path": "/Demo/Hooks/UseDark",
+              "meta": {
+                "title": "useDark",
+                "keepAlive": true,
+                "icon": ""
               },
               "children": []
             }
@@ -78,7 +88,6 @@
             }
           ]
         },
-
         {
           "path": "/Demo/Nested",
           "meta": {

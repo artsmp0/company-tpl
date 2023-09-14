@@ -40,6 +40,15 @@
                 "icon": ""
               },
               "children": []
+            },
+            {
+              "path": "/Demo/Hooks/UseDiscrete",
+              "meta": {
+                "title": "useDiscrete",
+                "keepAlive": true,
+                "icon": ""
+              },
+              "children": []
             }
           ]
         },

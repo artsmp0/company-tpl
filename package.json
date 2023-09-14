@@ -11,7 +11,7 @@
     "serve:prod": "vite --mode production",
     "preview": "vite preview",
     "type-check": "vue-tsc --noEmit -p tsconfig.app.json --composite false",
-    "lint": "eslint --fix --ignore-path .gitignore",
+    "lint": "eslint ./src --fix --ignore-path .gitignore",
     "format": "prettier --write src/",
     "lint:style": "stylelint '**/*.{scss,vue}' --fix",
     "prepare": "husky install",

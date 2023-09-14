@@ -131,7 +131,8 @@
               "meta": {
                 "icon": "",
                 "title": "页面一",
-                "isPage": true
+                "isPage": true,
+                "keepAlive": ["/Demo/NestIsPage/Page1/Detail"]
               },
               "children": [
                 {

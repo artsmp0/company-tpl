@@ -117,22 +117,20 @@ function updateContent(originalObj, flatRouter, addition) {
   const parents = getParent(flatRouter, addition.path);
   if (parents.length === 0) {
     originalObj.router.push(addition);
-    return;
-  }
-  const targetParent = parents[parents.length - 1];
-  if (targetParent) {
-    if (!targetParent.children) {
-      targetParent.children = [];
-    }
-    targetParent.meta.isPage = true;
-    targetParent.children.push(addition);
   } else {
-    originalObj.router.push(addition);
+    const targetParent = parents[parents.length - 1];
+    if (targetParent) {
+      if (!targetParent.children) {
+        targetParent.children = [];
+      }
+      targetParent.meta.isPage = true;
+      targetParent.children.push(addition);
+    } else {
+      originalObj.router.push(addition);
+    }
   }
-
   // 使用 JSON.stringify 将更新后的对象转换回字符串形式
   const updatedContent = JSON.stringify(originalObj, null, 2);
-
   return updatedContent;
 }
 

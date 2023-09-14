@@ -13,7 +13,7 @@ const model = ref<Model>({
   text2: '',
   date: null,
   dateRange1: null,
-  dateRange2: null
+  dateRange2: null,
 });
 
 const loading = ref(false);
@@ -28,13 +28,7 @@ const handleSearch = () => {
 
 <template>
   <div p16>
-    <GpSearch
-      v-model:model="model"
-      mb10
-      :loading="loading"
-      label-width="70px"
-      @search="handleSearch"
-    >
+    <GpSearch v-model:model="model" mb10 :loading="loading" label-width="70px" @search="handleSearch">
       <NFormItem ref="el" label="Input" path="text1">
         <NInput v-model:value="model.text1" placeholder="Input" />
       </NFormItem>
@@ -42,34 +36,16 @@ const handleSearch = () => {
         <NInput v-model:value="model.text2" placeholder="Input" />
       </NFormItem>
       <NFormItem label="时间选择" path="date">
-        <NDatePicker
-          v-model:formatted-value="model.date"
-          placeholder="时间选择"
-          value-format="yyyy.MM.dd HH:mm:ss"
-        />
+        <NDatePicker v-model:formatted-value="model.date" placeholder="时间选择" value-format="yyyy.MM.dd HH:mm:ss" />
       </NFormItem>
       <NFormItem label="范围选择" path="dateRange1">
-        <NDatePicker
-          v-model:formatted-value="model.dateRange1"
-          type="daterange"
-          placeholder="Input"
-        />
+        <NDatePicker v-model:formatted-value="model.dateRange1" type="daterange" placeholder="Input" />
       </NFormItem>
       <NFormItem label="范围选择" path="inputValue">
-        <NDatePicker
-          v-model:formatted-value="model.dateRange2"
-          type="daterange"
-          placeholder="Input"
-        />
+        <NDatePicker v-model:formatted-value="model.dateRange2" type="daterange" placeholder="Input" />
       </NFormItem>
     </GpSearch>
-    <GpSearch
-      v-model:model="model"
-      mb10
-      :loading="loading"
-      min-width="250px"
-      @search="handleSearch"
-    >
+    <GpSearch v-model:model="model" mb10 :loading="loading" min-width="250px" @search="handleSearch">
       <NFormItem ref="el" path="text1">
         <NInput v-model:value="model.text1" placeholder="Input" />
       </NFormItem>
@@ -77,25 +53,13 @@ const handleSearch = () => {
         <NInput v-model:value="model.text2" placeholder="Input" />
       </NFormItem>
       <NFormItem path="date">
-        <NDatePicker
-          v-model:formatted-value="model.date"
-          placeholder="时间选择"
-          value-format="yyyy.MM.dd HH:mm:ss"
-        />
+        <NDatePicker v-model:formatted-value="model.date" placeholder="时间选择" value-format="yyyy.MM.dd HH:mm:ss" />
       </NFormItem>
       <NFormItem path="dateRange1">
-        <NDatePicker
-          v-model:formatted-value="model.dateRange1"
-          type="daterange"
-          placeholder="Input"
-        />
+        <NDatePicker v-model:formatted-value="model.dateRange1" type="daterange" placeholder="Input" />
       </NFormItem>
       <NFormItem path="inputValue">
-        <NDatePicker
-          v-model:formatted-value="model.dateRange2"
-          type="daterange"
-          placeholder="Input"
-        />
+        <NDatePicker v-model:formatted-value="model.dateRange2" type="daterange" placeholder="Input" />
       </NFormItem>
     </GpSearch>
     <NCard>

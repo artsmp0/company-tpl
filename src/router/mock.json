@@ -12,56 +12,73 @@
           "meta": {
             "title": "食用指南",
             "keepAlive": true,
+            "isIndex": true,
             "noClosable": true
           },
           "children": []
         },
         {
-          "path": "/Demo/UseChart",
+          "path": "/Demo/Hooks",
           "meta": {
-            "title": "useChart demo",
-            "isIndex": true,
-            "keepAlive": true
+            "title": "Hooks"
           },
-          "children": []
+          "children": [
+            {
+              "path": "/Demo/Hooks/UseChart",
+              "meta": {
+                "title": "useChart",
+                "keepAlive": true
+              },
+              "children": []
+            }
+          ]
         },
         {
-          "path": "/Demo/Form",
+          "path": "/Demo/Components",
           "meta": {
-            "title": "普通表单"
+            "title": "Components"
           },
-          "children": []
+          "children": [
+            {
+              "path": "/Demo/Components/Form",
+              "meta": {
+                "title": "普通表单"
+              },
+              "children": []
+            },
+            {
+              "path": "/Demo/Components/Search",
+              "meta": {
+                "title": "搜索表单",
+                "keepAlive": true
+              },
+              "children": []
+            },
+            {
+              "path": "/Demo/Components/Modal",
+              "meta": {
+                "title": "函数模态框",
+                "keepAlive": true
+              },
+              "children": []
+            },
+            {
+              "path": "/Demo/Components/Table",
+              "meta": {
+                "title": "表格"
+              },
+              "children": []
+            },
+            {
+              "path": "/Demo/Components/TrueTable",
+              "meta": {
+                "title": "示例接口请求表格"
+              },
+              "children": []
+            }
+          ]
         },
-        {
-          "path": "/Demo/Search",
-          "meta": {
-            "title": "搜索表单",
-            "keepAlive": true
-          },
-          "children": []
-        },
-        {
-          "path": "/Demo/Modal",
-          "meta": {
-            "title": "函数模态框",
-            "keepAlive": true
-          },
-          "children": []
-        },
-        {
-          "path": "/Demo/Table",
-          "meta": {
-            "title": "表格"
-          },
-          "children": []
-        },
-        {
-          "path": "/Demo/TrueTable",
-          "meta": {
-            "title": "示例接口请求表格"
-          },
-          "children": []
-        },
+
         {
           "path": "/Demo/Nested",
           "meta": {

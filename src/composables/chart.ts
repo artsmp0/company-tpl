@@ -64,7 +64,6 @@ export function useChart(
   const theme = computed(() => (!options.theme ? (isDark.value ? 'dark' : 'light') : options.theme));
 
   const getOption = (): EChartsOption => {
-    console.log('theme.value: ', theme.value);
     if (theme.value === 'dark') {
       return {
         ...cacheOption.value!,
@@ -75,8 +74,6 @@ export function useChart(
   };
 
   watch(theme, () => {
-    console.log('theme change...');
-
     reRender();
   });
 

@@ -20,12 +20,12 @@ const getUserList = shallowRef((params: any) => {
           list: Array.from({ length: params.pageSize }).map((_, index) => ({
             name: `${params.keyword || '我是随机名字'}${index + (params.page - 1) * params.pageSize}`,
             age: Math.floor(Math.random() * 130),
-            male: index % 2 === 0
+            male: index % 2 === 0,
           })),
           pagination: {
-            total: 10000
-          }
-        }
+            total: 10000,
+          },
+        },
       });
     }, 300);
   });
@@ -45,12 +45,12 @@ const columns: DataTableColumns<User> = [
                   <HelpCircleOutline />
                 </NIcon>
               ),
-              default: () => '如果它长得像鸭子，走起来像鸭子，叫起来也像鸭子，那它一定是个鸭子'
+              default: () => '如果它长得像鸭子，走起来像鸭子，叫起来也像鸭子，那它一定是个鸭子',
             }}
           </NTooltip>
         </div>
       );
-    }
+    },
   },
   {
     key: 'age',
@@ -60,8 +60,8 @@ const columns: DataTableColumns<User> = [
         console.log('row1, row2: ', row1, row2);
         return row1.age - row2.age;
       },
-      multiple: 1
-    }
+      multiple: 1,
+    },
   },
   {
     key: 'male',
@@ -70,16 +70,16 @@ const columns: DataTableColumns<User> = [
     filterOptions: [
       {
         label: '男',
-        value: 0
+        value: 0,
       },
       {
         label: '女',
-        value: 1
-      }
+        value: 1,
+      },
     ],
     render(row) {
       return <NTag type={row.male ? 'info' : 'error'}>{row.male ? '男' : '女'}</NTag>;
-    }
+    },
   },
   {
     key: 'operation',
@@ -93,12 +93,12 @@ const columns: DataTableColumns<User> = [
           size: 'small',
           onClick: () => {
             console.log(row);
-          }
+          },
         },
         { default: () => '❤️' }
       );
-    }
-  }
+    },
+  },
 ];
 
 const filterText = ref('');
@@ -106,13 +106,13 @@ const filterText2 = ref('');
 const $table = shallowRef<GpTableInst>();
 const handleSearch = () => {
   $table.value?.filter({
-    keyword: filterText.value
+    keyword: filterText.value,
   });
 };
 const handleSearch2 = () => {
   $table.value?.filter(
     {
-      keyword2: filterText2.value
+      keyword2: filterText2.value,
     },
     false
   );
@@ -172,7 +172,7 @@ const showKey = () => {
         total: 'data.pagination.total',
         page: 'page',
         pageSize: 'pageSize',
-        list: 'data.list'
+        list: 'data.list',
       }"
       selection
       :row-key="(row: User) => row.name"

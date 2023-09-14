@@ -8,37 +8,37 @@ const columns: TableColumns<TableItem> = [
   {
     key: 'name',
     width: 200,
-    title: '表名'
+    title: '表名',
   },
   {
     key: 'notes',
     title: '描述',
     width: 80,
     ellipsis: {
-      tooltip: true
-    }
+      tooltip: true,
+    },
   },
   {
     title: '数据量（行）',
     key: 'rowCount',
     sorter: {
-      multiple: 1
-    }
+      multiple: 1,
+    },
   },
   {
     title: '占用磁盘',
     key: 'storageSize',
     sorter: {
-      multiple: 3
-    }
+      multiple: 3,
+    },
   },
   {
     title: '最近更新时间',
     key: 'activeTime',
     sorter: {
-      multiple: 2
-    }
-  }
+      multiple: 2,
+    },
+  },
 ];
 const { getList } = useTableListApi(APIS.common['/tag/tb/bind/list'], true);
 const $table = shallowRef<GpTableInst>();
@@ -60,7 +60,7 @@ const getSelectedData = () => {
       :columns="columns"
       :sorter-keys="{
         field: { orderField: 'isAsc', sortField: 'orderByColumn' },
-        order: { ascend: 'asc', descend: 'desc' }
+        order: { ascend: 'asc', descend: 'desc' },
       }"
       selection
       flex-height
@@ -69,7 +69,7 @@ const getSelectedData = () => {
         list: 'data.data.rows',
         page: 'pageNum',
         pageSize: 'pageSize',
-        total: 'data.data.total'
+        total: 'data.data.total',
       }"
     />
   </div>

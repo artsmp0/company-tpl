@@ -100,8 +100,26 @@ function overwriteMock({ filepath, title, keepAlive, icon }) {
   return true;
 }
 
+function getParent(flatRouter, targetPath) {
+  const queue = [];
+  const targetParent = flatRouter.find((r) => targetPath.includes(r.path));
+  if (targetParent) {
+    queue.push(targetParent);
+    if (targetParent.children?.length) {
+      const child = getParent(targetParent.children, targetPath);
+      queue.push(...child);
+    }
+  }
+  return queue;
+}
+
 function updateContent(originalObj, flatRouter, addition) {
-  const targetParent = flatRouter.find((r) => addition.path.includes(r.path));
+  const parents = getParent(flatRouter, addition.path);
+  if (parents.length === 0) {
+    originalObj.router.push(addition);
+    return;
+  }
+  const targetParent = parents[parents.length - 1];
   if (targetParent) {
     if (!targetParent.children) {
       targetParent.children = [];

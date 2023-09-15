@@ -7,24 +7,23 @@ import { useToggle } from '@vueuse/core';
 
 const props = withDefaults(defineProps<ModalProps>(), {
   width: '800px',
-  loading: false,
   showAction: true,
   actions: () => [
     {
       label: '取消',
-      handle: 'cancel'
+      handle: 'cancel',
     },
     {
       label: '确认',
       type: 'primary',
-      handle: 'confirm'
-    }
+      handle: 'confirm',
+    },
   ],
   confirmLabel: '确认',
   confirmType: 'primary',
   cancelLabel: '取消',
   draggable: false,
-  fullscreen: true
+  fullscreen: true,
 });
 
 const emit = defineEmits<{
@@ -56,16 +55,12 @@ const modalClass = computed(() => (unref(isFullscreen) ? null : '!mt-10vh'));
 const modalStyle = computed(() => {
   return {
     width: unref(isFullscreen) ? '100vw' : props.width,
-    height: unref(isFullscreen) ? '100vh' : 'auto'
+    height: unref(isFullscreen) ? '100vh' : 'auto',
   };
 });
 
-const modalHeaderHeight = computed(
-  () => unref(modalContainerRef)?.querySelector('.n-card-header')?.offsetHeight || 0
-);
-const modalActionHeight = computed(
-  () => unref(modalContainerRef)?.querySelector('.n-card__action')?.offsetHeight || 0
-);
+const modalHeaderHeight = computed(() => unref(modalContainerRef)?.querySelector('.n-card-header')?.offsetHeight || 0);
+const modalActionHeight = computed(() => unref(modalContainerRef)?.querySelector('.n-card__action')?.offsetHeight || 0);
 const scrollBarMaxHeight = computed(
   () =>
     `calc(${unref(isFullscreen) ? '100vh' : '80vh'} - ${unref(modalHeaderHeight)}px${
@@ -77,7 +72,7 @@ const mergeActions = computed<any[]>(() => {
   const actions = props.actions;
   actions.forEach((action: any) => {
     if (action.handle === 'confirm') {
-      action.label = props.isCrud ? '保存' : props.confirmLabel ?? '确定';
+      action.label = props.confirmLabel ?? '确定';
       action.type = props.confirmType ?? 'primary';
       action.loading = props.confirmLoading;
     } else if (action.handle === 'cancel') {
@@ -129,7 +124,7 @@ function handleClickAction(action: any) {
 
 defineExpose({
   open,
-  close
+  close,
 });
 </script>
 
@@ -143,10 +138,10 @@ defineExpose({
     preset="card"
     :segmented="{
       content: true,
-      action: true
+      action: true,
     }"
     :content-style="{
-      padding: '0'
+      padding: '0',
     }"
     :class="modalClass"
     :style="modalStyle"
@@ -164,11 +159,7 @@ defineExpose({
         class="n-base-close n-base-close--absolute n-card-header__close !mr-8px"
         @click="toggleFullscreen()"
       >
-        <div
-          :class="
-            isFullscreen ? 'i-icon-park-outline-off-screen' : 'i-icon-park-outline-full-screen'
-          "
-        />
+        <div :class="isFullscreen ? 'i-icon-park-outline-off-screen' : 'i-icon-park-outline-full-screen'" />
       </div>
     </template>
     <NScrollbar :style="{ padding: 0, maxHeight: scrollBarMaxHeight }">
@@ -176,7 +167,7 @@ defineExpose({
         <slot />
       </div>
     </NScrollbar>
-    <template v-if="showAction && !loading" #action>
+    <template v-if="showAction" #action>
       <NSpace justify="end">
         <NButton
           v-for="(action, index) in mergeActions"

@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { useModal, GpModal } from '@/components';
+import { useModal, GpModal, GpPageWrapper } from '@/components';
 import { useDiscrete } from '@/composables';
+import Doc from './doc.md';
 
 const $modal = shallowRef();
 
@@ -29,7 +30,8 @@ const handleConfirm = () => {
 </script>
 
 <template>
-  <div p-16>
+  <GpPageWrapper>
+    <Doc />
     <NSpace>
       <NButton type="primary" @click="open()">打开模态框</NButton>
     </NSpace>
@@ -50,6 +52,5 @@ const handleConfirm = () => {
         <NButton type="primary" @click="close">调用函数关闭此模态框</NButton>
       </NSpace>
     </GpModal>
-  </div>
+  </GpPageWrapper>
 </template>
-@/components/modal/src/useModal

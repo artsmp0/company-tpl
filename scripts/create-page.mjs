@@ -1,5 +1,5 @@
 /* eslint-disable no-prototype-builtins */
-import { readFileSync, writeFileSync } from 'fs';
+import { readFileSync, readdirSync, writeFileSync } from 'fs';
 import { upperFirst } from 'lodash-unified';
 import { fileURLToPath } from 'url';
 import chalk from 'chalk';
@@ -17,6 +17,14 @@ const upperWordFirstCase = (text) => {
     .map((word) => upperFirst(word))
     .join('/');
 };
+
+const getIconName = () => {
+  const iconDir = fileURLToPath(new URL('../src/assets/icons/sidebar', import.meta.url));
+  const files = readdirSync(iconDir);
+  return files.map((file) => 'sidebar-' + file.split('.')[0]);
+};
+
+getIconName();
 
 /**
  * 自动创建
@@ -46,7 +54,8 @@ export default function (plop) {
         message: '菜单标题：',
       },
       {
-        type: 'input',
+        type: 'list',
+        choices: getIconName(),
         name: 'icon',
         message: '菜单图标(sidebar-开头)：',
       },

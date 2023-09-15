@@ -35,9 +35,7 @@ const columns: TableColumns<TableItem> = [
   {
     title: '最近更新时间',
     key: 'activeTime',
-    sorter: {
-      multiple: 2,
-    },
+    sorter: true,
   },
 ];
 const { getList } = useTableListApi(APIS.common['/tag/tb/bind/list'], true);

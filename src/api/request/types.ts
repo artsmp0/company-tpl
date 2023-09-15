@@ -33,9 +33,9 @@ export type RequestConfig<D = unknown> = {
 
 /** 定义接口业务状态的码 */
 export const enum ResponseCode {
-  success = 200,
+  success = '000000',
   authSuccess = 200,
-  authFailed = 401
+  authFailed = 401,
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars

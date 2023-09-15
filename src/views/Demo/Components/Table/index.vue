@@ -1,184 +1,99 @@
 <!-- eslint-disable @typescript-eslint/no-explicit-any -->
 <script setup lang="tsx">
-import { GpPageWrapper, GpTable, type GpTableInst } from '@/components';
+import { GpTable, type GpTableInst, type TableColumns, useTableListApi, GpPageWrapper } from '@/components';
+import { APIS } from '@/api';
+import type { TableItem } from '@/api/apis/types';
+import Md from './doc.md';
 import { useDiscrete } from '@/composables';
-import { FlashOutline, HelpCircleOutline } from '@vicons/ionicons5';
-import { NButton, type DataTableColumns, NTag, NIcon, NTooltip } from 'naive-ui';
 
-interface User {
-  name: string;
-  age: number;
-  male: 0 | 1;
-}
-
-const getUserList = shallowRef((params: any) => {
-  console.log('params: ', params);
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({
-        data: {
-          list: Array.from({ length: params.pageSize }).map((_, index) => ({
-            name: `${params.keyword || '我是随机名字'}${index + (params.page - 1) * params.pageSize}`,
-            age: Math.floor(Math.random() * 130),
-            male: index % 2 === 0,
-          })),
-          pagination: {
-            total: 10000,
-          },
-        },
-      });
-    }, 300);
-  });
-});
-
-const columns: DataTableColumns<User> = [
+const columns: TableColumns<TableItem> = [
   {
     key: 'name',
-    title: () => {
-      return (
-        <div class={'flex items-center'}>
-          <span class={'mr4'}>姓名</span>
-          <NTooltip trigger="hover" style={'max-width: 200px;font-size:12px'}>
-            {{
-              trigger: () => (
-                <NIcon size={18}>
-                  <HelpCircleOutline />
-                </NIcon>
-              ),
-              default: () => '如果它长得像鸭子，走起来像鸭子，叫起来也像鸭子，那它一定是个鸭子',
-            }}
-          </NTooltip>
-        </div>
-      );
+    width: 200,
+    title: '表名',
+  },
+  {
+    key: 'notes',
+    title: '描述',
+    width: 80,
+    ellipsis: {
+      tooltip: true,
     },
   },
   {
-    key: 'age',
-    title: '年龄',
+    title: '数据量（行）',
+    key: 'rowCount',
     sorter: {
-      compare: (row1, row2) => {
-        console.log('row1, row2: ', row1, row2);
-        return row1.age - row2.age;
-      },
       multiple: 1,
     },
   },
   {
-    key: 'male',
-    title: '性别',
-    filterOptionValues: [],
-    filterOptions: [
-      {
-        label: '男',
-        value: 0,
-      },
-      {
-        label: '女',
-        value: 1,
-      },
-    ],
-    render(row) {
-      return <NTag type={row.male ? 'info' : 'error'}>{row.male ? '男' : '女'}</NTag>;
+    title: '占用磁盘',
+    key: 'storageSize',
+    sorter: {
+      multiple: 3,
     },
   },
   {
-    key: 'operation',
-    title: '操作',
-    fixed: 'right',
-    width: 100,
-    render(row) {
-      return h(
-        NButton,
-        {
-          size: 'small',
-          onClick: () => {
-            console.log(row);
-          },
-        },
-        { default: () => '❤️' }
-      );
-    },
+    title: '最近更新时间',
+    key: 'activeTime',
+    sorter: true,
   },
 ];
-
-const filterText = ref('');
-const filterText2 = ref('');
+const { getList } = useTableListApi(APIS.common['/tag/tb/bind/list'], true);
 const $table = shallowRef<GpTableInst>();
-const handleSearch = () => {
-  $table.value?.filter({
-    keyword: filterText.value,
-  });
-};
-const handleSearch2 = () => {
-  $table.value?.filter(
-    {
-      keyword2: filterText2.value,
-    },
-    false
-  );
-};
 
 const selectedData = computed(() => {
-  return $table.value?.getSelectedData<User>();
+  return $table.value?.getSelectedData<TableItem>();
 });
 
 const { message } = useDiscrete();
-const showKey = () => {
-  message.info(() => {
-    return <div>{selectedData.value?.checkedKeys.value.map((k) => <div>{k}</div>)}</div>;
-  });
+const getSelectedData = () => {
+  message.success('请查看控制台打印结果！');
+  console.log(selectedData.value);
 };
+
+const active = ref('1');
 </script>
 
 <template>
-  <GpPageWrapper inner-scroll>
-    <div class="mb16 shrink-0" flex="~ gap10">
-      <NInput
-        v-model:value="filterText"
-        style="width: 300px"
-        type="text"
-        placeholder="🔎按回车搜索哦"
-        @keydown.enter="handleSearch"
-      >
-        <template #suffix>
-          <NIcon :component="FlashOutline" />
-        </template>
-      </NInput>
-      <NInput
-        v-model:value="filterText2"
-        style="width: 300px"
-        type="text"
-        placeholder="不携带第一个输入框的参数🔎"
-        @keydown.enter="handleSearch2"
-      >
-        <template #suffix>
-          <NIcon :component="FlashOutline" />
-        </template>
-      </NInput>
-      <NButton @click="$table?.refresh()">保持分页刷新</NButton>
-      <NButton @click="$table?.refresh(false)">不保持分页刷新</NButton>
-      <NButton @click="showKey">显示选中 key</NButton>
+  <GpPageWrapper inner-scroll class="pt0!">
+    <NTabs v-model:value="active" type="line">
+      <NTab name="1"> demo </NTab>
+      <NTab name="2"> 文档 </NTab>
+    </NTabs>
+    <div class="mt16 flex-1 of-hidden">
+      <Transition name="fade-slide" mode="out-in" appear>
+        <KeepAlive>
+          <GpPageWrapper v-if="active === '1'" inner-scroll padding="0">
+            <div class="mb8 shrink-0" flex="~ items-center gap-16 ">
+              <NButton @click="getSelectedData">获取选中数据</NButton>
+            </div>
+            <GpTable
+              ref="$table"
+              class="flex-1"
+              :row-key="(row: any) => row.urn"
+              :columns="columns"
+              :sorter-keys="{
+                field: { orderField: 'isAsc', sortField: 'orderByColumn' },
+                order: { ascend: 'asc', descend: 'desc' },
+              }"
+              selection
+              flex-height
+              :list-api="getList"
+              :pager-keys="{
+                list: 'data.data.rows',
+                total: 'data.data.total',
+                page: 'pageNum',
+                pageSize: 'pageSize',
+              }"
+            />
+          </GpPageWrapper>
+          <GpPageWrapper v-else padding="0">
+            <Md />
+          </GpPageWrapper>
+        </KeepAlive>
+      </Transition>
     </div>
-    <GpTable
-      ref="$table"
-      class="flex-1"
-      :bordered="false"
-      striped
-      size="small"
-      :single-line="true"
-      :single-column="true"
-      :columns="columns"
-      :pager-keys="{
-        total: 'data.pagination.total',
-        page: 'page',
-        pageSize: 'pageSize',
-        list: 'data.list',
-      }"
-      selection
-      :row-key="(row: User) => row.name"
-      flex-height
-      :list-api="getUserList"
-      :pagination="{ pageSlot: 10, pageSize: 30 }"
-    />
   </GpPageWrapper>
 </template>

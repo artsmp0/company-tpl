@@ -163,15 +163,11 @@ function refresh() {
 }
 const active = ref('1');
 refresh();
-const handleTabChange = async () => {
-  await nextTick();
-  // if (active.value === '1') refresh();
-};
 </script>
 
 <template>
   <GpPageWrapper inner-scroll class="py0!">
-    <NTabs v-model:value="active" type="line" @update-value="handleTabChange">
+    <NTabs v-model:value="active" type="line">
       <NTab name="1"> demo </NTab>
       <NTab name="2"> 文档 </NTab>
     </NTabs>

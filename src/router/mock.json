@@ -75,7 +75,7 @@
             {
               "path": "/Demo/Components/Modal",
               "meta": {
-                "title": "函数模态框",
+                "title": "模态框",
                 "keepAlive": true
               },
               "children": []
@@ -83,14 +83,8 @@
             {
               "path": "/Demo/Components/Table",
               "meta": {
+                "keepAlive": true,
                 "title": "表格"
-              },
-              "children": []
-            },
-            {
-              "path": "/Demo/Components/TrueTable",
-              "meta": {
-                "title": "示例接口请求表格"
               },
               "children": []
             }

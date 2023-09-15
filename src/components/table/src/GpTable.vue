@@ -14,7 +14,7 @@ import RightUtils from './components/RightUtils.vue';
  */
 
 defineOptions({
-  name: 'GpTable'
+  name: 'GpTable',
 });
 
 const props = withDefaults(defineProps<GupoTableProps>(), {
@@ -22,7 +22,7 @@ const props = withDefaults(defineProps<GupoTableProps>(), {
     total: 'data.meta.total',
     page: 'page',
     pageSize: 'size',
-    list: 'data.data'
+    list: 'data.data',
   }),
   // 服务端排序才需要开启这个选项
   // sorterKeys: () => ({
@@ -33,7 +33,7 @@ const props = withDefaults(defineProps<GupoTableProps>(), {
   rightUtils: () => ['size', 'reload', 'fullscreen'],
   size: 'medium',
   deepReactive: false,
-  defaultExpandAll: false
+  defaultExpandAll: false,
 });
 
 const { computedColumns } = useColumn(() => props as GupoTableProps);
@@ -49,7 +49,7 @@ const getSelectedData = <T extends any>() => {
   return {
     count: checkedKeys.value.length,
     checkedKeys,
-    checkedRows: checkedRows as unknown as ShallowRef<T[]>
+    checkedRows: checkedRows as unknown as ShallowRef<T[]>,
   };
 };
 /** 数据刷新时，选中行的数据最好也要刷新一下，避免前后数据不一致的问题 */
@@ -96,7 +96,7 @@ defineExpose({
   filter,
   refresh,
   getSelectedData,
-  data
+  data,
 });
 const size = ref(props.size);
 
@@ -104,11 +104,7 @@ const $tableWrapper = shallowRef<HTMLDivElement>();
 </script>
 
 <template>
-  <div
-    ref="$tableWrapper"
-    class="h-full rounded-base p-12 pt0 border-base bg-base text-base"
-    flex="~ col"
-  >
+  <div ref="$tableWrapper" class="h-full rounded-base p-12 pt0 border-base bg-base text-base" flex="~ col">
     <div class="h44" flex="~ justify-between items-center">
       <div>
         <slot v-if="!props.selection" name="title" />
@@ -121,12 +117,7 @@ const $tableWrapper = shallowRef<HTMLDivElement>();
       </div>
       <div flex="~ items-center gap16">
         <slot name="extra" />
-        <RightUtils
-          v-model:size="size"
-          :options="props.rightUtils"
-          :wrapper="$tableWrapper"
-          :reload="refresh"
-        />
+        <RightUtils v-model:size="size" :options="props.rightUtils" :wrapper="$tableWrapper" :reload="refresh" />
       </div>
     </div>
     <NDataTable

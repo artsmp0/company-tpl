@@ -1,3 +1,4 @@
+<!-- eslint-disable @typescript-eslint/no-explicit-any -->
 <script setup lang="ts">
 import editorWorker from 'monaco-editor/esm/vs/editor/editor.worker?worker';
 import jsonWorker from 'monaco-editor/esm/vs/language/json/json.worker?worker';
@@ -26,7 +27,7 @@ window.MonacoEnvironment = {
       return new tsWorker();
     }
     return new editorWorker();
-  }
+  },
 };
 
 defineOptions({ name: 'GpMonacoEditor' });
@@ -37,7 +38,7 @@ const props = withDefaults(
     value?: string;
   }>(),
   {
-    options: () => ({ readOnly: false, language: 'shell' })
+    options: () => ({ readOnly: false, language: 'shell' }),
   }
 );
 const emits = defineEmits<{
@@ -63,8 +64,8 @@ const initMonacoEditor = () => {
       automaticLayout: true,
       theme: curTheme.value,
       scrollbar: {
-        alwaysConsumeMouseWheel: false
-      }
+        alwaysConsumeMouseWheel: false,
+      },
     });
     editor.onDidChangeModelContent(() => {
       const value = editor?.getValue() || '';
@@ -125,7 +126,7 @@ console.log('themes: ', themes);
     ref="editorRef"
     class="h300 w-full of-hidden rounded-base border-base"
     :style="{
-      borderColor: formItem.mergedStatusRef.value === 'error' ? themes.errorColor : undefined
+      borderColor: formItem.mergedStatusRef.value === 'error' ? themes.errorColor : undefined,
     }"
   ></div>
 </template>

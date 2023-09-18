@@ -35,7 +35,7 @@ export interface MakeRequestFn {
 
 const instance = axios.create({
   timeout: 1000 * 60,
-  baseURL: import.meta.env.VITE_APP_API_URL
+  baseURL: import.meta.env.VITE_APP_API_URL,
 });
 instance.interceptors.request.use(addTokenHandler.request.onFulfilled);
 // 解析路径参数
@@ -49,7 +49,7 @@ export const makeRequest: MakeRequestFn = <Payload extends BaseRes>(config: Requ
       showMessage: true,
       multiple: false,
       ...config,
-      ...reqConfig
+      ...reqConfig,
     };
 
     const response = await instance.request<Payload>(finalConfig);

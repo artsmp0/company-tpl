@@ -9,6 +9,6 @@ export function useModal(elRef: any) {
   }
   return {
     open,
-    close
+    close,
   };
 }

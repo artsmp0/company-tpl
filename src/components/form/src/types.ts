@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { FormItemGiProps, FormProps } from 'naive-ui';
 import type { VNode, Ref } from 'vue';
 

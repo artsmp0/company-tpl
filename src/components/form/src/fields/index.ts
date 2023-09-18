@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { upperFirst } from 'lodash-unified';
 import type { RenderFnParams } from '../types';
 import * as Fields from './fields';

@@ -1,3 +1,4 @@
+<!-- eslint-disable @typescript-eslint/no-explicit-any -->
 <script setup lang="ts">
 import type { GridProps } from 'naive-ui';
 import type { GpFormMeta } from './types';

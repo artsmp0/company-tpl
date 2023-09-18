@@ -11,12 +11,12 @@ export const addTokenHandler = {
       }
 
       return {
-        ...config
+        ...config,
       };
-    }
+    },
   },
   response: {
     // 这里定义响应拦截器
     // onFulfilled(response: AxiosResponse) {}
-  }
+  },
 };

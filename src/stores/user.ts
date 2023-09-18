@@ -22,12 +22,12 @@ export const useUserStore = defineStore('user', () => {
   const orgListMenu = ref<Org[]>([
     {
       id: 1,
-      name: '杭州古珀医疗科技有限公司'
+      name: '杭州古珀医疗科技有限公司',
     },
     {
       id: 2,
-      name: '萧山卫健'
-    }
+      name: '萧山卫健',
+    },
   ]);
 
   const setToken = (value: string) => (token.value = value);
@@ -86,6 +86,6 @@ export const useUserStore = defineStore('user', () => {
     initUser,
     logout,
     getUserSystemOrg,
-    setAuth
+    setAuth,
   };
 });

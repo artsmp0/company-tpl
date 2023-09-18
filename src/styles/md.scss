@@ -102,9 +102,7 @@ html.dark {
   pre[class*='language-'] {
     code[class*='language-'] {
       .token.comment {
-        font-size: 0.5rem;
-        font-style: normal;
-        white-space: nowrap;
+        font-weight: normal;
       }
     }
   }

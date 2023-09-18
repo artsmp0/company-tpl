@@ -16,12 +16,12 @@ export const repeatReqHandler = {
       controllerMap.set(url!, controller);
       return {
         ...config,
-        signal: controller.signal
+        signal: controller.signal,
       };
-    }
+    },
   },
   response: {
     // 这里定义响应拦截器
     // onFulfilled(response: AxiosResponse) {}
-  }
+  },
 };

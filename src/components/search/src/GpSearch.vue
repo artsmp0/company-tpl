@@ -5,7 +5,7 @@ import { NForm } from 'naive-ui';
 import type { CSSProperties } from 'vue';
 
 defineOptions({
-  name: 'GpSearch'
+  name: 'GpSearch',
 });
 
 const props = withDefaults(
@@ -16,7 +16,7 @@ const props = withDefaults(
   }>(),
   {
     labelWidth: '100px',
-    minWidth: '320px'
+    minWidth: '320px',
   }
 );
 
@@ -80,7 +80,7 @@ const wrapperStyle = computed<CSSProperties>(() => ({
   padding: '2px', // 防止水波纹看不到
   transition: '0.3s',
   position: 'relative',
-  height: (isOpen.value ? currentHeight.value : defaultHeight) + 'px'
+  height: (isOpen.value ? currentHeight.value : defaultHeight) + 'px',
 }));
 const isOpen = ref(false);
 const toggle = () => {
@@ -116,9 +116,7 @@ const onSearch = () => {
           class="absolute bottom-0 right-0 z-10 h58 bg-[--n-color]"
           :style="{ width: searchBoxWidth + 'px', marginRight: '20px' }"
         >
-          <NButton secondary type="tertiary" :loading="props.loading" @click="onReset">
-            重置
-          </NButton>
+          <NButton secondary type="tertiary" :loading="props.loading" @click="onReset"> 重置 </NButton>
           <NButton type="primary" :loading="props.loading" @click="onSearch">查询</NButton>
           <NButton v-if="isShowToggleBtn" @click="toggle">
             {{ isOpen ? '收起' : '展开' }}

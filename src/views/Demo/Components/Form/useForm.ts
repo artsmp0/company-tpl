@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { getElementByJson } from '@/components/form';
 import { isNull } from 'lodash-unified';
 import type { CascaderOption } from 'naive-ui';

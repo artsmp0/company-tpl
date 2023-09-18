@@ -24,7 +24,7 @@ const resolveMenu = (menus: MenuItemType[]) => {
       key: m.path,
       name: m.name,
       meta: m.meta,
-      children: children.length > 0 ? children : undefined
+      children: children.length > 0 ? children : undefined,
     });
   });
   return list;

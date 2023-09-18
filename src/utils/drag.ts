@@ -14,7 +14,7 @@ const startDrag = function (eleBar: any, options: any) {
     bounding: window,
     edgeLock: true,
     onMove() {},
-    onEnd() {}
+    onEnd() {},
   };
 
   options = options || {};
@@ -35,14 +35,14 @@ const startDrag = function (eleBar: any, options: any) {
   let objEventType = {
     start: 'mousedown',
     move: 'mousemove',
-    end: 'mouseup'
+    end: 'mouseup',
   };
 
   if ('ontouchstart' in document) {
     objEventType = {
       start: 'touchstart',
       move: 'touchmove',
-      end: 'touchend'
+      end: 'touchend',
     };
   }
 
@@ -67,7 +67,7 @@ const startDrag = function (eleBar: any, options: any) {
           left: 0,
           top: 0,
           bottom: innerHeight,
-          right: Math.min(innerWidth, document.documentElement.clientWidth)
+          right: Math.min(innerWidth, document.documentElement.clientWidth),
         };
       } else if (bounding.tagName) {
         objBounding = bounding.getBoundingClientRect();
@@ -79,7 +79,7 @@ const startDrag = function (eleBar: any, options: any) {
       // 可移动范围
       store.range = {
         y: [objBounding.top - objBoundingTarget.top, objBounding.bottom - objBoundingTarget.bottom],
-        x: [objBounding.left - objBoundingTarget.left, objBounding.right - objBoundingTarget.right]
+        x: [objBounding.left - objBoundingTarget.left, objBounding.right - objBoundingTarget.right],
       };
     }
   });
@@ -119,7 +119,7 @@ const startDrag = function (eleBar: any, options: any) {
       }
     },
     {
-      passive: false
+      passive: false,
     }
   );
   document.addEventListener(objEventType.end, () => {

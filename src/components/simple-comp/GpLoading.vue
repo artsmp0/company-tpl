@@ -2,7 +2,7 @@
 import { NSpin } from 'naive-ui';
 
 defineOptions({
-  name: 'GpLoading'
+  name: 'GpLoading',
 });
 
 defineProps<{

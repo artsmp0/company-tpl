@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { tryOnMounted } from '@vueuse/core';
 import type { MaybeRefOrGetter } from 'vue';
 import type { RenderFnParams } from './types';

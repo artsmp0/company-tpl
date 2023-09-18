@@ -26,8 +26,8 @@ router.beforeEach(async (to, from) => {
       return {
         name: '401',
         query: {
-          code: 401
-        }
+          code: 401,
+        },
       };
     }
 
@@ -38,7 +38,7 @@ router.beforeEach(async (to, from) => {
     return {
       path: indexRoute,
       replace: true,
-      query: from.query
+      query: from.query,
     };
   }
 });

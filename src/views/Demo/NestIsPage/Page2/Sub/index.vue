@@ -6,9 +6,9 @@
     <div class="w100">
       <!-- TODO 在 NEllipsis 中无法 设置 tooltip style  -->
       <NEllipsis :tooltip="{ maxWidth: 300 }">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium odio minus
-        reprehenderit quidem error atque aliquid odit! Nobis assumenda molestias aperiam dolore
-        quidem, facere sunt nihil magnam explicabo, provident rem.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium odio minus reprehenderit quidem error atque
+        aliquid odit! Nobis assumenda molestias aperiam dolore quidem, facere sunt nihil magnam explicabo, provident
+        rem.
       </NEllipsis>
     </div>
   </div>

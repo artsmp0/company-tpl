@@ -2,7 +2,7 @@
 import type { CSSProperties } from 'vue';
 
 defineOptions({
-  name: 'SvgIcon'
+  name: 'SvgIcon',
 });
 
 interface Props {
@@ -27,14 +27,14 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
   color: 'currentColor',
   size: '1em',
-  spin: false
+  spin: false,
 });
 
 const symbolId = computed(() => `#icon-${props.name}`);
 const getStyle = computed((): CSSProperties => {
   return {
     width: props.size,
-    height: props.size
+    height: props.size,
   };
 });
 </script>

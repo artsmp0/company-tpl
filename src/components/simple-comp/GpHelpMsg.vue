@@ -2,7 +2,7 @@
 import { QuestionCircleOutlined } from '@vicons/antd';
 
 defineOptions({
-  name: 'GpHelpMsg'
+  name: 'GpHelpMsg',
 });
 
 const props = withDefaults(
@@ -13,7 +13,7 @@ const props = withDefaults(
   }>(),
   {
     iconSize: 18,
-    messageFontSize: '12px'
+    messageFontSize: '12px',
   }
 );
 </script>

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { NTreeSelect } from 'naive-ui';
 import type { RenderFnParams } from '../types';
 import { useDeps, useFetchField } from '../utils';

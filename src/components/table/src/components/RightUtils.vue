@@ -1,12 +1,6 @@
 <script setup lang="ts">
 import type { Component } from 'vue';
-import {
-  CompressOutlined,
-  ColumnHeightOutlined,
-  SettingOutlined,
-  ExpandOutlined,
-  ReloadOutlined
-} from '@vicons/antd';
+import { CompressOutlined, ColumnHeightOutlined, SettingOutlined, ExpandOutlined, ReloadOutlined } from '@vicons/antd';
 import type { RightUtils } from '../types';
 import { useFullscreen } from '@vueuse/core';
 import type { DataTableProps } from 'naive-ui';
@@ -35,23 +29,23 @@ const UTILS = computed<Utils>(() => ({
   size: {
     tip: '尺寸',
     key: 'size',
-    icon: ColumnHeightOutlined
+    icon: ColumnHeightOutlined,
   },
   fullscreen: {
     tip: isFullscreen.value ? '取消全屏' : '全屏',
     key: 'fullscreen',
-    icon: isFullscreen.value ? CompressOutlined : ExpandOutlined
+    icon: isFullscreen.value ? CompressOutlined : ExpandOutlined,
   },
   reload: {
     tip: '刷新',
     key: 'reload',
-    icon: ReloadOutlined
+    icon: ReloadOutlined,
   },
   setting: {
     tip: '设置',
     key: 'setting',
-    icon: SettingOutlined
-  }
+    icon: SettingOutlined,
+  },
 }));
 
 const data = computed(() => {
@@ -75,28 +69,23 @@ const handleClick = (key: RightUtils[number]) => {
 const sizeOptions = [
   {
     label: '更小',
-    value: 'small'
+    value: 'small',
   },
   {
     label: '不大',
-    value: 'medium'
+    value: 'medium',
   },
   {
     label: '更大',
-    value: 'large'
-  }
+    value: 'large',
+  },
 ];
 </script>
 
 <template>
   <div flex="~ items-center gap-16">
     <GpHelpMsg v-for="item in data" :key="item.key" :message="item.tip">
-      <NPopselect
-        v-if="item.key === 'size'"
-        v-model:value="size"
-        :options="sizeOptions"
-        trigger="click"
-      >
+      <NPopselect v-if="item.key === 'size'" v-model:value="size" :options="sizeOptions" trigger="click">
         <Component :is="item.icon" class="cursor-pointer outline-none" />
       </NPopselect>
       <Component :is="item.icon" v-else class="cursor-pointer" @click="handleClick(item.key)" />

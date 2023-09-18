@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { makeRequest } from './request';
 import type { RequestConfig } from './types';
 
@@ -8,7 +9,7 @@ export const get = <Res = any, Params = any>(url: string, otherConfigs?: Partial
   return makeRequest<Res, Params>({
     method: 'get',
     url,
-    ...otherConfigs
+    ...otherConfigs,
   });
 };
 
@@ -20,7 +21,7 @@ export const pathArgGet = <Res = any, Params extends string = string>(
   return makeRequest<Res, undefined, undefined, Params>({
     method: 'get',
     url,
-    ...otherConfigs
+    ...otherConfigs,
   });
 };
 
@@ -32,6 +33,6 @@ export const post = <Res = any, Data = any>(
   return makeRequest<Res, undefined, Data>({
     method: 'post',
     url,
-    ...otherConfigs
+    ...otherConfigs,
   });
 };

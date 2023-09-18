@@ -7,7 +7,7 @@ const show = defineModel<boolean>('show');
 const settingStore = useSettingStore();
 
 const { copy } = useClipboard({
-  legacy: true
+  legacy: true,
 });
 
 const { message } = useDiscrete();
@@ -25,7 +25,7 @@ const handleCopy = async () => {
 
 const animations = ['fade', 'fade-up', 'fade-down', 'fade-slide', 'fade-scale'].map((value) => ({
   value,
-  label: value
+  label: value,
 }));
 </script>
 
@@ -35,16 +35,9 @@ const animations = ['fade', 'fade-up', 'fade-down', 'fade-slide', 'fade-scale'].
     <NDrawerContent title="系统设置">
       <NDivider> 界面显示 </NDivider>
       <div flex="~ col gap-16">
-        <div
-          v-for="item in settingStore.settingMap"
-          :key="item.key"
-          flex="~ items-center justify-between"
-        >
+        <div v-for="item in settingStore.settingMap" :key="item.key" flex="~ items-center justify-between">
           <span>{{ item.label }}</span>
-          <NSwitch
-            v-if="item.type === 'switch'"
-            v-model:value="settingStore.defaultSetting[item.key]"
-          ></NSwitch>
+          <NSwitch v-if="item.type === 'switch'" v-model:value="settingStore.defaultSetting[item.key]"></NSwitch>
           <NInputNumber
             v-else-if="item.type === 'inputNumber'"
             v-model:value="settingStore.defaultSetting[item.key]"

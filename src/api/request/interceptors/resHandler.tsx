@@ -17,7 +17,7 @@ function handleAuth(response: AxiosResponse) {
   if (data.code !== ResponseCode.authSuccess) {
     if (alreadyShowError) {
       return {
-        err: response
+        err: response,
       };
     }
     alreadyShowError = true;
@@ -27,8 +27,8 @@ function handleAuth(response: AxiosResponse) {
       router.replace({
         name: 'Forbidden',
         query: {
-          code: 401
-        }
+          code: 401,
+        },
       });
     } else {
       notification.warning({
@@ -45,16 +45,16 @@ function handleAuth(response: AxiosResponse) {
               去登录
             </NButton>
           );
-        }
+        },
       });
     }
     return {
-      err: response
+      err: response,
     };
   }
   return {
     data: data,
-    response
+    response,
   };
 }
 
@@ -69,7 +69,7 @@ export const resHandler = {
         return {
           data,
           response,
-          err: null
+          err: null,
         } as unknown as AxiosResponse;
       }
       if ((response.config as unknown as any).isAuthApi) {
@@ -81,14 +81,14 @@ export const resHandler = {
         return {
           data: data,
           response,
-          err: data
+          err: data,
         } as unknown as AxiosResponse;
       }
 
       return {
         data: response.data,
         response: response,
-        err: null
+        err: null,
       } as unknown as AxiosResponse;
     },
     onRejected: (err: any) => {
@@ -104,6 +104,6 @@ export const resHandler = {
       console.warn('request err: ', err);
       message.error(err.message);
       return { err, data: undefined, response: undefined } as unknown as AxiosResponse;
-    }
-  }
+    },
+  },
 };

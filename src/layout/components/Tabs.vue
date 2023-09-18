@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { GpSvgIcon } from '@/components';
 import { useTabsStore, type Tab } from '@/stores/tabs';
-import { useThemeVars, type TagProps } from 'naive-ui';
-// import { NIcon } from 'naive-ui';
 
 const router = useRouter();
 const route = useRoute();

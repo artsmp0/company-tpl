@@ -13,12 +13,12 @@ const code = route.query?.code as '412' | '401';
 const msg = {
   412: {
     title: '暂未注册!',
-    description: '您账号尚未注册，请联系管理员注册!'
+    description: '您账号尚未注册，请联系管理员注册!',
   },
   401: {
     title: '暂无权限!',
-    description: '暂未登录或已过期，请重新登录!'
-  }
+    description: '暂未登录或已过期，请重新登录!',
+  },
 };
 
 const userStore = useUserStore();

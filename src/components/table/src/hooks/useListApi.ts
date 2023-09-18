@@ -1,17 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 /** 获取api函数的query参数类型 */
-export type GetRequestParams<T> = T extends { params: infer P1 }
-  ? P1
-  : T extends { params?: infer P2 }
-  ? P2
-  : never;
+export type GetRequestParams<T> = T extends { params: infer P1 } ? P1 : T extends { params?: infer P2 } ? P2 : never;
 /** 针对api函数的请求方式是post的情况 */
-export type GetRequestData<T> = T extends { data: infer P1 }
-  ? P1
-  : T extends { data?: infer P2 }
-  ? P2
-  : never;
+export type GetRequestData<T> = T extends { data: infer P1 } ? P1 : T extends { data?: infer P2 } ? P2 : never;
 /** 获取api方法的第一个参数 */
 export type GetParametersOne<T extends (...args: any) => any> = Prettify<Parameters<T>[0]>;
 
@@ -47,6 +39,6 @@ export function useTableListApi<T extends (...args: any) => any>(api: T, isGet =
 
   return {
     getList,
-    passDefaultList
+    passDefaultList,
   };
 }

@@ -27,7 +27,7 @@ const SHOW_TABS = computed(() => settingStore.defaultSetting.SHOW_TABS);
             height: 'full',
             display: 'flex',
             flexDirection: 'column',
-            minWidth: 0
+            minWidth: 0,
           }"
         >
           <Tabs v-if="SHOW_TABS" />

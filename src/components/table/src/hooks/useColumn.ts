@@ -7,7 +7,7 @@ export const useColumn = (propsGetter: () => GupoTableProps) => {
     const columns = [...props.columns!];
     if (props.selection) {
       columns.unshift({
-        type: 'selection'
+        type: 'selection',
       });
     }
     return columns;
@@ -15,6 +15,6 @@ export const useColumn = (propsGetter: () => GupoTableProps) => {
 
   return {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    computedColumns: computedColumns as any
+    computedColumns: computedColumns as any,
   };
 };

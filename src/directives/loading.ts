@@ -4,7 +4,7 @@ import type { App, Directive } from 'vue';
 export function createLoadingDirective(): Directive<HTMLDivElement, boolean> {
   let oDiv: HTMLDivElement;
   let app: App;
-  const createLoading = (el: HTMLDivElement, binding: boolean) => {
+  const createLoading = (el: HTMLDivElement) => {
     app = createApp(NSpin);
     oDiv = document.createElement('div');
 
@@ -28,13 +28,13 @@ export function createLoadingDirective(): Directive<HTMLDivElement, boolean> {
     oDiv.remove();
   };
   return {
-    mounted(el, binding) {
-      createLoading(el, binding.value);
+    mounted(el) {
+      createLoading(el);
     },
     updated(el, binding) {
       removeLoading(el);
       if (binding.value === true) {
-        createLoading(el, binding.value);
+        createLoading(el);
       }
     },
     unmounted(el) {

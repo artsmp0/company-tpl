@@ -6,7 +6,7 @@ export const enum URLS {
   getTest = '/api/get',
   postTest = '/api/post',
   tableList = '/tag/tb/bind/list',
-  userInfo = '/api/user/{id}'
+  userInfo = '/api/user/{id}',
 }
 
 export default {
@@ -17,6 +17,6 @@ export default {
   /** 演示 post 请求 */
   [URLS.postTest]: post<BaseRes<boolean>, { username: string; password: string }>(URLS.postTest),
   /** 此处演示路径参数的请求方式，此种写法等同于改行下的注释 */
-  [URLS.userInfo]: pathArgGet<BaseRes<TableItem>, URLS.userInfo>(URLS.userInfo)
+  [URLS.userInfo]: pathArgGet<BaseRes<TableItem>, URLS.userInfo>(URLS.userInfo),
   // [URL.userInfo]: request<BaseRes<TableItem>, undefined, undefined, URL.userInfo>({ url: URL.userInfo })
 };

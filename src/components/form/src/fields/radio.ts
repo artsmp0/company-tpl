@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { NRadio, NRadioButton, NRadioGroup, NSpace } from 'naive-ui';
 import type { RenderFnParams } from '../types';
 import { omit } from 'lodash-unified';

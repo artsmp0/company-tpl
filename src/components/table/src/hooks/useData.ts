@@ -33,7 +33,7 @@ export const useData = (propsGetter: () => GupoTableProps, updateCheckedRows: ()
       pagination.pageSize = pageSize;
       pagination.page = 1;
       getData();
-    }
+    },
   });
   const data = props.deepReactive ? ref<RowData[]>([]) : shallowRef<RowData[]>([]);
   const loading = ref(false);
@@ -48,7 +48,7 @@ export const useData = (propsGetter: () => GupoTableProps, updateCheckedRows: ()
     if (withOldParams) {
       cachedParams.value = {
         ...cachedParams.value,
-        ...params
+        ...params,
       };
     } else {
       cachedParams.value = params;
@@ -58,7 +58,7 @@ export const useData = (propsGetter: () => GupoTableProps, updateCheckedRows: ()
       const res = await props.listApi({
         [props.pagerKeys!.pageSize]: pagination.pageSize,
         [props.pagerKeys!.page]: pagination.page,
-        ...cachedParams.value
+        ...cachedParams.value,
       });
       data.value = resolveArg(res, props.pagerKeys!.list);
       updateCheckedRows();
@@ -82,9 +82,7 @@ export const useData = (propsGetter: () => GupoTableProps, updateCheckedRows: ()
   /** 处理后端多列排序的逻辑 */
   const handleSorterChange = (sorter: DataTableSortState | DataTableSortState[] | null) => {
     if (!props.sorterKeys) {
-      console.warn(
-        '未传递 sorterKeys props，无法进行远程排序！若本地排序请直接使用 naive ui 自带的表格组件！'
-      );
+      console.warn('未传递 sorterKeys props，无法进行远程排序！若本地排序请直接使用 naive ui 自带的表格组件！');
       return;
     }
     let sorterParams: any;
@@ -101,13 +99,13 @@ export const useData = (propsGetter: () => GupoTableProps, updateCheckedRows: ()
             return cur.order
               ? {
                   [sortField]: [cur.columnKey, ...res[sortField]],
-                  [orderField]: [cur.order === 'ascend' ? ascend : descend, ...res[orderField]]
+                  [orderField]: [cur.order === 'ascend' ? ascend : descend, ...res[orderField]],
                 }
               : res;
           },
           {
             [sortField]: [],
-            [orderField]: []
+            [orderField]: [],
           } as any
         );
       sorterParams[sortField] = sorterParams[sortField].join(',');
@@ -115,13 +113,13 @@ export const useData = (propsGetter: () => GupoTableProps, updateCheckedRows: ()
     } else {
       sorterParams = {
         [sortField]: sorter?.columnKey,
-        [orderField]: sorter?.order === 'ascend' ? ascend : descend
+        [orderField]: sorter?.order === 'ascend' ? ascend : descend,
       };
     }
 
     cachedParams.value = {
       ...cachedParams.value,
-      ...sorterParams
+      ...sorterParams,
     };
     getData();
   };
@@ -132,6 +130,6 @@ export const useData = (propsGetter: () => GupoTableProps, updateCheckedRows: ()
     pagination,
     refresh,
     filter: getData,
-    handleSorterChange
+    handleSorterChange,
   };
 };

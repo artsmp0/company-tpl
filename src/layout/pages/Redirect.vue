@@ -4,7 +4,7 @@ const router = useRouter();
 
 router.replace({
   path: '/' + route.params.path,
-  query: route.query
+  query: route.query,
 });
 </script>
 

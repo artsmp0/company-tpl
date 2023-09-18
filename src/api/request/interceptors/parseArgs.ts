@@ -19,6 +19,6 @@ export const parseArgsHandler = {
         return { ...config, url: replacedUrl };
       }
       return config;
-    }
-  }
+    },
+  },
 };

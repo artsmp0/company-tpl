@@ -13,7 +13,7 @@ export const useTabsStore = defineStore('tabs', () => {
   const notCanCloseTabs = ref<Tab[]>([]);
 
   const addTab = (route: RouteLocationNormalizedLoaded) => {
-    if (route.path === '/redirect') {
+    if (route.path === '/redirect' || route.meta.hideInTab) {
       return;
     }
     if (tabs.value.has(route.path)) {

@@ -1,8 +1,9 @@
 /* eslint-disable no-prototype-builtins */
 import { readFileSync, readdirSync, writeFileSync } from 'fs';
-import { upperFirst } from 'lodash-unified';
 import { fileURLToPath } from 'url';
+import { upperFirst } from 'lodash-unified';
 import chalk from 'chalk';
+import inquirerSearchList from 'inquirer-search-list';
 
 const dotCase = (text) => {
   return text
@@ -24,8 +25,6 @@ const getIconName = () => {
   return files.map((file) => 'sidebar-' + file.split('.')[0]);
 };
 
-getIconName();
-
 /**
  * 自动创建
  * @param {import('plop').NodePlopAPI} plop
@@ -33,6 +32,7 @@ getIconName();
 export default function (plop) {
   plop.setHelper('dotCase', dotCase);
   plop.setHelper('upperWordFirstCase', upperWordFirstCase);
+  plop.setPrompt('searchable-list', inquirerSearchList);
   plop.setGenerator('basics', {
     description: '创建一个页面',
     prompts: [
@@ -49,12 +49,22 @@ export default function (plop) {
         },
       },
       {
+        type: 'list',
+        name: 'isDetail',
+        default: 'no',
+        choices: ['yes', 'no'],
+        message: '是否是详情：',
+      },
+      {
         type: 'input',
         name: 'title',
         message: '菜单标题：',
       },
       {
-        type: 'list',
+        when(context) {
+          return context.isDetail === 'no';
+        },
+        type: 'searchable-list',
         choices: getIconName(),
         name: 'icon',
         message: '菜单图标(sidebar-开头)：',
@@ -81,11 +91,11 @@ export default function (plop) {
   });
 }
 
-function overwriteMock({ filepath, title, keepAlive, icon }) {
+function overwriteMock({ filepath, title, keepAlive, icon, isDetail }) {
   const mockFile = fileURLToPath(new URL('../src/router/mock.json', import.meta.url));
   const mockFileContent = readFileSync(mockFile, 'utf-8');
   keepAlive = keepAlive === 'yes' ? true : false;
-
+  isDetail = isDetail === 'yes' ? true : false;
   // 使用 JSON.parse 解析原始内容和要添加的内容
   const originalObj = JSON.parse(mockFileContent);
   const flatRouter = flatRoutes(originalObj.router);
@@ -95,6 +105,8 @@ function overwriteMock({ filepath, title, keepAlive, icon }) {
       title,
       keepAlive,
       icon,
+      hideInTab: isDetail,
+      hideInMenu: isDetail,
     },
     children: [],
   };
@@ -104,7 +116,7 @@ function overwriteMock({ filepath, title, keepAlive, icon }) {
     console.log(chalk.bgRed(`已经存在路径为「${targetChild.path}」的子路径，添加失败！`));
     return false;
   }
-  const newMockFileContent = updateContent(originalObj, flatRouter, addition);
+  const newMockFileContent = updateContent(originalObj, flatRouter, addition, isDetail);
   writeFileSync(mockFile, newMockFileContent);
   return true;
 }
@@ -122,13 +134,16 @@ function getParent(flatRouter, targetPath) {
   return queue;
 }
 
-function updateContent(originalObj, flatRouter, addition) {
+function updateContent(originalObj, flatRouter, addition, isDetail) {
   const parents = getParent(flatRouter, addition.path);
   if (parents.length === 0) {
     originalObj.router.push(addition);
   } else {
     const targetParent = parents[parents.length - 1];
     if (targetParent) {
+      if (isDetail) {
+        targetParent.meta.isPage = true;
+      }
       if (!targetParent.children) {
         targetParent.children = [];
       }
@@ -138,7 +153,6 @@ function updateContent(originalObj, flatRouter, addition) {
       originalObj.router.push(addition);
     }
   }
-  // 使用 JSON.stringify 将更新后的对象转换回字符串形式
   const updatedContent = JSON.stringify(originalObj, null, 2);
   return updatedContent;
 }

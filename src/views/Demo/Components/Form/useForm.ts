@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { getElementByJson } from '@/components/form';
 import { isNull } from 'lodash-unified';
+import CustomField from './CustomField.vue';
 import type { CascaderOption } from 'naive-ui';
 
 function getOptions(depth = 3, iterator = 1, prefix = '') {
@@ -40,6 +41,7 @@ export const useForm = (disabled: Ref<boolean>) => {
     area: null,
     song: null,
     tree: null,
+    custom: '123123',
     datePicker: '1998-11-28 18:00:00',
     cascader: null,
     monaco: 'ls -la',
@@ -501,6 +503,13 @@ export const useForm = (disabled: Ref<boolean>) => {
           }
           return state;
         },
+      },
+      {
+        field: 'custom',
+        type: 'custom',
+        label: '自定义表单项',
+        span: 12,
+        component: CustomField,
       },
     ],
     model

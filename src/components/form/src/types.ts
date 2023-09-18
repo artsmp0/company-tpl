@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { FormItemGiProps, FormProps } from 'naive-ui';
-import type { VNode, Ref } from 'vue';
+import type { VNode, Ref, Component } from 'vue';
 
 export type FieldType =
   | 'input'
@@ -28,7 +28,7 @@ export interface JsonItem extends FormItemGiProps {
   /** radio group 显示为 button */
   button?: boolean;
   slots?: Recordable<() => VNode>;
-  component?: () => VNode;
+  component?: Component;
 }
 
 export type FormItem = {

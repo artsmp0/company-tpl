@@ -21,7 +21,6 @@ const list = shallowRef<UploadProps['fileList']>([]);
 const stop = watch(
   () => props.value,
   async () => {
-    console.log(123123);
     list.value = props.toFileList?.(props.value) ?? props.value;
     await nextTick();
     stop();

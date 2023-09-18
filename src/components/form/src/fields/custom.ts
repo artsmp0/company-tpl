@@ -1,7 +1,19 @@
+import type { Component } from 'vue';
 import type { RenderFnParams } from '../types';
+import { omit } from 'lodash-unified';
+import { useDeps } from '../utils';
 
 export function renderCustom({ item, model }: RenderFnParams) {
   const { props = undefined, field, component } = item;
-  // 一般用来在表单后面新增按钮之类的操作
-  return component;
+  const state = useDeps({ item, model });
+  return () =>
+    h(component as Component, {
+      value: model[field],
+      onUpdateValue: (value: string) => void (model[field] = value),
+      'onUpdate:value': (value: string) => {
+        void (model[field] = value);
+      },
+      ...state,
+      ...omit(props, ['value', 'onUpdateValue']),
+    });
 }

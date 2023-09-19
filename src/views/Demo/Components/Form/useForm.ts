@@ -455,6 +455,9 @@ export const useForm = (disabled: Ref<boolean>) => {
         type: 'monacoEditor',
         label: '代码编辑器',
         span: 12,
+        props: {
+          language: 'json',
+        },
         rule: { required: true, message: '代码必填' },
       },
       {
@@ -509,6 +512,7 @@ export const useForm = (disabled: Ref<boolean>) => {
         type: 'custom',
         label: '自定义表单项',
         span: 12,
+        rule: { required: true, message: 'xxxx' },
         component: CustomField,
       },
     ],

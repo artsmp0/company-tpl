@@ -44,7 +44,7 @@ export const useForm = (disabled: Ref<boolean>) => {
     custom: '123123',
     datePicker: '1998-11-28 18:00:00',
     cascader: null,
-    monaco: 'ls -la',
+    monaco: JSON.stringify({ name: 'artsmp', age: 18, male: true }, null, 4),
     multiple: {
       area: null,
       name: '',
@@ -456,7 +456,9 @@ export const useForm = (disabled: Ref<boolean>) => {
         label: '代码编辑器',
         span: 12,
         props: {
-          language: 'json',
+          options: {
+            language: 'json',
+          },
         },
         rule: { required: true, message: '代码必填' },
       },

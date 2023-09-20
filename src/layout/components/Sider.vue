@@ -53,6 +53,11 @@ const renderLabel: any = (option: GupoMenuOption) => {
 
 const route = useRoute();
 const selectedItem = computed(() => {
+  if (route.meta.hideInMenu) {
+    // 表示是详情页
+    const t = permissionStore.flatMenuList.find((m) => m.path === route.path);
+    if (t) return t.parentPath;
+  }
   return route.path;
 });
 

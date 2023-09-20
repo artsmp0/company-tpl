@@ -121,7 +121,7 @@ html.dark {
   }
 }
 
-@media screen and (width <= 960px) {
+@media (min-width: 960px) {
   .prose {
     width: 100% !important;
   }

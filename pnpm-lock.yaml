@@ -139,18 +139,21 @@ devDependencies:
   stylelint-config-recess-order:
     specifier: ^4.3.0
     version: registry.npmmirror.com/stylelint-config-recess-order@4.3.0(stylelint@15.10.3)
-  stylelint-config-standard:
-    specifier: ^34.0.0
-    version: registry.npmmirror.com/stylelint-config-standard@34.0.0(stylelint@15.10.3)
-  stylelint-config-standard-scss:
-    specifier: ^10.0.0
-    version: registry.npmmirror.com/stylelint-config-standard-scss@10.0.0(postcss@8.4.29)(stylelint@15.10.3)
-  stylelint-config-standard-vue:
-    specifier: ^1.0.0
-    version: registry.npmmirror.com/stylelint-config-standard-vue@1.0.0(postcss-html@1.5.0)(stylelint@15.10.3)
+  stylelint-config-recommended:
+    specifier: ^13.0.0
+    version: registry.npmmirror.com/stylelint-config-recommended@13.0.0(stylelint@15.10.3)
+  stylelint-config-recommended-scss:
+    specifier: ^13.0.0
+    version: registry.npmmirror.com/stylelint-config-recommended-scss@13.0.0(postcss@8.4.29)(stylelint@15.10.3)
+  stylelint-config-recommended-vue:
+    specifier: ^1.5.0
+    version: registry.npmmirror.com/stylelint-config-recommended-vue@1.5.0(postcss-html@1.5.0)(stylelint@15.10.3)
   stylelint-prettier:
     specifier: ^4.0.2
     version: registry.npmmirror.com/stylelint-prettier@4.0.2(prettier@3.0.3)(stylelint@15.10.3)
+  stylelint-scss:
+    specifier: ^5.2.1
+    version: registry.npmmirror.com/stylelint-scss@5.2.1(stylelint@15.10.3)
   typescript:
     specifier: ~5.2.2
     version: registry.npmmirror.com/typescript@5.2.2
@@ -8797,14 +8800,14 @@ packages:
       stylelint-order: registry.npmmirror.com/stylelint-order@6.0.3(stylelint@15.10.3)
     dev: true
 
-  registry.npmmirror.com/stylelint-config-recommended-scss@12.0.0(postcss@8.4.29)(stylelint@15.10.3):
-    resolution: {integrity: sha512-5Bb2mlGy6WLa30oNeKpZvavv2lowJUsUJO25+OA68GFTemlwd1zbFsL7q0bReKipOSU3sG47hKneZ6Nd+ctrFA==, registry: https://packages.aliyun.com/5eb3e37038076f00011bcd4a/npm/npm-registry/, tarball: https://registry.npmmirror.com/stylelint-config-recommended-scss/-/stylelint-config-recommended-scss-12.0.0.tgz}
-    id: registry.npmmirror.com/stylelint-config-recommended-scss/12.0.0
+  registry.npmmirror.com/stylelint-config-recommended-scss@13.0.0(postcss@8.4.29)(stylelint@15.10.3):
+    resolution: {integrity: sha512-7AmMIsHTsuwUQm7I+DD5BGeIgCvqYZ4BpeYJJpb1cUXQwrJAKjA+GBotFZgUEGP8lAM+wmd91ovzOi8xfAyWEw==, registry: https://packages.aliyun.com/5eb3e37038076f00011bcd4a/npm/npm-registry/, tarball: https://registry.npmmirror.com/stylelint-config-recommended-scss/-/stylelint-config-recommended-scss-13.0.0.tgz}
+    id: registry.npmmirror.com/stylelint-config-recommended-scss/13.0.0
     name: stylelint-config-recommended-scss
-    version: 12.0.0
+    version: 13.0.0
     peerDependencies:
       postcss: ^8.3.3
-      stylelint: ^15.5.0
+      stylelint: ^15.10.0
     peerDependenciesMeta:
       postcss:
         optional: true
@@ -8812,8 +8815,8 @@ packages:
       postcss: registry.npmmirror.com/postcss@8.4.29
       postcss-scss: registry.npmmirror.com/postcss-scss@4.0.7(postcss@8.4.29)
       stylelint: registry.npmmirror.com/stylelint@15.10.3(typescript@5.2.2)
-      stylelint-config-recommended: registry.npmmirror.com/stylelint-config-recommended@12.0.0(stylelint@15.10.3)
-      stylelint-scss: registry.npmmirror.com/stylelint-scss@5.1.0(stylelint@15.10.3)
+      stylelint-config-recommended: registry.npmmirror.com/stylelint-config-recommended@13.0.0(stylelint@15.10.3)
+      stylelint-scss: registry.npmmirror.com/stylelint-scss@5.2.1(stylelint@15.10.3)
     dev: true
 
   registry.npmmirror.com/stylelint-config-recommended-vue@1.5.0(postcss-html@1.5.0)(stylelint@15.10.3):
@@ -8833,17 +8836,6 @@ packages:
       stylelint-config-recommended: registry.npmmirror.com/stylelint-config-recommended@13.0.0(stylelint@15.10.3)
     dev: true
 
-  registry.npmmirror.com/stylelint-config-recommended@12.0.0(stylelint@15.10.3):
-    resolution: {integrity: sha512-x6x8QNARrGO2sG6iURkzqL+Dp+4bJorPMMRNPScdvaUK8PsynriOcMW7AFDKqkWAS5wbue/u8fUT/4ynzcmqdQ==, registry: https://packages.aliyun.com/5eb3e37038076f00011bcd4a/npm/npm-registry/, tarball: https://registry.npmmirror.com/stylelint-config-recommended/-/stylelint-config-recommended-12.0.0.tgz}
-    id: registry.npmmirror.com/stylelint-config-recommended/12.0.0
-    name: stylelint-config-recommended
-    version: 12.0.0
-    peerDependencies:
-      stylelint: ^15.5.0
-    dependencies:
-      stylelint: registry.npmmirror.com/stylelint@15.10.3(typescript@5.2.2)
-    dev: true
-
   registry.npmmirror.com/stylelint-config-recommended@13.0.0(stylelint@15.10.3):
     resolution: {integrity: sha512-EH+yRj6h3GAe/fRiyaoO2F9l9Tgg50AOFhaszyfov9v6ayXJ1IkSHwTxd7lB48FmOeSGDPLjatjO11fJpmarkQ==, registry: https://packages.aliyun.com/5eb3e37038076f00011bcd4a/npm/npm-registry/, tarball: https://registry.npmmirror.com/stylelint-config-recommended/-/stylelint-config-recommended-13.0.0.tgz}
     id: registry.npmmirror.com/stylelint-config-recommended/13.0.0
@@ -8854,66 +8846,6 @@ packages:
       stylelint: ^15.10.0
     dependencies:
       stylelint: registry.npmmirror.com/stylelint@15.10.3(typescript@5.2.2)
-    dev: true
-
-  registry.npmmirror.com/stylelint-config-standard-scss@10.0.0(postcss@8.4.29)(stylelint@15.10.3):
-    resolution: {integrity: sha512-bChBEo1p3xUVWh/wenJI+josoMk21f2yuLDGzGjmKYcALfl2u3DFltY+n4UHswYiXghqXaA8mRh+bFy/q1hQlg==, registry: https://packages.aliyun.com/5eb3e37038076f00011bcd4a/npm/npm-registry/, tarball: https://registry.npmmirror.com/stylelint-config-standard-scss/-/stylelint-config-standard-scss-10.0.0.tgz}
-    id: registry.npmmirror.com/stylelint-config-standard-scss/10.0.0
-    name: stylelint-config-standard-scss
-    version: 10.0.0
-    peerDependencies:
-      postcss: ^8.3.3
-      stylelint: ^15.5.0
-    peerDependenciesMeta:
-      postcss:
-        optional: true
-    dependencies:
-      postcss: registry.npmmirror.com/postcss@8.4.29
-      stylelint: registry.npmmirror.com/stylelint@15.10.3(typescript@5.2.2)
-      stylelint-config-recommended-scss: registry.npmmirror.com/stylelint-config-recommended-scss@12.0.0(postcss@8.4.29)(stylelint@15.10.3)
-      stylelint-config-standard: registry.npmmirror.com/stylelint-config-standard@33.0.0(stylelint@15.10.3)
-    dev: true
-
-  registry.npmmirror.com/stylelint-config-standard-vue@1.0.0(postcss-html@1.5.0)(stylelint@15.10.3):
-    resolution: {integrity: sha512-wAzU7p6DSlo04pWfCbOcaMq09Nojt0FEsbdxhCBTdC7IguD9ZVl7FP/bvyA0HAHjZGC4JkW7m6WiQaoVMDSuFw==, registry: https://packages.aliyun.com/5eb3e37038076f00011bcd4a/npm/npm-registry/, tarball: https://registry.npmmirror.com/stylelint-config-standard-vue/-/stylelint-config-standard-vue-1.0.0.tgz}
-    id: registry.npmmirror.com/stylelint-config-standard-vue/1.0.0
-    name: stylelint-config-standard-vue
-    version: 1.0.0
-    engines: {node: ^12 || >=14}
-    peerDependencies:
-      postcss-html: ^1.0.0
-      stylelint: '>=14.0.0'
-    dependencies:
-      postcss-html: registry.npmmirror.com/postcss-html@1.5.0
-      stylelint: registry.npmmirror.com/stylelint@15.10.3(typescript@5.2.2)
-      stylelint-config-html: registry.npmmirror.com/stylelint-config-html@1.1.0(postcss-html@1.5.0)(stylelint@15.10.3)
-      stylelint-config-recommended-vue: registry.npmmirror.com/stylelint-config-recommended-vue@1.5.0(postcss-html@1.5.0)(stylelint@15.10.3)
-      stylelint-config-standard: registry.npmmirror.com/stylelint-config-standard@34.0.0(stylelint@15.10.3)
-    dev: true
-
-  registry.npmmirror.com/stylelint-config-standard@33.0.0(stylelint@15.10.3):
-    resolution: {integrity: sha512-eyxnLWoXImUn77+ODIuW9qXBDNM+ALN68L3wT1lN2oNspZ7D9NVGlNHb2QCUn4xDug6VZLsh0tF8NyoYzkgTzg==, registry: https://packages.aliyun.com/5eb3e37038076f00011bcd4a/npm/npm-registry/, tarball: https://registry.npmmirror.com/stylelint-config-standard/-/stylelint-config-standard-33.0.0.tgz}
-    id: registry.npmmirror.com/stylelint-config-standard/33.0.0
-    name: stylelint-config-standard
-    version: 33.0.0
-    peerDependencies:
-      stylelint: ^15.5.0
-    dependencies:
-      stylelint: registry.npmmirror.com/stylelint@15.10.3(typescript@5.2.2)
-      stylelint-config-recommended: registry.npmmirror.com/stylelint-config-recommended@12.0.0(stylelint@15.10.3)
-    dev: true
-
-  registry.npmmirror.com/stylelint-config-standard@34.0.0(stylelint@15.10.3):
-    resolution: {integrity: sha512-u0VSZnVyW9VSryBG2LSO+OQTjN7zF9XJaAJRX/4EwkmU0R2jYwmBSN10acqZisDitS0CLiEiGjX7+Hrq8TAhfQ==, registry: https://packages.aliyun.com/5eb3e37038076f00011bcd4a/npm/npm-registry/, tarball: https://registry.npmmirror.com/stylelint-config-standard/-/stylelint-config-standard-34.0.0.tgz}
-    id: registry.npmmirror.com/stylelint-config-standard/34.0.0
-    name: stylelint-config-standard
-    version: 34.0.0
-    engines: {node: ^14.13.1 || >=16.0.0}
-    peerDependencies:
-      stylelint: ^15.10.0
-    dependencies:
-      stylelint: registry.npmmirror.com/stylelint@15.10.3(typescript@5.2.2)
-      stylelint-config-recommended: registry.npmmirror.com/stylelint-config-recommended@13.0.0(stylelint@15.10.3)
     dev: true
 
   registry.npmmirror.com/stylelint-order@6.0.3(stylelint@15.10.3):
@@ -8944,14 +8876,15 @@ packages:
       stylelint: registry.npmmirror.com/stylelint@15.10.3(typescript@5.2.2)
     dev: true
 
-  registry.npmmirror.com/stylelint-scss@5.1.0(stylelint@15.10.3):
-    resolution: {integrity: sha512-E+KlQFXv1Euha43qw3q+wKBSli557wxbbo6/39DWhRNXlUa9Cz+FYrcgz+PT6ag0l6UisCYjAGCNhoSl4FcwlA==, registry: https://packages.aliyun.com/5eb3e37038076f00011bcd4a/npm/npm-registry/, tarball: https://registry.npmmirror.com/stylelint-scss/-/stylelint-scss-5.1.0.tgz}
-    id: registry.npmmirror.com/stylelint-scss/5.1.0
+  registry.npmmirror.com/stylelint-scss@5.2.1(stylelint@15.10.3):
+    resolution: {integrity: sha512-ZoTJUM85/qqpQHfEppjW/St//8s6p9Qsg8deWlYlr56F9iUgC9vXeIDQvH4odkRRJLTLFQzYMALSOFCQ3MDkgw==, registry: https://packages.aliyun.com/5eb3e37038076f00011bcd4a/npm/npm-registry/, tarball: https://registry.npmmirror.com/stylelint-scss/-/stylelint-scss-5.2.1.tgz}
+    id: registry.npmmirror.com/stylelint-scss/5.2.1
     name: stylelint-scss
-    version: 5.1.0
+    version: 5.2.1
     peerDependencies:
       stylelint: ^14.5.1 || ^15.0.0
     dependencies:
+      known-css-properties: registry.npmmirror.com/known-css-properties@0.28.0
       postcss-media-query-parser: registry.npmmirror.com/postcss-media-query-parser@0.2.3
       postcss-resolve-nested-selector: registry.npmmirror.com/postcss-resolve-nested-selector@0.1.1
       postcss-selector-parser: registry.npmmirror.com/postcss-selector-parser@6.0.13

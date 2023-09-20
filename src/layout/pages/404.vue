@@ -47,44 +47,6 @@ const backHome = () => {
     }
 
     &__child {
-      position: absolute;
-
-      &.left {
-        top: 17px;
-        left: 220px;
-        width: 80px;
-        opacity: 0;
-        animation-name: cloud-left;
-        animation-duration: 2s;
-        animation-timing-function: linear;
-        animation-delay: 1s;
-        animation-fill-mode: forwards;
-      }
-
-      &.mid {
-        top: 10px;
-        left: 420px;
-        width: 46px;
-        opacity: 0;
-        animation-name: cloud-mid;
-        animation-duration: 2s;
-        animation-timing-function: linear;
-        animation-delay: 1.2s;
-        animation-fill-mode: forwards;
-      }
-
-      &.right {
-        top: 100px;
-        left: 500px;
-        width: 62px;
-        opacity: 0;
-        animation-name: cloud-right;
-        animation-duration: 2s;
-        animation-timing-function: linear;
-        animation-delay: 1s;
-        animation-fill-mode: forwards;
-      }
-
       @keyframes cloud-left {
         0% {
           top: 17px;
@@ -162,10 +124,58 @@ const backHome = () => {
           opacity: 0;
         }
       }
+      position: absolute;
+
+      &.left {
+        top: 17px;
+        left: 220px;
+        width: 80px;
+        opacity: 0;
+        animation-name: cloud-left;
+        animation-duration: 2s;
+        animation-timing-function: linear;
+        animation-delay: 1s;
+        animation-fill-mode: forwards;
+      }
+
+      &.mid {
+        top: 10px;
+        left: 420px;
+        width: 46px;
+        opacity: 0;
+        animation-name: cloud-mid;
+        animation-duration: 2s;
+        animation-timing-function: linear;
+        animation-delay: 1.2s;
+        animation-fill-mode: forwards;
+      }
+
+      &.right {
+        top: 100px;
+        left: 500px;
+        width: 62px;
+        opacity: 0;
+        animation-name: cloud-right;
+        animation-duration: 2s;
+        animation-timing-function: linear;
+        animation-delay: 1s;
+        animation-fill-mode: forwards;
+      }
     }
   }
 
   .bullshit {
+    @keyframes slide-up {
+      0% {
+        opacity: 0;
+        transform: translateY(60px);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
     float: left;
     width: 300px;
     padding: 30px 0;
@@ -206,18 +216,6 @@ const backHome = () => {
       animation-duration: 0.5s;
       animation-delay: 0.2s;
       animation-fill-mode: forwards;
-    }
-
-    @keyframes slide-up {
-      0% {
-        opacity: 0;
-        transform: translateY(60px);
-      }
-
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
     }
   }
 }

@@ -15,23 +15,13 @@
         "deploy": "gupo-deploy --mode staging -p --env_dir ./env",
         "deploy:prod": "gupo-deploy --mode production -p --env_dir ./env",
         "type-check": "vue-tsc --noEmit -p tsconfig.app.json --composite false",
-        "lint": "eslint ./src --fix --ignore-path .gitignore",
+        "lint:eslint": "eslint ./src --fix",
         "lint:stylelint": "stylelint --fix './src/**/*.{css,scss,less,vue}' --cache --cache-location node_modules/.cache/stylelint/",
         "lint:prettier": "prettier . --write  --ignore-unknown",
+        "lint:ls-lint": "ls-lint",
         "preview": "vite preview",
         "prepare": "husky install",
         "preinstall": "npx only-allow pnpm"
-    },
-    "lint-staged": {
-        "src/**/*.{vue,ts,tsx,scss,css}": [
-            "prettier --write "
-        ],
-        "src/**/*.{vue,ts,tsx}": [
-            "npm run lint"
-        ],
-        "src/**/*.{scss,vue}": [
-            "stylelint --fix"
-        ]
     },
     "dependencies": {
         "@unocss/reset": "^0.55.4",
@@ -51,6 +41,7 @@
         "vue-router": "^4.2.4"
     },
     "devDependencies": {
+        "@ls-lint/ls-lint": "^2.1.0",
         "@commitlint/cli": "^17.7.1",
         "@commitlint/config-conventional": "^17.7.0",
         "@iconify-json/line-md": "^1.1.29",

@@ -50,7 +50,7 @@ html.dark {
 }
 
 .prose {
-    width: 80%;
+    width: 100%;
     max-width: none;
 
     &::selection {
@@ -118,11 +118,5 @@ html.dark {
 .prose-sm {
     p {
         font-weight: 500;
-    }
-}
-
-@media (min-width: 960px) {
-    .prose {
-        width: 100% !important;
     }
 }

@@ -2,9 +2,9 @@
 
 目前包含的组件如下
 
-- `GpModal`
-- `GpSearch`
-- `GpTable`
-- `GpSvgIcon`
-- `GpHelpMsg`
-- `GpLoading`
+-   `GpModal`
+-   `GpSearch`
+-   `GpTable`
+-   `GpSvgIcon`
+-   `GpHelpMsg`
+-   `GpLoading`

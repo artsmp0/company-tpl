@@ -1,128 +1,128 @@
 @import 'prism-theme-vars/base.css';
 
 html:not(.dark) {
-  --prism-foreground: #393a34;
-  --prism-background: #f8f8f8;
-  --prism-comment: #868e96;
-  --prism-namespace: #444;
-  --prism-string: #bc8671;
-  --prism-punctuation: #80817d;
-  --prism-literal: #36acaa;
-  --prism-keyword-bg: #d73a4922;
-  --prism-keyword: #d73a49;
-  --prism-function: #0c4c7d;
-  --prism-deleted: #9a050f;
-  --prism-class: #2b91af;
-  --prism-builtin: #800000;
-  --prism-property: #ce9178;
-  --prism-regex: #ad502b;
-  --prism-selection-background: #3188ec33;
+    --prism-foreground: #393a34;
+    --prism-background: #f8f8f8;
+    --prism-comment: #868e96;
+    --prism-namespace: #444;
+    --prism-string: #bc8671;
+    --prism-punctuation: #80817d;
+    --prism-literal: #36acaa;
+    --prism-keyword-bg: #d73a4922;
+    --prism-keyword: #d73a49;
+    --prism-function: #0c4c7d;
+    --prism-deleted: #9a050f;
+    --prism-class: #2b91af;
+    --prism-builtin: #800000;
+    --prism-property: #ce9178;
+    --prism-regex: #ad502b;
+    --prism-selection-background: #3188ec33;
 }
 
 html.dark {
-  --prism-foreground: #d4d4d4;
-  --prism-background: #1e1e1e;
-  --prism-comment: #868e96;
-  --prism-namespace: #aaa;
-  --prism-string: #ce9178;
-  --prism-punctuation: #d4d4d4;
-  --prism-literal: #36acaa;
-  --prism-keyword: #0ca678;
-  --prism-keyword-bg: #0ca67822;
-  --prism-function: #dcdcaa;
-  --prism-deleted: #9a050f;
-  --prism-class: #4ec9b0;
-  --prism-builtin: #d16969;
-  --prism-property: #ce9178;
-  --prism-regex: #ad502b;
-  --prism-selection-background: #3188ec88;
+    --prism-foreground: #d4d4d4;
+    --prism-background: #1e1e1e;
+    --prism-comment: #868e96;
+    --prism-namespace: #aaa;
+    --prism-string: #ce9178;
+    --prism-punctuation: #d4d4d4;
+    --prism-literal: #36acaa;
+    --prism-keyword: #0ca678;
+    --prism-keyword-bg: #0ca67822;
+    --prism-function: #dcdcaa;
+    --prism-deleted: #9a050f;
+    --prism-class: #4ec9b0;
+    --prism-builtin: #d16969;
+    --prism-property: #ce9178;
+    --prism-regex: #ad502b;
+    --prism-selection-background: #3188ec88;
 
-  .prose {
-    blockquote {
-      color: white;
-    }
+    .prose {
+        blockquote {
+            color: white;
+        }
 
-    pre {
-      color: #f8f9fa;
-      background: #2a2f33;
+        pre {
+            color: #f8f9fa;
+            background: #2a2f33;
+        }
     }
-  }
 }
 
 .prose {
-  width: 80%;
-  max-width: none;
+    width: 80%;
+    max-width: none;
 
-  &::selection {
-    background-color: #9a050f;
-  }
+    &::selection {
+        background-color: #9a050f;
+    }
 
-  :not(pre) code {
-    padding: 3px;
-    color: var(--prism-keyword) !important;
-    background-color: var(--prism-keyword-bg) !important;
-    border-radius: 2px;
-  }
+    :not(pre) code {
+        padding: 3px;
+        color: var(--prism-keyword) !important;
+        background-color: var(--prism-keyword-bg) !important;
+        border-radius: 2px;
+    }
 
-  ul {
-    margin: 0;
-    line-height: 2;
-  }
+    ul {
+        margin: 0;
+        line-height: 2;
+    }
 
-  pre {
-    font-size: 14px;
-    font-weight: 500;
-    color: #495057;
-    background: #eee;
-  }
+    pre {
+        font-size: 14px;
+        font-weight: 500;
+        color: #495057;
+        background: #eee;
+    }
 
-  ol {
-    padding-left: 15px;
-  }
+    ol {
+        padding-left: 15px;
+    }
 
-  blockquote {
-    margin: 0;
-    font-style: normal;
-    word-break: break-all;
-    word-wrap: break-word;
-    white-space: pre-wrap;
+    blockquote {
+        margin: 0;
+        font-style: normal;
+        word-break: break-all;
+        word-wrap: break-word;
+        white-space: pre-wrap;
+
+        code {
+            word-break: break-all;
+            white-space: pre-wrap;
+        }
+
+        p {
+            &:first-of-type::before {
+                content: none;
+            }
+        }
+    }
+
+    pre[class*='language-'] {
+        code[class*='language-'] {
+            .token.comment {
+                font-weight: normal;
+            }
+        }
+    }
 
     code {
-      word-break: break-all;
-      white-space: pre-wrap;
+        &::after,
+        &::before {
+            display: none;
+        }
     }
-
-    p {
-      &:first-of-type::before {
-        content: none;
-      }
-    }
-  }
-
-  pre[class*='language-'] {
-    code[class*='language-'] {
-      .token.comment {
-        font-weight: normal;
-      }
-    }
-  }
-
-  code {
-    &::after,
-    &::before {
-      display: none;
-    }
-  }
 }
 
 .prose-sm {
-  p {
-    font-weight: 500;
-  }
+    p {
+        font-weight: 500;
+    }
 }
 
 @media (min-width: 960px) {
-  .prose {
-    width: 100% !important;
-  }
+    .prose {
+        width: 100% !important;
+    }
 }

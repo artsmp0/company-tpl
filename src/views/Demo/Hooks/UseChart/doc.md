@@ -5,10 +5,10 @@
 
 #### 函数入参
 
-- `wrapper: ShallowRef<HTMLElement | undefined>`：被 `echarts` 实例挂载的元素。
-- `options?: UseEchartsOption`：配置对象。
-  - `fullScreenEl?: ShallowRef<HTMLElement | undefined>`：要全屏的元素。
-  - `resizeOpts?: ResizeOpts`： echa`rts 实例调用 `resize` 方法时，所需的配置对象。
+-   `wrapper: ShallowRef<HTMLElement | undefined>`：被 `echarts` 实例挂载的元素。
+-   `options?: UseEchartsOption`：配置对象。
+    -   `fullScreenEl?: ShallowRef<HTMLElement | undefined>`：要全屏的元素。
+    -   `resizeOpts?: ResizeOpts`： echa`rts 实例调用 `resize` 方法时，所需的配置对象。
 
 #### 使用方式
 

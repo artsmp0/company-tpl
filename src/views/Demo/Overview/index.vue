@@ -13,14 +13,14 @@ import Md from './markdown.md';
 
 const loading = ref(true);
 setTimeout(() => {
-  loading.value = false;
+    loading.value = false;
 }, 300);
 </script>
 
 <template>
-  <GpPageWrapper v-loading="loading">
-    <div m-auto p16>
-      <Md class="m-auto" />
-    </div>
-  </GpPageWrapper>
+    <GpPageWrapper v-loading="loading">
+        <div m-auto p16>
+            <Md class="m-auto" />
+        </div>
+    </GpPageWrapper>
 </template>

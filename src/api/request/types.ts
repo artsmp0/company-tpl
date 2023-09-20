@@ -6,67 +6,65 @@ import type { AxiosRequestConfig, AxiosResponse } from 'axios';
  * @param err: 如果有就说明接口报错了
  */
 export type MakeRequestRes<D = unknown> = {
-  data: D;
-  err?: AxiosResponse | D;
-  response?: AxiosResponse<D>;
+    data: D;
+    err?: AxiosResponse | D;
+    response?: AxiosResponse<D>;
 };
 /** 请求配置 */
 export type RequestConfig<D = unknown> = {
-  /**
-   * 是否显示业务错误的弹窗
-   * @default true
-   */
-  showMessage?: boolean;
-  /**
-   * 是否允许同一接口同时发起多次请求
-   * @default false
-   */
-  multiple?: boolean;
-  /**
-   * 路径参数方式
-   * @default undefined
-   */
-  args?: unknown;
-  /** 授权 api 要额外处理 */
-  isAuthApi?: boolean;
+    /**
+     * 是否显示业务错误的弹窗
+     * @default true
+     */
+    showMessage?: boolean;
+    /**
+     * 是否允许同一接口同时发起多次请求
+     * @default false
+     */
+    multiple?: boolean;
+    /**
+     * 路径参数方式
+     * @default undefined
+     */
+    args?: unknown;
+    /** 授权 api 要额外处理 */
+    isAuthApi?: boolean;
 } & AxiosRequestConfig<D>;
 
 /** 定义接口业务状态的码 */
 export const enum ResponseCode {
-  success = '000000',
-  authSuccess = 200,
-  authFailed = 401,
+    success = '000000',
+    authSuccess = 200,
+    authFailed = 401,
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-type GetUnionArgs<T extends string | undefined> = T extends `${infer L}{${infer M}}${infer R}`
-  ? M | GetUnionArgs<R>
-  : never;
+type GetUnionArgs<T extends string | undefined> = T extends `${infer L}{${infer M}}${infer R}` ? M | GetUnionArgs<R> : never;
 /** 自动计算路径参数 */
 export type GetFinalArgs<T extends string | undefined> = {
-  [P in GetUnionArgs<T>]?: string | number;
+    [P in GetUnionArgs<T>]?: string | number;
 };
 
 // ============================以下内容可能需要按后端的格式修改============================
 
 /** 接口的基本形状 */
 export type BaseRes<T = unknown> = {
-  code: string | number;
-  msg: string;
-  data: T;
+    code: string | number;
+    msg: string;
+    data: T;
 };
 
 export type PageParams<T = unknown> = Prettify<
-  {
-    pageNum?: number;
-    pageSize?: number;
-  } & T
+    {
+        pageNum?: number;
+        pageSize?: number;
+    } & T
 >;
 
 export type PageRes<T> = BaseRes<{
-  total: number;
-  pages: number;
-  pageNum: number;
-  pageSize: number;
-  rows: T[];
+    total: number;
+    pages: number;
+    pageNum: number;
+    pageSize: number;
+    rows: T[];
 }>;

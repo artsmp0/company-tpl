@@ -1,180 +1,180 @@
 {
-  "router": [
-    {
-      "path": "/Demo",
-      "meta": {
-        "title": "Demo",
-        "icon": "sidebar-dashboard"
-      },
-      "children": [
+    "router": [
         {
-          "path": "/Demo/Overview",
-          "meta": {
-            "title": "食用指南",
-            "keepAlive": true,
-            "isIndex": true,
-            "noClosable": true
-          },
-          "children": []
-        },
-        {
-          "path": "/Demo/Hooks",
-          "meta": {
-            "title": "Hooks"
-          },
-          "children": [
-            {
-              "path": "/Demo/Hooks/UseChart",
-              "meta": {
-                "title": "useChart",
-                "keepAlive": true
-              },
-              "children": []
+            "path": "/Demo",
+            "meta": {
+                "title": "Demo",
+                "icon": "sidebar-dashboard"
             },
-            {
-              "path": "/Demo/Hooks/UseDark",
-              "meta": {
-                "title": "useDark",
-                "keepAlive": true,
-                "icon": ""
-              },
-              "children": []
-            },
-            {
-              "path": "/Demo/Hooks/UseDiscrete",
-              "meta": {
-                "title": "useDiscrete",
-                "keepAlive": true,
-                "icon": ""
-              },
-              "children": []
-            }
-          ]
-        },
-        {
-          "path": "/Demo/Components",
-          "meta": {
-            "title": "Components"
-          },
-          "children": [
-            {
-              "path": "/Demo/Components/Form",
-              "meta": {
-                "title": "普通表单"
-              },
-              "children": []
-            },
-            {
-              "path": "/Demo/Components/Search",
-              "meta": {
-                "title": "搜索表单",
-                "keepAlive": true
-              },
-              "children": []
-            },
-            {
-              "path": "/Demo/Components/Modal",
-              "meta": {
-                "title": "模态框",
-                "keepAlive": true
-              },
-              "children": []
-            },
-            {
-              "path": "/Demo/Components/Table",
-              "meta": {
-                "keepAlive": true,
-                "title": "表格"
-              },
-              "children": []
-            }
-          ]
-        },
-        {
-          "path": "/Demo/Nested",
-          "meta": {
-            "title": "嵌套路由"
-          },
-          "children": [
-            {
-              "path": "/Demo/Nested/N1",
-              "meta": {
-                "icon": "",
-                "title": "嵌套路由1-1"
-              },
-              "children": [
+            "children": [
                 {
-                  "path": "/Demo/Nested/N1/N2",
-                  "meta": {
-                    "icon": "",
-                    "title": "嵌套路由1-2"
-                  }
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "path": "/Demo/NestIsPage",
-          "meta": {
-            "title": "嵌套子页面可点击"
-          },
-          "children": [
-            {
-              "path": "/Demo/NestIsPage/Page1",
-              "meta": {
-                "icon": "",
-                "title": "页面一",
-                "isPage": true,
-                "keepAlive": ["/Demo/NestIsPage/Page1/Detail"]
-              },
-              "children": [
+                    "path": "/Demo/Overview",
+                    "meta": {
+                        "title": "食用指南",
+                        "keepAlive": true,
+                        "isIndex": true,
+                        "noClosable": true
+                    },
+                    "children": []
+                },
                 {
-                  "path": "/Demo/NestIsPage/Page1/Detail",
-                  "meta": {
-                    "icon": "",
-                    "title": "页面一详情",
-                    "hideInMenu": true,
-                    "hideInTab": true
-                  }
-                }
-              ]
-            },
-            {
-              "path": "/Demo/NestIsPage/Page2",
-              "meta": {
-                "icon": "",
-                "title": "页面二",
-                "isPage": true
-              },
-              "children": [
+                    "path": "/Demo/Hooks",
+                    "meta": {
+                        "title": "Hooks"
+                    },
+                    "children": [
+                        {
+                            "path": "/Demo/Hooks/UseChart",
+                            "meta": {
+                                "title": "useChart",
+                                "keepAlive": true
+                            },
+                            "children": []
+                        },
+                        {
+                            "path": "/Demo/Hooks/UseDark",
+                            "meta": {
+                                "title": "useDark",
+                                "keepAlive": true,
+                                "icon": ""
+                            },
+                            "children": []
+                        },
+                        {
+                            "path": "/Demo/Hooks/UseDiscrete",
+                            "meta": {
+                                "title": "useDiscrete",
+                                "keepAlive": true,
+                                "icon": ""
+                            },
+                            "children": []
+                        }
+                    ]
+                },
                 {
-                  "path": "/Demo/NestIsPage/Page2/Sub",
-                  "meta": {
-                    "icon": "",
-                    "title": "页面二子页面"
-                  }
+                    "path": "/Demo/Components",
+                    "meta": {
+                        "title": "Components"
+                    },
+                    "children": [
+                        {
+                            "path": "/Demo/Components/Form",
+                            "meta": {
+                                "title": "普通表单"
+                            },
+                            "children": []
+                        },
+                        {
+                            "path": "/Demo/Components/Search",
+                            "meta": {
+                                "title": "搜索表单",
+                                "keepAlive": true
+                            },
+                            "children": []
+                        },
+                        {
+                            "path": "/Demo/Components/Modal",
+                            "meta": {
+                                "title": "模态框",
+                                "keepAlive": true
+                            },
+                            "children": []
+                        },
+                        {
+                            "path": "/Demo/Components/Table",
+                            "meta": {
+                                "keepAlive": true,
+                                "title": "表格"
+                            },
+                            "children": []
+                        }
+                    ]
+                },
+                {
+                    "path": "/Demo/Nested",
+                    "meta": {
+                        "title": "嵌套路由"
+                    },
+                    "children": [
+                        {
+                            "path": "/Demo/Nested/N1",
+                            "meta": {
+                                "icon": "",
+                                "title": "嵌套路由1-1"
+                            },
+                            "children": [
+                                {
+                                    "path": "/Demo/Nested/N1/N2",
+                                    "meta": {
+                                        "icon": "",
+                                        "title": "嵌套路由1-2"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "path": "/Demo/NestIsPage",
+                    "meta": {
+                        "title": "嵌套子页面可点击"
+                    },
+                    "children": [
+                        {
+                            "path": "/Demo/NestIsPage/Page1",
+                            "meta": {
+                                "icon": "",
+                                "title": "页面一",
+                                "isPage": true,
+                                "keepAlive": ["/Demo/NestIsPage/Page1/Detail"]
+                            },
+                            "children": [
+                                {
+                                    "path": "/Demo/NestIsPage/Page1/Detail",
+                                    "meta": {
+                                        "icon": "",
+                                        "title": "页面一详情",
+                                        "hideInMenu": true,
+                                        "hideInTab": true
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "path": "/Demo/NestIsPage/Page2",
+                            "meta": {
+                                "icon": "",
+                                "title": "页面二",
+                                "isPage": true
+                            },
+                            "children": [
+                                {
+                                    "path": "/Demo/NestIsPage/Page2/Sub",
+                                    "meta": {
+                                        "icon": "",
+                                        "title": "页面二子页面"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
                 }
-              ]
-            }
-          ]
+            ]
         }
-      ]
-    }
-  ],
-  "button": [
-    {
-      "title": "测试按钮",
-      "path": "demo"
-    }
-  ],
-  "otherPage": [
-    {
-      "path": "/Demo/OtherPage",
-      "meta": {
-        "title": "其他页面",
-        "hideInTab": true
-      }
-    }
-  ]
+    ],
+    "button": [
+        {
+            "title": "测试按钮",
+            "path": "demo"
+        }
+    ],
+    "otherPage": [
+        {
+            "path": "/Demo/OtherPage",
+            "meta": {
+                "title": "其他页面",
+                "hideInTab": true
+            }
+        }
+    ]
 }

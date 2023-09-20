@@ -9,36 +9,36 @@ export type GetParametersOne<T extends (...args: any) => any> = Prettify<Paramet
 
 /** 用于获取正确的 params 参数类型 */
 export function useTableListApi<T extends (...args: any) => any>(
-  api: T,
-  isGet: true
+    api: T,
+    isGet: true
 ): {
-  getList: (params: GetRequestParams<GetParametersOne<T>>) => ReturnType<T>;
-  passDefaultList: (params: GetRequestParams<GetParametersOne<T>>) => any;
+    getList: (params: GetRequestParams<GetParametersOne<T>>) => ReturnType<T>;
+    passDefaultList: (params: GetRequestParams<GetParametersOne<T>>) => any;
 };
 export function useTableListApi<T extends (...args: any) => any>(
-  api: T,
-  isGet: false
+    api: T,
+    isGet: false
 ): {
-  getList: (params: GetRequestParams<GetParametersOne<T>>) => ReturnType<T>;
-  passDefaultList: (params: GetRequestParams<GetParametersOne<T>>) => any;
+    getList: (params: GetRequestParams<GetParametersOne<T>>) => ReturnType<T>;
+    passDefaultList: (params: GetRequestParams<GetParametersOne<T>>) => any;
 };
 export function useTableListApi<T extends (...args: any) => any>(api: T, isGet = true): any {
-  const getList = isGet
-    ? (params: GetRequestParams<GetParametersOne<T>>): ReturnType<T> => {
-        return api({ params });
-      }
-    : (params: GetRequestData<GetParametersOne<T>>): ReturnType<T> => {
-        return api({ data: params });
-      };
+    const getList = isGet
+        ? (params: GetRequestParams<GetParametersOne<T>>): ReturnType<T> => {
+              return api({ params });
+          }
+        : (params: GetRequestData<GetParametersOne<T>>): ReturnType<T> => {
+              return api({ data: params });
+          };
 
-  const passDefaultList = (params: GetRequestParams<GetParametersOne<T>>) => {
-    return (p: any) => {
-      return getList({ ...(params as any), ...p });
+    const passDefaultList = (params: GetRequestParams<GetParametersOne<T>>) => {
+        return (p: any) => {
+            return getList({ ...(params as any), ...p });
+        };
     };
-  };
 
-  return {
-    getList,
-    passDefaultList,
-  };
+    return {
+        getList,
+        passDefaultList,
+    };
 }

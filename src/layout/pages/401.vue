@@ -11,42 +11,42 @@ const route = useRoute();
 const code = route.query?.code as '412' | '401';
 
 const msg = {
-  412: {
-    title: '暂未注册!',
-    description: '您账号尚未注册，请联系管理员注册!',
-  },
-  401: {
-    title: '暂无权限!',
-    description: '暂未登录或已过期，请重新登录!',
-  },
+    412: {
+        title: '暂未注册!',
+        description: '您账号尚未注册，请联系管理员注册!',
+    },
+    401: {
+        title: '暂无权限!',
+        description: '暂未登录或已过期，请重新登录!',
+    },
 };
 
 const userStore = useUserStore();
 </script>
 
 <template>
-  <div class="forbidden">
-    <NResult status="500" :description="msg[code]?.description" :title="msg[code]?.title">
-      <template #footer>
-        <NButton v-if="code === '401'" type="error" @click="userStore.logout()">去登录</NButton>
-      </template>
-    </NResult>
-  </div>
+    <div class="forbidden">
+        <NResult status="500" :description="msg[code]?.description" :title="msg[code]?.title">
+            <template #footer>
+                <NButton v-if="code === '401'" type="error" @click="userStore.logout()">去登录</NButton>
+            </template>
+        </NResult>
+    </div>
 </template>
 
 <style lang="scss" scoped>
 .forbidden {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
 
-  :deep(.ant-result) {
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
+    :deep(.ant-result) {
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
 }
 </style>

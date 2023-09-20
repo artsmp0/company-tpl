@@ -39,22 +39,22 @@ import type { BaseRes, PageParams, PageRes } from '../request/types';
 import type { TableItem, TagTbBindListParams } from './types';
 
 export const enum URL {
-  getTest = '/api/get',
-  postTest = '/api/post',
-  tableList = '/tag/tb/bind/list',
-  userInfo = '/api/user/{id}',
+    getTest = '/api/get',
+    postTest = '/api/post',
+    tableList = '/tag/tb/bind/list',
+    userInfo = '/api/user/{id}',
 }
 
 export default {
-  /** 演示 get 分页请求 */
-  [URL.tableList]: get<PageRes<TableItem>, PageParams<TagTbBindListParams>>(URL.tableList),
-  /** 演示 get 普通请求 */
-  [URL.getTest]: get<BaseRes<TableItem>, { search?: string; xx?: string }>(URL.getTest),
-  /** 演示 post 请求 */
-  [URL.postTest]: post<BaseRes<boolean>, { username: string; password: string }>(URL.postTest),
-  /** 此处演示路径参数的请求方式，此种写法等同于改行下的注释 */
-  [URL.userInfo]: pathArgGet<BaseRes<TableItem>, URL.userInfo>(URL.userInfo),
-  // [URL.userInfo]: request<BaseRes<TableItem>, undefined, undefined, URL.userInfo>({ url: URL.userInfo })
+    /** 演示 get 分页请求 */
+    [URL.tableList]: get<PageRes<TableItem>, PageParams<TagTbBindListParams>>(URL.tableList),
+    /** 演示 get 普通请求 */
+    [URL.getTest]: get<BaseRes<TableItem>, { search?: string; xx?: string }>(URL.getTest),
+    /** 演示 post 请求 */
+    [URL.postTest]: post<BaseRes<boolean>, { username: string; password: string }>(URL.postTest),
+    /** 此处演示路径参数的请求方式，此种写法等同于改行下的注释 */
+    [URL.userInfo]: pathArgGet<BaseRes<TableItem>, URL.userInfo>(URL.userInfo),
+    // [URL.userInfo]: request<BaseRes<TableItem>, undefined, undefined, URL.userInfo>({ url: URL.userInfo })
 };
 ```
 
@@ -73,17 +73,17 @@ export default {
 
 ```html
 <script setup lang="ts">
-  import { GpPageWrapper } from '@/components';
-  import Md from './markdown.md';
-  import { APIS } from '@/api';
-  import { URLS } from '@/api/apis/common';
+    import { GpPageWrapper } from '@/components';
+    import Md from './markdown.md';
+    import { APIS } from '@/api';
+    import { URLS } from '@/api/apis/common';
 
-  // 演示 get path arg
-  APIS.common[URLS.userInfo]({ args: { id: 1 } });
-  // 演示 get query
-  APIS.common[URLS.getTest]({ params: { search: 'xxx' } });
-  // 演示 post
-  APIS.common[URLS.postTest]({ data: { password: 'xxx', username: 'artsmp' } });
+    // 演示 get path arg
+    APIS.common[URLS.userInfo]({ args: { id: 1 } });
+    // 演示 get query
+    APIS.common[URLS.getTest]({ params: { search: 'xxx' } });
+    // 演示 post
+    APIS.common[URLS.postTest]({ data: { password: 'xxx', username: 'artsmp' } });
 </script>
 ```
 
@@ -91,20 +91,20 @@ export default {
 
 该模板支持三种图标使用方式：
 
-- `unocss`：该项目默认已经集成了 `@iconify/json`，所以 [icones](https://icones.js.org/) 上的所有图标皆可使用。
-- `naive-ui`：请直接阅读 naive-ui 的 [文档](https://www.naiveui.com/zh-CN/os-theme/components/icon)。
-- `svg-icon`
+-   `unocss`：该项目默认已经集成了 `@iconify/json`，所以 [icones](https://icones.js.org/) 上的所有图标皆可使用。
+-   `naive-ui`：请直接阅读 naive-ui 的 [文档](https://www.naiveui.com/zh-CN/os-theme/components/icon)。
+-   `svg-icon`
 
 此处演示三种使用方式：
 
 ```html
 <NSpace>
-  <div class="i-material-symbols:360"></div>
-  <!-- 针对 naive 方式，该项目仅安装了这个图标包（@vicons/antd），若有需要请自行安装其他图包。 -->
-  <NIcon> <UploadOutlined /> </NIcon>
-  <!-- 请注意：需要带上路径前缀 假设 chart 图标在 icons/sidebar/xxx/chart.svg，则他的名字为 sidebar-xxx-chart -->
-  <GpSvgIcon name="sidebar-chart" />
-  这是蚊子
+    <div class="i-material-symbols:360"></div>
+    <!-- 针对 naive 方式，该项目仅安装了这个图标包（@vicons/antd），若有需要请自行安装其他图包。 -->
+    <NIcon> <UploadOutlined /> </NIcon>
+    <!-- 请注意：需要带上路径前缀 假设 chart 图标在 icons/sidebar/xxx/chart.svg，则他的名字为 sidebar-xxx-chart -->
+    <GpSvgIcon name="sidebar-chart" />
+    这是蚊子
 </NSpace>
 ```
 
@@ -174,30 +174,30 @@ VITE_APP_API_URL=http://10.123.234.102:10087
 import 'vue-router';
 
 declare module 'vue-router' {
-  interface RouteMeta {
-    /** 菜单图标：例如 sidebar-dashboard -> assets/icons/sidebar/dashboard.svg */
-    icon?: string;
-    /** 页面标题(菜单项和标签页标题) */
-    title?: string;
-    /** 是否进行页面保活，如果是数组，只有在进入指定页面才会进行保活操作 */
-    keepAlive?: boolean | string[];
-    /** 是否在 标签栏 隐藏 */
-    hideInTab?: boolean;
-    /** 是否在 菜单栏 显示徽标数 */
-    badge?: number;
-    /** 是否在菜单栏中隐藏：比如详情页 */
-    hideInMenu?: boolean;
-    /** 作为父路由是否本身拥有界面 */
-    isPage?: boolean;
-    /** 默认采取 mock -> router -> 第一项作为首页，这个就是为了支持你自定义首页而不是默认第一项 */
-    isIndex?: boolean;
-  }
+    interface RouteMeta {
+        /** 菜单图标：例如 sidebar-dashboard -> assets/icons/sidebar/dashboard.svg */
+        icon?: string;
+        /** 页面标题(菜单项和标签页标题) */
+        title?: string;
+        /** 是否进行页面保活，如果是数组，只有在进入指定页面才会进行保活操作 */
+        keepAlive?: boolean | string[];
+        /** 是否在 标签栏 隐藏 */
+        hideInTab?: boolean;
+        /** 是否在 菜单栏 显示徽标数 */
+        badge?: number;
+        /** 是否在菜单栏中隐藏：比如详情页 */
+        hideInMenu?: boolean;
+        /** 作为父路由是否本身拥有界面 */
+        isPage?: boolean;
+        /** 默认采取 mock -> router -> 第一项作为首页，这个就是为了支持你自定义首页而不是默认第一项 */
+        isIndex?: boolean;
+    }
 }
 
 // isIndex 相关逻辑（permission.ts)：返回登录成功后前往的页面地址
 const indexPagePath =
-  flatMenuList.value.find((route) => route.meta?.isIndex && route.component)?.path ??
-  (menuList.value[0]?.children?.[0]?.path || menuList.value[0]?.path || otherPagePath || '/');
+    flatMenuList.value.find(route => route.meta?.isIndex && route.component)?.path ??
+    (menuList.value[0]?.children?.[0]?.path || menuList.value[0]?.path || otherPagePath || '/');
 ```
 
 > 注意路由保活请使用 `defineOptions` 进行路由名称（组件名）定义，路由名称解析 `mock.json` 时
@@ -210,11 +210,11 @@ const indexPagePath =
 
 目前提供了 `new:page` 这个命令，命令用于自动创建路由页面并生成路由信息插入到 `src/router/mock.json` 文件当中。使用需要注意一下情况：
 
-- 仅需要输入全小写路径即可，命令会自动转成首字母大写；
-- 若已经存在目标路径的页面，则创建失败；
-- 若已经存在目标路径的子路径，则创建失败:
-  - 正确示例：`aaa -> aaa/bbb -> aaa/bbb/ccc`；
-  - 错误示例：`aaa/bbb -> aaa`。
+-   仅需要输入全小写路径即可，命令会自动转成首字母大写；
+-   若已经存在目标路径的页面，则创建失败；
+-   若已经存在目标路径的子路径，则创建失败:
+    -   正确示例：`aaa -> aaa/bbb -> aaa/bbb/ccc`；
+    -   错误示例：`aaa/bbb -> aaa`。
 
 使用示例：
 

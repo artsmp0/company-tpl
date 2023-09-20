@@ -1,6 +1,6 @@
 {
     "extends": "@tsconfig/node18/tsconfig.json",
-    "include": ["vite.config.*", "vitest.config.*", "cypress.config.*", "playwright.config.*"],
+    "include": ["vite.config.*", "vitest.config.*", "cypress.config.*", "config/**/*", "playwright.config.*", "./types/env.d.ts"],
     "compilerOptions": {
         "composite": true,
         // 解决版本升级后 vite config 报错问题

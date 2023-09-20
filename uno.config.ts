@@ -16,7 +16,7 @@ export default defineConfig({
     theme: {
         colors: {
             primary: 'var(--primary-color)',
-            'text-color': 'var(--n-text-color)',
+            'text-color': 'var(--text-color)',
         },
     },
 });

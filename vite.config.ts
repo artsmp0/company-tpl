@@ -1,81 +1,18 @@
 import { fileURLToPath, URL } from 'node:url';
-
-import { defineConfig, loadEnv } from 'vite';
-import vue from '@vitejs/plugin-vue';
-import vueJsx from '@vitejs/plugin-vue-jsx';
-import AutoImport from 'unplugin-auto-import/vite';
-import Components from 'unplugin-vue-components/vite';
-import { NaiveUiResolver } from 'unplugin-vue-components/resolvers';
-import UnoCSS from 'unocss/vite';
-import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
-import EnvTypes from 'vite-plugin-env-types';
-import VueDevTools from 'vite-plugin-vue-devtools';
-import { compression } from 'vite-plugin-compression2';
-
-import Markdown from 'unplugin-vue-markdown/vite';
-import Prism from 'markdown-it-prism';
+import { defineConfig, loadEnv, type ConfigEnv } from 'vite';
+import { createVitePlugins } from './config/plugins';
 
 const envDir = fileURLToPath(new URL('env', import.meta.url));
-const iconDirs = [fileURLToPath(new URL('src/assets/icons', import.meta.url))];
-const safelist =
-    'prose px-2 sm:px-0 md:prose-lg lg:prose-lg dark:prose-invert text-left w-screen prose-slate prose-img:rounded-xl prose-headings:underline prose-a:text-blue-600';
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode, command }) => {
-    console.log('mode: ', mode);
-    console.log('command: ', command);
-    const { VITE_PUBLIC_PATH, VITE_APP_MARKDOWN } = loadEnv(mode, envDir);
+export default defineConfig((c: ConfigEnv) => {
+    const env = loadEnv(c.mode, envDir) as ImportMetaEnv;
+    const { VITE_PUBLIC_PATH } = env;
 
     return {
         base: VITE_PUBLIC_PATH,
         envDir,
-        plugins: [
-            vue({
-                script: {
-                    defineModel: true,
-                },
-                include: [/\.vue$/, /\.md$/],
-            }),
-            vueJsx(),
-            UnoCSS({
-                safelist: VITE_APP_MARKDOWN ? safelist.split(' ') : undefined,
-            }),
-            AutoImport({
-                dts: './types/auto-imports.d.ts',
-                imports: [
-                    'vue',
-                    'vue-router',
-                    {
-                        'naive-ui': ['useDialog', 'useMessage', 'useNotification', 'useLoadingBar'],
-                    },
-                ],
-            }),
-            Components({
-                dts: './types/components.d.ts',
-                dirs: [],
-                resolvers: [NaiveUiResolver()],
-            }),
-            createSvgIconsPlugin({
-                iconDirs,
-                symbolId: 'icon-[dir]-[name]',
-            }),
-            EnvTypes({
-                dts: './types/env.d.ts',
-            }),
-            VueDevTools(),
-            compression({
-                threshold: 1024,
-                include: /\.(js|mjs|json|css|html|wasm)$/i,
-                algorithm: 'brotliCompress',
-            }),
-            VITE_APP_MARKDOWN &&
-                Markdown({
-                    wrapperClasses: safelist,
-                    markdownItSetup(md) {
-                        md.use(Prism);
-                    },
-                }),
-        ],
+        plugins: createVitePlugins(c, env),
         resolve: {
             alias: {
                 '@': fileURLToPath(new URL('./src', import.meta.url)),
@@ -99,7 +36,7 @@ export default defineConfig(({ mode, command }) => {
             },
         },
         esbuild: {
-            drop: command === 'serve' && mode === 'production' ? ['console', 'debugger'] : [],
+            // drop: command === 'serve' && mode === 'production' ? ['console', 'debugger'] : [],
         },
     };
 });

@@ -18,8 +18,6 @@ ls:
         .test-d.ts: kebab-case
         .less: camelCase | pointcase
         .spec.ts: camelCase | PascalCase
-    src/{views}/*:
-        .dir: regex:[A-Z]+[a-zA-Z0-9]*
 
 ignore:
     - node_modules

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { FormItemGiProps, FormProps } from 'naive-ui';
-import type { VNode, Ref, Component } from 'vue';
+import type { VNode, Ref, Component, ShallowRef } from 'vue';
 
 export type FieldType =
     | 'input'
@@ -29,6 +29,10 @@ export interface JsonItem extends FormItemGiProps {
     button?: boolean;
     slots?: Recordable<() => VNode>;
     component?: Component;
+    /** 针对混合表单（数组），表示是否添加一行 */
+    showAddButton?: boolean;
+    /** 针对混合表单（数组），表示最少要几行 */
+    limit?: number;
 }
 
 export type FormItem = {
@@ -43,4 +47,5 @@ export interface GpFormMeta extends FormProps {
 export type RenderFnParams = {
     item: JsonItem;
     model: Recordable;
+    updateElements?: (field: string, item: JsonItem) => void;
 };

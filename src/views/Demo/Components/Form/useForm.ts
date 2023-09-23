@@ -382,18 +382,21 @@ export const useForm = (disabled: Ref<boolean>) => {
                 field: 'multiple2',
                 type: 'multiple',
                 label: '混合表单(数组)',
+                // 开启这个，需要预留 2 的空间给删除按钮
+                showAddButton: true,
+                limit: 2,
                 // rule: { required: true, message: '请填充混合表单的每一项' },
                 span: 12,
                 children: [
                     {
                         field: 'name',
                         type: 'input',
-                        span: 12,
+                        span: 11,
                     },
                     {
                         field: 'area',
                         type: 'select',
-                        span: 12,
+                        span: 11,
                         apiFn() {
                             return new Promise(resolve => {
                                 setTimeout(() => {

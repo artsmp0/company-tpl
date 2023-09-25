@@ -74,7 +74,7 @@ export function useDeps({ item, model }: RenderFnParams, args?: ReturnType<typeo
     const watcher = async () => {
         Object.assign(state, await item.listener?.(args?.fetchData));
     };
-    onMounted(watcher);
+    tryOnMounted(watcher);
 
     const refDeps = item.deps.filter(d => isRef(d));
 
@@ -82,7 +82,7 @@ export function useDeps({ item, model }: RenderFnParams, args?: ReturnType<typeo
     // const modelDeps = item.deps.filter((d) => typeof d === 'string').map((k) => model[k as string]);
     // watch(() => modelDeps, watcher);
 
-    watch(() => item.deps?.map(k => (typeof k === 'string' ? model[k] : null)), watcher);
+    watch(() => item.deps?.map(k => (typeof k === 'string' ? model[k] : null)), watcher, { deep: item.deep });
     watch(refDeps, watcher);
 
     return state;

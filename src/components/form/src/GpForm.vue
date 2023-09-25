@@ -40,3 +40,13 @@ defineExpose(rest);
         </NGrid>
     </NForm>
 </template>
+
+<style lang="scss" scoped>
+:deep(.n-form-item-label.n-form-item-label--left-mark) {
+    align-items: center;
+
+    .n-form-item-label__asterisk {
+        align-self: center;
+    }
+}
+</style>

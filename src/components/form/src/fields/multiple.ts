@@ -15,6 +15,7 @@ export function renderMultiple({ item, model, updateElements }: RenderFnParams) 
     let widgets: VNode[] = [];
 
     const fieldItem = { ...model[field][0] };
+
     if (isArray(model[field])) {
         for (let i = 0; i < model[field].length; i++) {
             widgets.push(

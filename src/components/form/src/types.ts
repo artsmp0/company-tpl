@@ -21,6 +21,8 @@ export interface JsonItem extends FormItemGiProps {
     props?: any;
     deps?: (string | Ref<any>)[];
     listener?: Function;
+    /** 是否在对依赖处理的时候需要深度监听 */
+    deep?: boolean;
     hide?: boolean;
     children?: JsonItem[];
     /** 需要自动发起 api 请求的 */
@@ -33,6 +35,8 @@ export interface JsonItem extends FormItemGiProps {
     showAddButton?: boolean;
     /** 针对混合表单（数组），表示最少要几行 */
     limit?: number;
+    /** 针对混合表单（数组），点击添加一行按钮执行的函数 默认取表单项的第一项插入 */
+    addButtonClick?: (item: JsonItem) => void;
 }
 
 export type FormItem = {

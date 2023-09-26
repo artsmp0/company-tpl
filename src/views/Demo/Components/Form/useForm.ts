@@ -87,7 +87,7 @@ export const useForm = (disabled: Ref<boolean>) => {
         cascade1: null,
         cascade2: null,
     });
-    const { elements } = getElementByJson(
+    const { elements, updateElements } = getElementByJson(
         [
             {
                 field: 'name',
@@ -96,7 +96,7 @@ export const useForm = (disabled: Ref<boolean>) => {
                 label: '演示外部依赖联动处理',
                 deps: [disabled],
                 listener() {
-                    const state = reactive({ disabled: disabled.value });
+                    const state = reactive({ disabled: disabled.value, xxx: 123 });
                     return state;
                 },
             },
@@ -385,6 +385,17 @@ export const useForm = (disabled: Ref<boolean>) => {
                 // 开启这个，需要预留 2 的空间给删除按钮
                 showAddButton: true,
                 limit: 2,
+                onAddButtonClick(item) {
+                    model.multiple2.push({
+                        area: null,
+                        name: '',
+                    });
+                    updateElements('multiple2', item);
+                },
+                onRemoveButtonClick(idx, item) {
+                    model.multiple2.splice(idx, 1);
+                    updateElements('multiple2', item);
+                },
                 // rule: { required: true, message: '请填充混合表单的每一项' },
                 span: 12,
                 children: [
@@ -397,21 +408,17 @@ export const useForm = (disabled: Ref<boolean>) => {
                         field: 'area',
                         type: 'select',
                         span: 11,
-                        apiFn() {
-                            return new Promise(resolve => {
-                                setTimeout(() => {
-                                    resolve([
-                                        {
-                                            label: '浙江',
-                                            value: 1,
-                                        },
-                                        {
-                                            label: '福建',
-                                            value: 2,
-                                        },
-                                    ]);
-                                }, 3000);
-                            });
+                        props: {
+                            options: [
+                                {
+                                    label: '浙江',
+                                    value: 1,
+                                },
+                                {
+                                    label: '福建',
+                                    value: 2,
+                                },
+                            ],
                         },
                     },
                 ],

@@ -4,6 +4,7 @@ import type { GridProps } from 'naive-ui';
 import type { GpFormMeta } from './types';
 import { cloneDeep, omit } from 'lodash-unified';
 import { useForm } from './utils';
+import { h } from 'vue';
 
 defineOptions({
     name: 'GpForm',

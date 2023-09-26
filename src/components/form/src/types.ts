@@ -36,7 +36,9 @@ export interface JsonItem extends FormItemGiProps {
     /** 针对混合表单（数组），表示最少要几行 */
     limit?: number;
     /** 针对混合表单（数组），点击添加一行按钮执行的函数 默认取表单项的第一项插入 */
-    addButtonClick?: (item: JsonItem) => void;
+    onAddButtonClick?: (item: JsonItem) => void;
+    /** 针对混合表单（数组），点击每一项的删除按钮触发 */
+    onRemoveButtonClick?: (idx: number, item: JsonItem) => void;
 }
 
 export type FormItem = {
@@ -51,5 +53,4 @@ export interface GpFormMeta extends FormProps {
 export type RenderFnParams = {
     item: JsonItem;
     model: Recordable;
-    updateElements?: (field: string, item: JsonItem) => void;
 };

@@ -10,19 +10,19 @@ export function getElementByJson(json: JsonItem[], model: Recordable, observe?: 
         for (const item of json) {
             // 仅仅针对 props 进行响应式处理
             elements.push({
-                widget: getWidget({ item, model, updateElements }),
-                props: reactive(omit(item, ['children'])),
+                widget: getWidget({ item, model }),
+                props: omit(item, ['children', 'themeOverrides', 'component']),
             });
         }
     };
 
+    /** 更新指定表单项：特别注意 multiple 类型的表单域在修改后需要手动更新， TODO */
     function updateElements(field: string, item: JsonItem) {
         const idx = elements.findIndex(e => e.props.field === field);
         if (idx === -1) return;
-        // @ts-ignore
         elements[idx] = {
-            widget: getWidget({ item, model, updateElements }),
-            props: reactive(omit(item, ['children'])),
+            widget: getWidget({ item, model }),
+            props: omit(item, ['children', 'themeOverrides', 'component']),
         };
     }
 
@@ -35,5 +35,5 @@ export function getElementByJson(json: JsonItem[], model: Recordable, observe?: 
         watch(json, reRenderForm);
     }
 
-    return { elements, initialValues, reRenderForm };
+    return { elements, initialValues, reRenderForm, updateElements };
 }

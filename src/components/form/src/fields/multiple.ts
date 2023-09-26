@@ -5,16 +5,14 @@ import { isArray, omit } from 'lodash-unified';
 import type { VNode } from 'vue';
 import { MinusOutlined } from '@vicons/antd';
 
-export function renderMultiple({ item, model, updateElements }: RenderFnParams) {
-    const { props = undefined, field, children, showAddButton, limit } = item;
+export function renderMultiple({ item, model }: RenderFnParams) {
+    const { props = undefined, field, children, showAddButton, limit, onAddButtonClick, onRemoveButtonClick } = item;
     if (!model[item.field]) {
         console.warn(`表单 model 无 ${field} 字段！`);
         return null;
     }
     if (!children?.length) return null;
     let widgets: VNode[] = [];
-
-    const fieldItem = { ...model[field][0] };
 
     if (isArray(model[field])) {
         for (let i = 0; i < model[field].length; i++) {
@@ -52,8 +50,7 @@ export function renderMultiple({ item, model, updateElements }: RenderFnParams) 
                                     type: 'error',
                                     disabled: limit ? model[field].length <= limit : false,
                                     onClick() {
-                                        model[field].splice(i, 1);
-                                        updateElements?.(field, item);
+                                        onRemoveButtonClick?.(i, item);
                                     },
                                 },
                                 () => h(NIcon, null, () => h(MinusOutlined))
@@ -90,9 +87,8 @@ export function renderMultiple({ item, model, updateElements }: RenderFnParams) 
                             type: 'primary',
                             dashed: true,
                             block: true,
-                            async onClick() {
-                                model[field].push({ ...fieldItem });
-                                updateElements?.(field, item);
+                            onClick() {
+                                onAddButtonClick?.(item);
                             },
                         },
                         () => '添加一行'

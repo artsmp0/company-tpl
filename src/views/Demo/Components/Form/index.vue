@@ -6,7 +6,7 @@ import { GpPageWrapper } from '@/components';
 import { useToggle } from '@vueuse/core';
 
 const [disabled, toggleDisabled] = useToggle();
-const meta = useForm(disabled);
+const { meta, updateElements } = useForm(disabled);
 
 function getData() {
     setTimeout(() => {
@@ -32,6 +32,15 @@ const handleSubmit = async () => {
     await $form.value?.validate();
     message.info(JSON.stringify(meta.model));
 };
+
+setTimeout(() => {
+    updateElements('dynamic', {
+        field: 'dynamic',
+        type: 'input',
+        span: 4,
+        label: '动态增加的',
+    });
+}, 3000);
 </script>
 
 <template>

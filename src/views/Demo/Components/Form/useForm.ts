@@ -86,6 +86,9 @@ export const useForm = (disabled: Ref<boolean>) => {
         upload3: [],
         cascade1: null,
         cascade2: null,
+
+        // 测试动态增减
+        dynamic: '123',
     });
     const { elements, updateElements } = getElementByJson(
         [
@@ -536,5 +539,5 @@ export const useForm = (disabled: Ref<boolean>) => {
         model: model,
         // disabled: true
     };
-    return meta;
+    return { meta, updateElements };
 };

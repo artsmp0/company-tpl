@@ -2,6 +2,7 @@ import HelpMsg from './GpHelpMsg.vue';
 import SvgIcon from './SvgIcon.vue';
 import Loading from './GpLoading.vue';
 import PageWrapper from './GpPageWrapper.vue';
+import CommonHeader from './GpCommonHeader.vue';
 import Upload from './GpUpload.vue';
 import Confirm from './GpConfirm.vue';
 
@@ -10,4 +11,5 @@ export const GpSvgIcon = SvgIcon;
 export const GpLoading = Loading;
 export const GpPageWrapper = PageWrapper;
 export const GpUpload = Upload;
+export const GpCommonHeader = CommonHeader;
 export const GpConfirm = Confirm;

@@ -54,7 +54,8 @@
                 {
                     "path": "/Demo/Components",
                     "meta": {
-                        "title": "Components"
+                        "title": "Components",
+                        "isPage": true
                     },
                     "children": [
                         {
@@ -85,6 +86,16 @@
                             "meta": {
                                 "keepAlive": true,
                                 "title": "表格"
+                            },
+                            "children": []
+                        },
+                        {
+                            "path": "/Demo/Components/Icon",
+                            "meta": {
+                                "title": "统一图标",
+                                "keepAlive": true,
+                                "hideInTab": false,
+                                "hideInMenu": false
                             },
                             "children": []
                         }

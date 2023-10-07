@@ -1,3 +1,5 @@
+import { isDark } from '@/composables';
+import { DARK_THEME_OVERRIDES, LIGHT_THEME_OVERRIDES } from '@/constants';
 import { NSpin } from 'naive-ui';
 import type { App, Directive } from 'vue';
 
@@ -5,7 +7,9 @@ export function createLoadingDirective(): Directive<HTMLDivElement, boolean> {
     let oDiv: HTMLDivElement;
     let app: App;
     const createLoading = (el: HTMLDivElement) => {
-        app = createApp(NSpin);
+        app = createApp(NSpin, {
+            themeOverrides: isDark.value ? DARK_THEME_OVERRIDES : LIGHT_THEME_OVERRIDES,
+        });
         oDiv = document.createElement('div');
 
         oDiv.setAttribute(

@@ -4,9 +4,13 @@ import { getWidget } from '.';
 import { isArray, omit } from 'lodash-unified';
 import type { VNode } from 'vue';
 import { MinusOutlined } from '@vicons/antd';
+import { useDeps } from '../utils';
 
 export function renderMultiple({ item, model }: RenderFnParams) {
     const { props = undefined, field, children, showAddButton, limit, onAddButtonClick, onRemoveButtonClick } = item;
+
+    const state = useDeps({ item, model });
+
     if (!model[item.field]) {
         console.warn(`表单 model 无 ${field} 字段！`);
         return null;
@@ -38,7 +42,7 @@ export function renderMultiple({ item, model }: RenderFnParams) {
                     h(
                         NFormItemGi,
                         {
-                            showLabel: false,
+                            showLabel: true,
                             span: 2,
                         },
                         () =>
@@ -77,7 +81,7 @@ export function renderMultiple({ item, model }: RenderFnParams) {
     }
 
     return () =>
-        h(NGrid, { xGap: 12, ...props }, () => [
+        h(NGrid, { xGap: 12, ...props, ...state }, () => [
             ...widgets,
             showAddButton &&
                 h(NFormItemGi, { span: 24, showFeedback: false, showLabel: false }, () =>

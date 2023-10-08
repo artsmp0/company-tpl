@@ -61,9 +61,13 @@ const selectedItem = computed(() => {
     return route.path;
 });
 
+const settingStore = useSettingStore();
 const { width } = useWindowSize();
+// 当点击过展开收起按钮时,取消响应式折叠收起功能
+const clicked = ref(false);
 const collapsed = ref(false);
 watch(width, v => {
+    if (clicked.value) return;
     if (v > 768) {
         collapsed.value = false;
     } else {
@@ -71,7 +75,6 @@ watch(width, v => {
     }
 });
 
-const settingStore = useSettingStore();
 const SIDE_WIDTH = computed(() => settingStore.defaultSetting.SIDE_WIDTH);
 </script>
 
@@ -86,8 +89,14 @@ const SIDE_WIDTH = computed(() => settingStore.defaultSetting.SIDE_WIDTH);
         show-trigger="bar"
         :trigger-style="{ right: '-24px' }"
         :collapsed-trigger-style="{ right: '-24px' }"
-        @collapse="collapsed = true"
-        @expand="collapsed = false"
+        @collapse="
+            collapsed = true;
+            clicked = true;
+        "
+        @expand="
+            collapsed = false;
+            clicked = true;
+        "
     >
         <NMenu
             :value="selectedItem"

@@ -22,7 +22,7 @@ const upperWordFirstCase = text => {
 const getIconName = () => {
     const iconDir = fileURLToPath(new URL('../src/assets/icons/sidebar', import.meta.url));
     const files = readdirSync(iconDir);
-    return files.map(file => 'sidebar-' + file.split('.')[0]);
+    return ['', ...files.map(file => 'sidebar-' + file.split('.')[0])];
 };
 
 /**
@@ -49,6 +49,21 @@ export default function (plop) {
                 },
             },
             {
+                type: 'input',
+                name: 'title',
+                message: '菜单标题：',
+            },
+            {
+                type: 'list',
+                name: 'isMenu',
+                default: 'no',
+                choices: ['yes', 'no'],
+                message: '是否仅作为菜单：',
+            },
+            {
+                when(context) {
+                    return context.isMenu === 'no';
+                },
                 type: 'list',
                 name: 'isDetail',
                 default: 'no',
@@ -56,13 +71,8 @@ export default function (plop) {
                 message: '是否是详情：',
             },
             {
-                type: 'input',
-                name: 'title',
-                message: '菜单标题：',
-            },
-            {
                 when(context) {
-                    return context.isDetail === 'no';
+                    return context.isDetail === 'no' || context.isMenu === 'yes';
                 },
                 type: 'searchable-list',
                 choices: getIconName(),
@@ -70,6 +80,9 @@ export default function (plop) {
                 message: '菜单图标(sidebar-开头)：',
             },
             {
+                when(context) {
+                    return context.isMenu === 'no';
+                },
                 type: 'list',
                 name: 'keepAlive',
                 default: 'yes',
@@ -91,7 +104,7 @@ export default function (plop) {
     });
 }
 
-function overwriteMock({ filepath, title, keepAlive, icon, isDetail }) {
+function overwriteMock({ filepath, title, keepAlive, icon, isDetail, isMenu }) {
     const mockFile = fileURLToPath(new URL('../src/router/mock.json', import.meta.url));
     const mockFileContent = readFileSync(mockFile, 'utf-8');
     keepAlive = keepAlive === 'yes' ? true : false;
@@ -116,8 +129,13 @@ function overwriteMock({ filepath, title, keepAlive, icon, isDetail }) {
         console.log(chalk.bgRed(`已经存在路径为「${targetChild.path}」的子路径，添加失败！`));
         return false;
     }
+
     const newMockFileContent = updateContent(originalObj, flatRouter, addition, isDetail);
     writeFileSync(mockFile, newMockFileContent);
+    if (isMenu === 'yes') {
+        console.log(chalk.bgGreen(`添加菜单项「${addition.path}」成功, 该菜单没有创建页面！`));
+        return false;
+    }
     return true;
 }
 
@@ -147,7 +165,6 @@ function updateContent(originalObj, flatRouter, addition, isDetail) {
             if (!targetParent.children) {
                 targetParent.children = [];
             }
-            targetParent.meta.isPage = true;
             targetParent.children.push(addition);
         } else {
             originalObj.router.push(addition);
